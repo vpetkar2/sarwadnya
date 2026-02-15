@@ -1,0 +1,110 @@
+<?php 
+	$url =  $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$arr = explode("/", $url);
+	$str = end($arr);
+	$this->load->helper('general_helper');
+	$seo_val = getSeoData($str);
+	
+	if($seo_val !="") 
+	{
+		$title    = $seo_val->seo_title;
+		$keywords = $seo_val->seo_key;
+		$desc     = $seo_val->seo_desc;
+	} else 
+	{
+		$title = "Parth Fibrotech in a Leading Indoor & Outdoor Gym Equipments Manufacturer, Supplier and Exporter in India.";
+		$keywords   = "Parth Fibrotech Indoor Gym Equipment, Playground Slides, Playground Combo Set, Merry Go Round, Playground Swings, Playground See-Saw ,Playground Climber, Outdoor Playground Multiply, kids and baby online store, Fiber Animal Dustbin from Nagpur, Maharashtra, India";
+		$desc  = "Outdoor & indoor Gym Equipment, Outdoor & indoor gym equipment for kids, Portable Toilet equipment, Garden Bench suppliers, Outdoor Play Riders, Canteen Table, Parth Fibrotech,  single chest cum seating puller, outdoor gym equipment manufacturers, outdoor games for kids, gym equipment, games for kids to play outside , garden gym equipment, gym equipment for garden , outdoor activities for kids";
+	}
+?>
+<!DOCTYPE html>
+<html >
+	<head>
+		<!-- Site made with Mobirise Website Builder v4.9.5,  -->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="generator" content="Mobirise v4.9.5, mobirise.com">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+		<link rel="shortcut icon" href="<?php echo base_url('assets/site/images/logo.png'); ?>" type="image/x-icon">
+		
+		 <meta name="title" content="<?php echo $title ; ?>" />
+		<meta name="keywords" content="<?php echo $keywords ; ?>" />
+        <meta name="description" content="<?php echo $desc ; ?>" /> 
+
+       <!--  <meta name="title" content="<?php echo $meta_rec[0]['meta_title']; ?>" />
+		<meta name="keywords" content="<?php echo $meta_rec[0]['meta_keywords']; ?>" />
+        <meta name="description" content="<?php echo $meta_rec[0]['meta_desc']; ?>" /> -->
+        
+		<meta name="google-site-verification" content="EMGi_zCBuC5Mv2AhYLUCRsnaqLSBqd5DOP8wZogLE0k" />
+		
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141119270-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141119270-1');
+</script>
+		
+		<title><?php echo $title ; ?> </title>
+		<?php echo link_tag('assets/site/web/assets/mobirise-icons/mobirise-icons.css'); ?>
+		<?php echo link_tag('assets/site/bootstrap/css/bootstrap.min.css'); ?>
+		<?php echo link_tag('assets/site/bootstrap/css/bootstrap-grid.min.css'); ?>
+		<?php echo link_tag('assets/site/bootstrap/css/bootstrap-reboot.min.css'); ?>
+		<?php echo link_tag('assets/site/dropdown/css/style.css'); ?>
+		<?php echo link_tag('assets/site/animatecss/animate.min.css'); ?>
+		<?php echo link_tag('assets/site/socicon/css/styles.css'); ?>
+		<?php echo link_tag('assets/site/theme/css/style.css'); ?>
+		<?php echo link_tag('assets/site/gallery/style.css'); ?>
+		<?php echo link_tag('assets/site/mobirise/css/mbr-additional.css'); ?>
+		<?php echo link_tag('assets/site/mobirise/css/custom.css'); ?>
+		
+<!-- Google Analytics -->
+
+	</head>
+	
+	<body>
+		<section class="menu cid-rkUAaV0Uh8" once="menu" id="menu1-0">
+			<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+				<div class="navbar-brand">
+					<span class="navbar-logo">
+					<a href="<?php echo base_url(''); ?>">
+					<img src="<?php echo base_url('assets/site/images/flogo.png'); ?>" alt="Parth Logo">
+					</a>
+					</span>
+					<!--<span class="navbar-caption-wrap"><a class="navbar-caption text-black display-2" href="">
+					Parth FibroTech</a></span> -->
+				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					<div class="hamburger">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+						<li class="nav-item">
+							<a class="nav-link link text-black display-4" href="<?php echo base_url(''); ?>">
+							Home
+							</a>
+						</li>
+						<li class="nav-item product-btn product-btn">   <!--echo base_url(' products')/ -->
+							<a class="nav-link link text-black display-4" href='<?php echo base_url('products/'); ?>'> 
+							Products</a>
+							<div class="product-cat" id="scrollBar">
+								<ul class="product-list">
+									<?php
+										foreach($categories as $category)
+										{ ?>
+											<li><a href="<?php echo base_url('product/'.stripslashes($category['slug']).'/'); ?>"><?php echo stripslashes($category['cat_title']); ?></a></li>
+											<?php
+										}
+									?>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link link text-black display-4" href="<?php echo base_url('about-us/'); ?>">About Us</a></li>
+						<li class="nav-item"><a class="nav-link link text-black display-4" href="<?php echo base_url('blog/'); ?>"
