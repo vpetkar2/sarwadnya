@@ -38,6 +38,24 @@
 	</div>
 </div>
 
+<!-- Client logo -->
+<div class="section-full dlab-we-find bg-img-fix p-t20 p-b10 bg-white wow fadeIn" data-wow-duration="2s"
+	data-wow-delay="0.6s">
+	<div class="container">
+		<div class="row relative">
+			<div class="col-md-12 col-lg-8 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.2s">
+				<h2 class="title">Meet Our Sports & Fitness Equipment Specialists</h2>
+			</div>
+			<div class="col-md-12 col-lg-4 p-t10 p-b20 contact-img-bx wow fadeInRight" data-wow-duration="2s"
+				data-wow-delay="0.2s">
+				<a href="<?php echo base_url('contact-us/'); ?>" title="READ MORE" rel="bookmark"
+					class="site-button btnhover13">CONTACT US</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Client logo END -->
+
 <!-- Footer -->
 <footer class="site-footer style1">
 	<!-- Footer Info -->
@@ -51,7 +69,8 @@
 								<span class="icon-sm"><i class="ti-location-pin"></i></span>
 								Company Address
 							</h5>
-							<p class="op7">Demo address #8901 Marmora Road Chi Minh City, Vietnam</p>
+							<p class="op7">
+								244, Manewada Ring Road, Akash Nagar, Nagpur - 440034.</p>
 						</div>
 					</div>
 				</div>
@@ -62,8 +81,8 @@
 								<span class="icon-sm"><i class="ti-email"></i></span>
 								E-mail
 							</h5>
-							<p class="m-b0 op7">info@example.com</p>
-							<p class="op7">company@example.com</p>
+							<p class="m-b0 op7">info@sarwadnyaplay.com</p>
+							<p class="m-b0 op7">sarwadnya.sportnfitness@gmail.com</p>
 						</div>
 					</div>
 				</div>
@@ -74,8 +93,8 @@
 								<span class="icon-sm"><i class="ti-mobile"></i></span>
 								Phone Numbers
 							</h5>
-							<p class="m-b0 op7">Mobile : +00 234 678 9012</p>
-							<p class="op7">Phone : +0 1234 5678 90</p>
+							<p class="m-b0 op7">Mobile : +91-9823232019</p>
+							<p class="m-b0 op7">Mobile : +91-7875190909</p>
 						</div>
 					</div>
 				</div>
@@ -86,7 +105,7 @@
 								<span class="icon-sm"><i class="ti-alarm-clock"></i></span>
 								Office Hours
 							</h5>
-							<p class="m-b0 op7">Mon To Sat - 08.00-18.00</p>
+							<p class="m-b0 op7">Mon To Sat - 10.00-18.00</p>
 							<p class="op7">Sunday - Close</p>
 						</div>
 					</div>
@@ -113,11 +132,9 @@
 						<ul class="list-2">
 							<li><a href="<?php echo base_url('about-us/'); ?>">About Us</a></li>
 							<li><a href="<?php echo base_url('blog/'); ?>">Blog</a></li>
-							<li><a href="<?php echo base_url('services/'); ?>">Services</a></li>
+							<li><a href="<?php echo base_url('products/'); ?>">Products</a></li>
 							<li><a href="<?php echo base_url('privacy-policy/'); ?>">Privacy Policy</a></li>
-							<li><a href="<?php echo base_url('portfolio/'); ?>">Projects </a></li>
-							<li><a href="<?php echo base_url('help-desk/'); ?>">Help Desk </a></li>
-							<li><a href="<?php echo base_url('shop/'); ?>">Shop</a></li>
+							<li><a href="<?php echo base_url('career/'); ?>">Career </a></li>
 							<li><a href="<?php echo base_url('contact-us/'); ?>">Contact</a></li>
 						</ul>
 					</div>
@@ -149,7 +166,8 @@
 	<div class="footer-bottom footer-line">
 		<div class="container">
 			<div class="footer-bottom-in">
-				<div class="footer-bottom-logo"><a href="<?php echo base_url(''); ?>"><img src="<?php echo base_url("assets/newsite/images/logo-light.png"); ?>" alt="" /></a>
+				<div class="footer-bottom-logo"><a href="<?php echo base_url(''); ?>"><img
+							src="<?php echo base_url("assets/newsite/images/logo-light.png"); ?>" alt="" /></a>
 				</div>
 				<div class="footer-bottom-social">
 					<ul class="dlab-social-icon dez-border">

@@ -400,283 +400,205 @@ $this->load->view('header_view');
 		<div class="section-full bg-gray content-inner">
 			<div class="container">
 				<div class="section-head text-center ">
-					<h2 class="title"> Meet The Team</h2>
-					<p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's
-						standard dummy text ever since the been when an unknown printer.</p>
+					<h2 class="title">Our New Products</h2>
+					<p> We continuously introduce new and innovative products designed with advanced technology, modern
+						design, and improved durability.
+						Our latest range focuses on enhancing safety, performance, and user experience for playgrounds,
+						fitness areas, and public spaces.</p>
 				</div>
 				<div class="row">
-					<div class="col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
-						<div class="dlab-box m-b30 dlab-team1">
-							<div class="dlab-media">
-								<a href="team-1.html">
-									<img width="358" height="460" alt="" src="images/our-team/preview.jpg" class="lazy"
-										data-src="images/our-team/pic1.jpg">
-								</a>
-							</div>
-							<div class="dlab-info">
-								<h4 class="dlab-title"><a href="team-1.html">Nashid Martines</a></h4>
-								<span class="dlab-position">Director</span>
-								<ul class="dlab-social-icon dez-border">
-									<li><a class="fa fa-facebook" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-twitter" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-linkedin" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-pinterest" href="javascript:void(0);"></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
-						<div class="dlab-box m-b30 dlab-team1">
-							<div class="dlab-media">
-								<a href="team-1.html">
-									<img width="358" height="460" alt="" src="images/our-team/preview.jpg" class="lazy"
-										data-src="images/our-team/pic2.jpg">
-								</a>
-							</div>
-							<div class="dlab-info">
-								<h4 class="dlab-title"><a href="team-1.html">Konne Backfield</a></h4>
-								<span class="dlab-position">Designer</span>
-								<ul class="dlab-social-icon dez-border">
-									<li><a class="fa fa-facebook" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-twitter" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-linkedin" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-pinterest" href="javascript:void(0);"></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
-						<div class="dlab-box m-b30 dlab-team1">
-							<div class="dlab-media">
-								<a href="team-1.html">
-									<img width="358" height="460" alt="" src="images/our-team/preview.jpg" class="lazy"
-										data-src="images/our-team/pic3.jpg">
-								</a>
-							</div>
-							<div class="dlab-info">
-								<h4 class="dlab-title"><a href="team-1.html">Hackson Willingham</a></h4>
-								<span class="dlab-position">Developer</span>
-								<ul class="dlab-social-icon dez-border">
-									<li><a class="fa fa-facebook" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-twitter" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-linkedin" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-pinterest" href="javascript:void(0);"></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.8s">
-						<div class="dlab-box m-b30 dlab-team1">
-							<div class="dlab-media">
-								<a href="team-1.html">
-									<img width="358" height="460" alt="" src="images/our-team/preview.jpg" class="lazy"
-										data-src="images/our-team/pic4.jpg">
-								</a>
-							</div>
-							<div class="dlab-info">
-								<h4 class="dlab-title"><a href="team-1.html">Konne Backfield</a></h4>
-								<span class="dlab-position">Manager</span>
-								<ul class="dlab-social-icon dez-border">
-									<li><a class="fa fa-facebook" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-twitter" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-linkedin" href="javascript:void(0);"></a></li>
-									<li><a class="fa fa-pinterest" href="javascript:void(0);"></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Team member End -->
-		<!-- Testimonials blog -->
-		<div class="section-full overlay-black-middle bg-secondry content-inner-2 wow fadeIn" data-wow-duration="2s"
-			data-wow-delay="0.2s"
-			style="background-image:url(<?php echo base_url("assets/newsite/images/background/map-bg.png"); ?>);">
-			<div class="container">
-				<div class="section-head text-white text-center">
-					<h2 class="title">What Our Clients Say</h2>
-					<p>Trusted by schools, parks, and organizations for delivering high-quality playground and outdoor
-						fitness solutions with safety, durability, and long-lasting performance.</p>
-				</div>
-				<div class="section-content">
-					<div
-						class="testimonial-two-dots owl-carousel owl-none owl-theme owl-dots-primary-full owl-loaded owl-drag">
-						<div class="item">
-							<div class="testimonial-15 text-white">
-								<div class="testimonial-text quote-left quote-right">
-									<p>Excellent Quality & Installation
-										<br />
-										Sarwadnya Sports & Fitness delivered durable playground equipment with
-										professional installation. The quality and safety standards are impressive.
-									</p>
-								</div>
-								<div class="testimonial-detail clearfix">
-									<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic3.jpg"
-											width="100" height="100" alt=""></div> -->
-									<strong class="testimonial-name">Rajesh Sharma</strong> <span
-										class="testimonial-position">School Management</span>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimonial-15 text-white">
-								<div class="testimonial-text quote-left quote-right">
-									<p>Reliable Outdoor Gym Setup
-										<br />
-										We installed outdoor gym equipment in our community park, and the response has
-										been very positive. Strong build quality and service.
-									</p>
-								</div>
-								<div class="testimonial-detail clearfix">
-									<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic2.jpg"
-											width="100" height="100" alt=""></div> -->
-									<strong class="testimonial-name">Amit Verma</strong> <span
-										class="testimonial-position">Park Committee</span>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimonial-15 text-white">
-								<div class="testimonial-text quote-left quote-right">
-									<p>Professional & Supportive Team
-										<br />
-										The team helped us design and install a complete play area. Smooth process, good
-										support, and high-quality materials used.
-									</p>
-								</div>
-								<div class="testimonial-detail clearfix">
-									<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic1.jpg"
-											width="100" height="100" alt=""></div> -->
-									<strong class="testimonial-name">Kavita Gupta</strong> <span
-										class="testimonial-position">Residential Society</span>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimonial-15 text-white">
-								<div class="testimonial-text quote-left quote-right">
-									<p>Great Science Park Equipment
-										<br />
-										Innovative and educational equipment installed perfectly. Students enjoy
-										learning through interactive science models.
-									</p>
-								</div>
-								<div class="testimonial-detail clearfix">
-									<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic3.jpg"
-											width="100" height="100" alt=""></div> -->
-									<strong class="testimonial-name">Swati Mishra</strong> <span
-										class="testimonial-position">Educational Institution</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Testimonials blog End -->
-		<!-- Latest blog -->
-		<div class="section-full content-inner bg-gray wow fadeIn" data-wow-duration="2s" data-wow-delay="0.4s">
-			<div class="container">
-				<div class="section-head text-center">
-					<h2 class="title">Latest blog post</h2>
-					<p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's
-						standard dummy text ever since the been when an unknown printer.</p>
-				</div>
-				<div class="blog-carousel owl-none owl-carousel">
-					<div class="item">
-						<div class="blog-post post-style-1">
-							<div class="dlab-post-media dlab-img-effect rotate">
-								<a href="blog-single.html"><img src="images/blog/latest-blog/pic1.jpg" alt=""></a>
-							</div>
-							<div class="dlab-post-info">
-								<div class="dlab-post-meta">
-									<ul>
-										<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
-										<li class="post-author"> By <a href="blog-single.html">demongo</a> </li>
-									</ul>
-								</div>
-								<div class="dlab-post-title">
-									<h3 class="post-title"><a href="blog-single.html">Why You Should Not Go To
-											Industry</a>
-									</h3>
-								</div>
-								<div class="dlab-post-readmore">
-									<a href="blog-single.html" title="READ MORE" rel="bookmark"
-										class="site-button btnhover13">READ MORE</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="blog-post post-style-1">
-							<div class="dlab-post-media dlab-img-effect rotate">
-								<a href="blog-single.html"><img src="images/blog/latest-blog/pic2.jpg" alt=""></a>
-							</div>
-							<div class="dlab-post-info">
-								<div class="dlab-post-meta">
-									<ul>
-										<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
-										<li class="post-author"> By <a href="blog-single.html">AARON</a> </li>
-									</ul>
-								</div>
-								<div class="dlab-post-title ">
-									<h3 class="post-title"><a href="blog-single.html">Seven Doubts You Should Clarify
-											About</a></h3>
-								</div>
-								<div class="dlab-post-readmore">
-									<a href="blog-single.html;" title="READ MORE" rel="bookmark"
-										class="site-button btnhover13">READ MORE</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="blog-post post-style-1">
-							<div class="dlab-post-media dlab-img-effect rotate">
-								<a href="blog-single.html"><img src="images/blog/latest-blog/pic3.jpg" alt=""></a>
-							</div>
-							<div class="dlab-post-info">
-								<div class="dlab-post-meta">
-									<ul>
-										<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
-										<li class="post-author"> By <a href="blog-single.html">VICTORIA</a> </li>
-									</ul>
-								</div>
-								<div class="dlab-post-title">
-									<h3 class="post-title"><a href="blog-single.html">Seven Outrageous Ideas
-											Industry</a>
-									</h3>
-								</div>
-								<div class="dlab-post-readmore">
-									<a href="blog-single.html" title="READ MORE" rel="bookmark"
-										class="site-button btnhover13">READ MORE</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Latest blog END -->
-		<!-- Client logo -->
-		<div class="section-full dlab-we-find bg-img-fix p-t20 p-b10 bg-white wow fadeIn" data-wow-duration="2s"
-			data-wow-delay="0.6s">
-			<div class="container">
-				<div class="row relative">
-					<div class="col-md-12 col-lg-8 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.2s">
-						<h2 class="title">Meet Our Sports & Fitness Equipment Specialists</h2>
-					</div>
-					<div class="col-md-12 col-lg-4 p-t10 p-b20 contact-img-bx wow fadeInRight" data-wow-duration="2s"
+					<div class="col-lg-12 col-md-12 col-sm-12 wow fadeInUp text-center" data-wow-duration="2s"
 						data-wow-delay="0.2s">
-						<a href="<?php echo base_url('contact-us/'); ?>" title="READ MORE" rel="bookmark"
-							class="site-button btnhover13">CONTACT US</a>
+						<?php
+						// print_r($new_category);
+						$j = 0;
+						foreach ($new_category as $newcategory) {
+							$citydata = $this->site_cms_model->get_record_by_id("city", array('id' => $newcategory['city_id']), "id", "DESC", '1', '');
+							?>
+							<a class="site-button outline m-r15 m-b15 radius-xl" href="<?php echo strtolower($citydata->name) . "/" . $newcategory['slug']; ?>">
+								<span class="icon-focus"></span><span><?php echo $newcategory['cat_title']; ?></span>
+							</a>
+							<?php $j++;
+						}
+						?>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Client logo END -->
 	</div>
+	<!-- Team member End -->
+	<!-- Testimonials blog -->
+	<div class="section-full overlay-black-middle bg-secondry content-inner-2 wow fadeIn" data-wow-duration="2s"
+		data-wow-delay="0.2s"
+		style="background-image:url(<?php echo base_url("assets/newsite/images/background/map-bg.png"); ?>);">
+		<div class="container">
+			<div class="section-head text-white text-center">
+				<h2 class="title">What Our Clients Say</h2>
+				<p>Trusted by schools, parks, and organizations for delivering high-quality playground and outdoor
+					fitness solutions with safety, durability, and long-lasting performance.</p>
+			</div>
+			<div class="section-content">
+				<div
+					class="testimonial-two-dots owl-carousel owl-none owl-theme owl-dots-primary-full owl-loaded owl-drag">
+					<div class="item">
+						<div class="testimonial-15 text-white">
+							<div class="testimonial-text quote-left quote-right">
+								<p>Excellent Quality & Installation
+									<br />
+									Sarwadnya Sports & Fitness delivered durable playground equipment with
+									professional installation. The quality and safety standards are impressive.
+								</p>
+							</div>
+							<div class="testimonial-detail clearfix">
+								<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic3.jpg"
+											width="100" height="100" alt=""></div> -->
+								<strong class="testimonial-name">Rajesh Sharma</strong> <span
+									class="testimonial-position">School Management</span>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimonial-15 text-white">
+							<div class="testimonial-text quote-left quote-right">
+								<p>Reliable Outdoor Gym Setup
+									<br />
+									We installed outdoor gym equipment in our community park, and the response has
+									been very positive. Strong build quality and service.
+								</p>
+							</div>
+							<div class="testimonial-detail clearfix">
+								<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic2.jpg"
+											width="100" height="100" alt=""></div> -->
+								<strong class="testimonial-name">Amit Verma</strong> <span
+									class="testimonial-position">Park
+									Committee</span>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimonial-15 text-white">
+							<div class="testimonial-text quote-left quote-right">
+								<p>Professional & Supportive Team
+									<br />
+									The team helped us design and install a complete play area. Smooth process, good
+									support, and high-quality materials used.
+								</p>
+							</div>
+							<div class="testimonial-detail clearfix">
+								<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic1.jpg"
+											width="100" height="100" alt=""></div> -->
+								<strong class="testimonial-name">Kavita Gupta</strong> <span
+									class="testimonial-position">Residential Society</span>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimonial-15 text-white">
+							<div class="testimonial-text quote-left quote-right">
+								<p>Great Science Park Equipment
+									<br />
+									Innovative and educational equipment installed perfectly. Students enjoy
+									learning through interactive science models.
+								</p>
+							</div>
+							<div class="testimonial-detail clearfix">
+								<!-- <div class="testimonial-pic radius shadow"><img src="images/testimonials/pic3.jpg"
+											width="100" height="100" alt=""></div> -->
+								<strong class="testimonial-name">Swati Mishra</strong> <span
+									class="testimonial-position">Educational Institution</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Testimonials blog End -->
+	<!-- Latest blog -->
+	<div class="section-full content-inner bg-gray wow fadeIn" data-wow-duration="2s" data-wow-delay="0.4s">
+		<div class="container">
+			<div class="section-head text-center">
+				<h2 class="title">Latest blog post</h2>
+				<p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's
+					standard dummy text ever since the been when an unknown printer.</p>
+			</div>
+			<div class="blog-carousel owl-none owl-carousel">
+				<div class="item">
+					<div class="blog-post post-style-1">
+						<div class="dlab-post-media dlab-img-effect rotate">
+							<a href="blog-single.html"><img src="images/blog/latest-blog/pic1.jpg" alt=""></a>
+						</div>
+						<div class="dlab-post-info">
+							<div class="dlab-post-meta">
+								<ul>
+									<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
+									<li class="post-author"> By <a href="blog-single.html">demongo</a> </li>
+								</ul>
+							</div>
+							<div class="dlab-post-title">
+								<h3 class="post-title"><a href="blog-single.html">Why You Should Not Go To
+										Industry</a>
+								</h3>
+							</div>
+							<div class="dlab-post-readmore">
+								<a href="blog-single.html" title="READ MORE" rel="bookmark"
+									class="site-button btnhover13">READ MORE</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="blog-post post-style-1">
+						<div class="dlab-post-media dlab-img-effect rotate">
+							<a href="blog-single.html"><img src="images/blog/latest-blog/pic2.jpg" alt=""></a>
+						</div>
+						<div class="dlab-post-info">
+							<div class="dlab-post-meta">
+								<ul>
+									<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
+									<li class="post-author"> By <a href="blog-single.html">AARON</a> </li>
+								</ul>
+							</div>
+							<div class="dlab-post-title ">
+								<h3 class="post-title"><a href="blog-single.html">Seven Doubts You Should Clarify
+										About</a></h3>
+							</div>
+							<div class="dlab-post-readmore">
+								<a href="blog-single.html;" title="READ MORE" rel="bookmark"
+									class="site-button btnhover13">READ MORE</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="blog-post post-style-1">
+						<div class="dlab-post-media dlab-img-effect rotate">
+							<a href="blog-single.html"><img src="images/blog/latest-blog/pic3.jpg" alt=""></a>
+						</div>
+						<div class="dlab-post-info">
+							<div class="dlab-post-meta">
+								<ul>
+									<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
+									<li class="post-author"> By <a href="blog-single.html">VICTORIA</a> </li>
+								</ul>
+							</div>
+							<div class="dlab-post-title">
+								<h3 class="post-title"><a href="blog-single.html">Seven Outrageous Ideas
+										Industry</a>
+								</h3>
+							</div>
+							<div class="dlab-post-readmore">
+								<a href="blog-single.html" title="READ MORE" rel="bookmark"
+									class="site-button btnhover13">READ MORE</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Latest blog END -->
+</div>
 </div>
 <!-- Content END-->
 

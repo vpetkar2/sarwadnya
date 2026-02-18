@@ -104,6 +104,28 @@ $segment1 = $this->uri->segment(1);
 		.counter::after {
 			content: "+";
 		}
+
+		.pagination {
+			margin-top: 20px;
+		}
+
+		.pagination .page-item.active .page-link {
+			background-color: var(--color-primary);
+			border-color: var(--color-primary);
+		}
+
+		.pagination .page-link {
+			color: #333;
+			padding: 8px 14px;
+		}
+
+		.pagination .page-link:hover {
+			background: #f1f1f1;
+		}
+
+		.page-link {
+			display: inline;
+		}
 	</style>
 </head>
 
@@ -112,21 +134,6 @@ $segment1 = $this->uri->segment(1);
 		<div id="loading-area"></div>
 		<!-- header -->
 		<header class="site-header mo-left header">
-			<!-- <div class="top-bar">
-			<div class="container">
-				<div class="row d-flex justify-content-between align-items-center">
-					<div class="dlab-topbar-left">
-						<ul>
-							<li><a href="privacy-policy.html">Refund Policy</a></li>
-							<li><a href="help-desk.html">Help Desk</a></li>
-						</ul>
-					</div>
-					<div class="dlab-topbar-right">
-						<a href="contact-1.html" class="site-button radius-no btnhover13">GET A QUOTE</a>						
-					</div>
-				</div>
-			</div>
-		</div> -->
 			<!-- main header -->
 			<div class="sticky-header main-bar-wraper navbar-expand-lg">
 				<div class="main-bar clearfix ">

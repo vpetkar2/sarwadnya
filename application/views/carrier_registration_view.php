@@ -1,123 +1,139 @@
-<?php 
-	
-	
-	$data['contact_detail'] = $contact_detail;
-	$this->load->view('header_view', $data);
+<?php
+
+
+$data['contact_detail'] = $contact_detail;
+$this->load->view('header_view', $data);
 ?>
-		<section class="cid-rneHpGJaIG mbr-parallax-background" id="content9-1d">
-			<div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(35, 35, 35);">
+<!-- Content -->
+<div class="page-content bg-white">
+	<!-- inner page banner -->
+	<div class="dlab-bnr-inr overlay-black-middle bg-pt"
+		style="background-image:url(<?php echo base_url("assets/newsite/images/background/bg5.jpg"); ?>);">
+		<div class="container">
+			<div class="dlab-bnr-inr-entry">
+				<h1 class="text-white">Career Details</h1>
 			</div>
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 col-md-12 align-center">
-						<h2 class="mbr-section-title align-left mbr-fonts-style mbr-bold mbr-white display-2">
-							Career Details
-						</h2>
-						<!--<h3 class="mbr-section-subtitle align-left mbr-fonts-style mbr-white pt-2 display-5">
-							Lorem Ipsum Dolor Sit Amet
-						</h3>-->
-					</div>
-				</div>
-			</div>
-		</section>
-		
-		<section class="features10 cid-rneHioChsC" id="features10-1a">
-			<div class="container">
-			<?php echo form_open_multipart('carrier/submitPost');?>
-				<?php if(!empty($add_error))
-				{?>
+		</div>
+	</div>
+</div>
+<!-- Content END-->
+
+<!-- Content -->
+<div class="page-content bg-white">
+	<!-- Contact Form -->
+	<div class="section-full content-inner contact-page-9"
+		style="background-image: url(images/background/bg5.jpg); background-position: 30% 100%">
+		<div class="container">
+			<?php if (!empty($add_error)) { ?>
 				<div class="alert alert-warning" id="msg">
-						<button type="button" class="close" data-dismiss="alert">x</button><?php echo $add_error;?></div>
-				<?php
-				}?>
-				<?php if($this->session->flashdata('add_success')) { ?>
-					<div class="alert alert-success" id="msg">
-						<button type="button" class="close" data-dismiss="alert">x</button>
-						<?php echo $this->session->flashdata('add_success');?>
-					</div>
-				<?php } ?>
-				<?php if($this->session->flashdata('error')) { ?>
-					<div class="alert alert-warning">
-						<button type="button" class="close" data-dismiss="alert">x</button>
-						<?php echo $this->session->flashdata('error');?>
-					</div>
-				<?php } ?>
-				<div class="row justify-content-center align-items-start">
-					<div class="dragArea row">
-						<div data-for="carri_title" class="col-lg-6  mb-3 form-group">
-							<input type="text" name="title" placeholder="Enter Name*" data-form-field="carri_title" class="form-control input display-7" required="required" id="title-form3-1s">
-						</div>
-						<div data-for="carri_no_of_position" class="col-lg-6  mb-3 form-group">
-							<input type="email" required="required" name="email" placeholder="Email ID" data-form-field=" carri_no_of_position" class="form-control input display-7" id="carri_no_of_position-form3">
-						</div>
-						<div data-for="carri_desc" class="col-lg-6  mb-3 form-group">
-							<input type="text" name="mobile" placeholder="Telephone No / Mobile No  *" data-form-field="carri_desc" class="form-control input display-7" required="required" id="carri_desc-form3-1s">
-						</div>
-						<div data-for="carri_title" class="col-lg-6  mb-3 form-group">
-						<select data-form-field="carri_title" class="form-control input display-7" required="required" id="title-form3-1s" name="crrpost">
-						<option value="" >Select Post</option>
-						<?php
-						if(!empty($carrier_list))
-						{
-							foreach($carrier_list as $carrier)
-							{
-								
-								$carrier_name = stripslashes($carrier['crr_title']);
-								$carrier_pos = stripslashes($carrier['crr_no_of_position']);
-								
-								$carrier_desc= stripslashes($carrier['crr_desc']);
-							
-								$url = base_url().'carrier/detail/'.$carrier['crr_id'].'/';
-							?>
-							<option value="<?php echo $carrier['crr_id']; ?>" <?php if($carrier['crr_id'] == $ids) { ?>selected <?php } ?>><?php echo $carrier_name; ?></option>
-						<?php } } ?>
-						</select>
-							
-						</div>
-						<div data-for="carri_no_of_position" class="col-lg-12  mb-3 form-group">
-							<textarea name="message" placeholder="Comment" data-form-field=" carri_no_of_position" class="form-control input display-7" id="carri_no_of_position-form3"></textarea>
-						</div>
-						<div data-for="carri_desc" class="col-lg-4  mb-3 form-group"></div>
-						<div data-for="carri_desc" class="col-lg-4  mb-3 form-group">
-							<input type="text" value="OR" class="form-control input display-7 align-center" readonly>
-						</div>
-						<div data-for="carri_desc" class="col-lg-4  mb-3 form-group"></div>
-						
-						<div data-for="carri_desc" class="col-lg-12  mb-3 form-group">
-							<input type="file" name="resume" data-form-field="carri_desc" class="form-control input display-7"  id="carri_desc-form3-1s">
-						</div>
-						
-						<div class="col-lg-3  mb-3 form-group">
-							<?  echo $captcha_img['image'];?>
-						</div>
-						<div class="col-lg-4  mb-3 form-group">
-							<input type="text" class="form-control input display-7" name="captcha" id="captcha"  placeholder="Enter Beside security Code" required="required"/>
-						</div>
-									
-						<div class="col-md-12 input-group-btn  mt-2 align-left">
-							<button type="submit" class="btn btn-form btn-bgr btn-primary display-4">Apply now</button>
-						</div>
-							
-							
-						</div>
-					</div>
+					<button type="button" class="close" data-dismiss="alert">x</button><?php echo $add_error; ?>
 				</div>
-				</form>
-			</div>
-		</section>
-		<section class="mbr-section info5 cid-rneHQ8fMuT" id="info5-1e">
-			<div class="container">
-				<div class="row justify-content-center content-row">
-					<div class="media-container-column title col-12 col-lg-7 col-md-6">
-						<h2 class="align-left mbr-bold mbr-fonts-style mbr-white mbr-section-title display-2">Meet our Outdoor Equipment Experts</h2>
-					</div>
-					<div class="media-container-column col-12 col-lg-3 col-md-4">
-						<div class="mbr-section-btn align-right py-4"><a class="btn btn-warning display-4" href="">Learn More</a></div>
-					</div>
+			<?php } ?>
+			<?php if ($this->session->flashdata('add_success')) { ?>
+				<div class="alert alert-success" id="msg">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					<?php echo $this->session->flashdata('add_success'); ?>
+				</div>
+			<?php } ?>
+			<?php if ($this->session->flashdata('error')) { ?>
+				<div class="alert alert-warning">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					<?php echo $this->session->flashdata('error'); ?>
+				</div>
+			<?php } ?>
+
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 col-md-12 m-b30">
+					<form class="inquiry-form wow bg-white fadeInUp" data-wow-delay="0.2s">
+						<h3 class="title-box font-weight-300 m-t0 m-b10">Career Form <span class="bg-primary"></span>
+						</h3>
+						<br />
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p> -->
+						<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="ti-user text-primary"></i></span>
+										<input name="dzName" type="text" required class="form-control"
+											placeholder="First Name">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="ti-mobile text-primary"></i></span>
+										<input name="dzOther[Phone]" type="text" required class="form-control"
+											placeholder="Phone">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="ti-email text-primary"></i></span>
+										<input name="dzEmail" type="email" class="form-control" required
+											placeholder="Your Email Id">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="ti-check-box text-primary"></i></span>
+										<select>
+											<option>Select Industry</option>
+											<option>Oil/Gas Plant</option>
+											<option>Steel Plant</option>
+											<option>Factory</option>
+											<option>Construct</option>
+											<option>Solar Plant</option>
+											<option>Food Industry</option>
+											<option>Agriculture</option>
+											<option>Ship Industry</option>
+											<option>Leather Industry</option>
+											<option>Nuclear Plant</option>
+											<option>Beer Factory</option>
+											<option>Mining Industry</option>
+											<option>Car Industry</option>
+											<option>Plastic Industry</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="ti-file text-primary"></i></span>
+										<input name="dzOther[Subject]" type="text" required class="form-control"
+											placeholder="Upload File">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="ti-agenda text-primary"></i></span>
+										<textarea name="dzMessage" rows="4" class="form-control" required
+											placeholder="Tell us about your project or idea"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<button name="submit" type="submit" value="Submit" class="site-button button-md">
+									<span>Apply Now</span> </button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
-		</section>
-		 <?php 
+		</div>
+	</div>
+	<!-- Contact Form END -->
+</div>
+<!-- Content END-->
+
+<?php
 //$data['page'] = 'about';
 //$data['contact_detail'] = $contact_detail;
 //$this->load->view('footer_view', $data);

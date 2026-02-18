@@ -16,10 +16,14 @@ $this->load->view('header_view', $data); ?>
 										<span class="icon-sm text-primary"><i class="ti-location-pin"></i></span>
 										Company Address
 									</h5>
-									<p>007 Dummy Ashoka Apartment, Gautam Marg, Rani Sati Nagar,Jaipur / India </p>
+									<p>
+										<b>Sarwadnya Sports And Fitness Private Limited</b><br>
+										Plot No.244, Near Vandematram School, Manewada Ring Road, Akash Nagar, Nagpur -
+										440034, Maharashtra, India
+									</p>
 									<h6 class="m-b15 text-black font-weight-400"><i class="ti-alarm-clock"></i> Office
 										Hours</h6>
-									<p class="m-b0">Mon To Sat - 10.00 - 07.00</p>
+									<p class="m-b0">Mon To Sat - 10.00 - 18.00</p>
 									<p>Sunday - Close</p>
 								</div>
 							</div>
@@ -31,9 +35,8 @@ $this->load->view('header_view', $data); ?>
 										<span class="icon-sm text-primary"><i class="ti-email"></i></span>
 										E-mail
 									</h5>
-									<p class="m-b0">info@example.com</p>
-									<p class="m-b0">hr@example.com</p>
-									<p class="m-b0">support@example.com</p>
+									<p class="m-b0">info@sarwadnyaplay.com</p>
+									<p class="m-b0">sarwadnya.sportnfitness@gmail.com</p>
 								</div>
 							</div>
 						</div>
@@ -44,8 +47,10 @@ $this->load->view('header_view', $data); ?>
 										<span class="icon-sm text-primary"><i class="ti-mobile"></i></span>
 										Phone Numbers
 									</h5>
-									<p class="m-b0">+00 234 678 9012</p>
-									<p class="m-b0">+00 1234 5678 90</p>
+									<p class="m-b0">+91-9823232019</p>
+									<p class="m-b0">+91-7875190909</p>
+									<p class="m-b0">+91-8432730909</p>
+									<!-- <p class="m-b0">+00 1234 5678 90</p> -->
 								</div>
 							</div>
 						</div>
@@ -53,10 +58,11 @@ $this->load->view('header_view', $data); ?>
 				</div>
 				<div class="col-lg-8 col-md-12 m-b30">
 					<form class="inquiry-form wow box-shadow bg-white fadeInUp" data-wow-delay="0.2s">
-						<h3 class="title-box font-weight-300 m-t0 m-b10">Let's Convert Your Idea into Reality <span
+						<h3 class="title-box font-weight-300 m-t0 m-b10">Let’s Convert Your Idea into Reality<span
 								class="bg-primary"></span></h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-							been the industry's standard dummy text ever since the</p>
+						<p>Contact Sarwadnya Sports and Fitness Pvt. Ltd. for playground equipment, outdoor gym
+							solutions, and science park products. As an ISO 9001:2015 certified manufacturer, we provide
+							quality, durable, and safe equipment.</p>
 						<div class="row">
 							<div class="col-lg-6 col-md-6">
 								<div class="form-group">
