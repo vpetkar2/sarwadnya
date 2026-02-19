@@ -167,7 +167,7 @@
 		<div class="container">
 			<div class="footer-bottom-in">
 				<div class="footer-bottom-logo"><a href="<?php echo base_url(''); ?>"><img
-							src="<?php echo base_url("assets/newsite/images/logo-light.png"); ?>" alt="" /></a>
+							src="<?php echo base_url("assets/newsite/images/logo/logo.png"); ?>" alt="" /></a>
 				</div>
 				<div class="footer-bottom-social">
 					<ul class="dlab-social-icon dez-border">

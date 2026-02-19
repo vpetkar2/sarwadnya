@@ -1,91 +1,160 @@
-<?php 
-	$b_title = stripslashes($blog['b_title']);
-	$data['title'] = $b_title; 
-	$data['contact_detail'] = $contact_detail;
-	$this->load->view('header_view', $data);
-	
-	
-		
-	//$b_author = stripslashes($blog['b_author']);
-	
-	$b_desc = html_entity_decode(stripslashes($blog['b_desc']));
-	
-	$originalDate = $blog['b_date'];
-	$newDate = date("d-m-Y", strtotime($originalDate));
-	
-	if($blog['b_image']!='')
-	{
-		$img = base_url().'/upload/je/'.stripslashes($blog['b_image']);
-	}
-	else
-	{
-		$img = base_url().'/assets/site/img/gallery-big-03.jpg';
-	}
-	
-	
+<?php
+$b_title = stripslashes($blog['b_title']);
+$data['title'] = $b_title;
+$data['contact_detail'] = $contact_detail;
+$this->load->view('header_view', $data);
 
-						
+
+
+//$b_author = stripslashes($blog['b_author']);
+
+$b_desc = html_entity_decode(stripslashes($blog['b_desc']));
+
+$originalDate = $blog['b_date'];
+$newDate = date("d-m-Y", strtotime($originalDate));
+
+if ($blog['b_image'] != '') {
+	$img = base_url() . '/upload/je/' . stripslashes($blog['b_image']);
+} else {
+	$img = base_url() . '/assets/site/img/gallery-big-03.jpg';
+}
+
+
+$content = trim($b_desc);
+$limit = 600;
+
+/**
+ * Split HTML safely near character limit
+ */
+function splitHtmlSafe($html, $limit = 600)
+{
+	if (mb_strlen(strip_tags($html)) <= $limit) {
+		return [$html, ''];
+	}
+
+	$textLen = 0;
+	$pos = 0;
+	$breakPos = 0;
+
+	// Walk through HTML and count only text (ignore tags)
+	while ($pos < strlen($html)) {
+		if ($html[$pos] == '<') {
+			// Skip tag
+			$endTag = strpos($html, '>', $pos);
+			if ($endTag === false)
+				break;
+			$pos = $endTag + 1;
+			continue;
+		} else {
+			$textLen++;
+			if ($textLen >= $limit) {
+				$breakPos = $pos;
+				break;
+			}
+			$pos++;
+		}
+	}
+
+	// Move forward to nearest safe closing tag
+	$safeTags = ['</p>', '</li>', '</ul>', '</ol>', '<br>', '<br/>', '<br />', '</strong>'];
+	$nearestSafe = strlen($html);
+
+	foreach ($safeTags as $tag) {
+		$tagPos = stripos($html, $tag, $breakPos);
+		if ($tagPos !== false && $tagPos < $nearestSafe) {
+			$nearestSafe = $tagPos + strlen($tag);
+		}
+	}
+
+	if ($nearestSafe == strlen($html)) {
+		$nearestSafe = $breakPos; // fallback
+	}
+
+	$first = substr($html, 0, $nearestSafe);
+	$remaining = substr($html, $nearestSafe);
+
+	return [$first, $remaining];
+}
+
+list($firstPart, $remaining) = splitHtmlSafe($content, $limit);
+
 ?>
-		<section class="cid-rneHpGJaIG mbr-parallax-background" id="content9-1d">
-			<div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(35, 35, 35);">
+
+<!-- Content -->
+<div class="page-content bg-white">
+	<!-- inner page banner -->
+	<div class="dlab-bnr-inr overlay-black-middle text-center bg-pt"
+		style="background-image:url(<?php echo base_url("assets/newsite/images/background/bg5.jpg"); ?>);">
+		<div class="container">
+			<div class="dlab-bnr-inr-entry align-m text-center">
+				<h1 class="text-white">Blog Detail</h1>
 			</div>
+		</div>
+	</div>
+	<!-- inner page banner END -->
+	<!-- contact area -->
+	<div class="content-block">
+		<!-- About Services info -->
+		<div class="section-full content-inner bg-white video-section"
+			style="background-image:url('images/background/bg-video.png');">
 			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 col-md-12 align-center">
-						<h2 class="mbr-section-title align-left mbr-fonts-style mbr-bold mbr-white display-2">
-							Blog Detail
-						</h2>
-						
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="cid-rneJOvEByF" id="content7-1h">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 col-md-12 align-center">
-						<h2 class="mbr-section-title align-center mbr-fonts-style mbr-bold display-2">
-							<?php echo $b_title ; ?>
-						</h2>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="mbr-section content8 cid-rneKN5uAk1" id="content8-1m">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="media-container-row">
-							<div class="media-content">
-								<div class="mbr-section-text">
-									<p class="mbr-text align-left mb-0 mbr-fonts-style mbr-black display-7">
-										<?php echo $b_desc ; ?>
-									</p>
-								</div>
-							</div>
-							<div class="mbr-figure" style="width: 80%;">
-								<img src="<?php echo $img ; ?>" alt="Mobirise">  
+				<h2 class="m-b15 title">
+					<span class="text-primary"><?php echo $b_title; ?></span>
+				</h2>
+				<div class="section-content">
+					<!-- <div class="row d-flex">
+						<div class="col-lg-5 col-md-12 m-b30">
+							<div class="video-bx">
+								<img src="<?php echo $img; ?>" alt="">
 							</div>
 						</div>
+						<div class="col-lg-7 col-md-12 m-b30 align-self-center video-infobx">
+							<div class="content-bx1">
+								<p class="m-b30"><?php echo $b_desc; ?></p>
+							</div>
+						</div>
+					</div> -->
+
+
+					<div class="row d-flex">
+
+						<!-- Image -->
+						<div class="col-lg-6 col-md-12 m-b30">
+							<div class="video-bx">
+								<img src="<?php echo $img; ?>" alt="" style="width:100%; height:auto;">
+							</div>
+						</div>
+
+						<!-- Text beside image -->
+						<div class="col-lg-6 col-md-12 m-b30 align-self-center video-infobx">
+							<div class="content-bx1">
+								<?php echo $firstPart; ?>
+							</div>
+						</div>
+
+						<!-- Remaining text full width -->
+						<?php if (!empty(trim(strip_tags($remaining)))) { ?>
+							<div class="col-lg-12 col-md-12 m-b30 video-infobx">
+								<div class="content-bx1">
+									<?php echo $remaining; ?>
+								</div>
+							</div>
+						<?php } ?>
+
 					</div>
+
+
 				</div>
 			</div>
-		</section>
-		
-		<section class="mbr-section info5 cid-rneHQ8fMuT" id="info5-1e">
-			<div class="container">
-				<div class="row justify-content-center content-row">
-					<div class="media-container-column title col-12 col-lg-7 col-md-6">
-						<h2 class="align-left mbr-bold mbr-fonts-style mbr-white mbr-section-title display-2">Meet our Outdoor Equipment Experts</h2>
-					</div>
-					<div class="media-container-column col-12 col-lg-3 col-md-4">
-						<div class="mbr-section-btn align-right py-4"><a class="btn btn-warning display-4" href="">Learn More</a></div>
-					</div>
-				</div>
-			</div>
-		</section>
-		 <?php 
-//$data['page'] = 'about';
-//$data['contact_detail'] = $contact_detail;
-//$this->load->view('footer_view', $data);
+		</div>
+		<!-- About Services info END -->
+	</div>
+	<!-- contact area END -->
+</div>
+<!-- Content END -->
+
+
+<?php
+$data['page'] = 'about';
+$data['contact_detail'] = $contact_detail;
 $this->load->view('footer_view');

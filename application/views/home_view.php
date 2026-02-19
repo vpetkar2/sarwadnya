@@ -415,7 +415,8 @@ $this->load->view('header_view');
 						foreach ($new_category as $newcategory) {
 							$citydata = $this->site_cms_model->get_record_by_id("city", array('id' => $newcategory['city_id']), "id", "DESC", '1', '');
 							?>
-							<a class="site-button outline m-r15 m-b15 radius-xl" href="<?php echo strtolower($citydata->name) . "/" . $newcategory['slug']; ?>">
+							<a class="site-button outline m-r15 m-b15 radius-xl"
+								href="<?php echo strtolower($citydata->name) . "/" . $newcategory['slug']; ?>">
 								<span class="icon-focus"></span><span><?php echo $newcategory['cat_title']; ?></span>
 							</a>
 							<?php $j++;
@@ -427,7 +428,7 @@ $this->load->view('header_view');
 		</div>
 	</div>
 	<!-- Team member End -->
-	<!-- Testimonials blog -->
+	<!-- Testimonials -->
 	<div class="section-full overlay-black-middle bg-secondry content-inner-2 wow fadeIn" data-wow-duration="2s"
 		data-wow-delay="0.2s"
 		style="background-image:url(<?php echo base_url("assets/newsite/images/background/map-bg.png"); ?>);">
@@ -513,87 +514,57 @@ $this->load->view('header_view');
 			</div>
 		</div>
 	</div>
-	<!-- Testimonials blog End -->
+	<!-- Testimonials End -->
 	<!-- Latest blog -->
 	<div class="section-full content-inner bg-gray wow fadeIn" data-wow-duration="2s" data-wow-delay="0.4s">
 		<div class="container">
 			<div class="section-head text-center">
-				<h2 class="title">Latest blog post</h2>
+				<h2 class="title">Latest Blog Post</h2>
 				<p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's
 					standard dummy text ever since the been when an unknown printer.</p>
 			</div>
 			<div class="blog-carousel owl-none owl-carousel">
-				<div class="item">
-					<div class="blog-post post-style-1">
-						<div class="dlab-post-media dlab-img-effect rotate">
-							<a href="blog-single.html"><img src="images/blog/latest-blog/pic1.jpg" alt=""></a>
-						</div>
-						<div class="dlab-post-info">
-							<div class="dlab-post-meta">
-								<ul>
-									<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
-									<li class="post-author"> By <a href="blog-single.html">demongo</a> </li>
-								</ul>
-							</div>
-							<div class="dlab-post-title">
-								<h3 class="post-title"><a href="blog-single.html">Why You Should Not Go To
-										Industry</a>
-								</h3>
-							</div>
-							<div class="dlab-post-readmore">
-								<a href="blog-single.html" title="READ MORE" rel="bookmark"
-									class="site-button btnhover13">READ MORE</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="blog-post post-style-1">
-						<div class="dlab-post-media dlab-img-effect rotate">
-							<a href="blog-single.html"><img src="images/blog/latest-blog/pic2.jpg" alt=""></a>
-						</div>
-						<div class="dlab-post-info">
-							<div class="dlab-post-meta">
-								<ul>
-									<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
-									<li class="post-author"> By <a href="blog-single.html">AARON</a> </li>
-								</ul>
-							</div>
-							<div class="dlab-post-title ">
-								<h3 class="post-title"><a href="blog-single.html">Seven Doubts You Should Clarify
-										About</a></h3>
-							</div>
-							<div class="dlab-post-readmore">
-								<a href="blog-single.html;" title="READ MORE" rel="bookmark"
-									class="site-button btnhover13">READ MORE</a>
+				<?php
+				if (!empty($blog)) {
+					$i = 0;
+					foreach ($blog as $blogs) {
+						$blogs_name = stripslashes($blogs['b_title']);
+						$blog_by = $blogs['b_author']
+								? 'By ' . ucwords(stripslashes($blogs['b_author']))
+								: '';
+						$blogs_date = $blogs['b_date'] ? date('d M Y', strtotime($blogs['b_date'])) : '';
+						if ($blogs['b_image'] != '') {
+							$blogs_image = base_url() . 'upload/je/' . stripslashes($blogs['b_image']);
+						} else {
+							$blogs_image = base_url() . 'assets/site/images/background16.jpg';
+						}
+						$url = base_url() . 'blog/detail/' . $blogs['slug'] . '/';
+						?>
+						<div class="item">
+							<div class="blog-post post-style-1">
+								<div class="dlab-post-media dlab-img-effect rotate">
+									<a href="<?php echo $url; ?>"><img src="<?php echo $blogs_image; ?>" alt="" title=""></a>
+								</div>
+								<div class="dlab-post-info">
+									<div class="dlab-post-meta">
+										<ul>
+											<li class="post-date"> <strong><?php echo $blogs_date; ?></strong> </li>
+											<li class="post-author"> <a href="<?php echo $url; ?>"><?php echo $blog_by; ?></a> </li>
+										</ul>
+									</div>
+									<div class="dlab-post-title">
+										<h3 class="post-title"><a href="<?php echo $url; ?>"><?php echo $blogs_name ; ?></a>
+										</h3>
+									</div>
+									<div class="dlab-post-readmore">
+										<a href="<?php echo $url; ?>" title="READ MORE" rel="bookmark"
+											class="site-button btnhover13">READ MORE</a>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="blog-post post-style-1">
-						<div class="dlab-post-media dlab-img-effect rotate">
-							<a href="blog-single.html"><img src="images/blog/latest-blog/pic3.jpg" alt=""></a>
-						</div>
-						<div class="dlab-post-info">
-							<div class="dlab-post-meta">
-								<ul>
-									<li class="post-date"> <strong>10 Aug</strong> <span> 2016</span> </li>
-									<li class="post-author"> By <a href="blog-single.html">VICTORIA</a> </li>
-								</ul>
-							</div>
-							<div class="dlab-post-title">
-								<h3 class="post-title"><a href="blog-single.html">Seven Outrageous Ideas
-										Industry</a>
-								</h3>
-							</div>
-							<div class="dlab-post-readmore">
-								<a href="blog-single.html" title="READ MORE" rel="bookmark"
-									class="site-button btnhover13">READ MORE</a>
-							</div>
-						</div>
-					</div>
-				</div>
+					<?php }
+				} ?>
 			</div>
 		</div>
 	</div>

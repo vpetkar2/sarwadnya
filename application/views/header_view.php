@@ -109,6 +109,14 @@ $segment1 = $this->uri->segment(1);
 			margin-top: 20px;
 		}
 
+		.dlab-post-meta {
+			margin-bottom: 0px;
+		}
+
+		.dlab-post-meta ul li {
+			font-size: 20px;
+		}
+
 		.pagination .page-item.active .page-link {
 			background-color: var(--color-primary);
 			border-color: var(--color-primary);
@@ -141,7 +149,7 @@ $segment1 = $this->uri->segment(1);
 						<!-- website logo -->
 						<div class="logo-header mostion logo-dark">
 							<a href="<?php echo base_url(''); ?>"><img
-									src="<?php echo base_url("assets/newsite/images/logo.png"); ?>" alt=""></a>
+									src="<?php echo base_url("assets/newsite/images/logo/logo.png"); ?>" alt=""></a>
 						</div>
 						<!-- nav toggle button -->
 						<button class="navbar-toggler collapsed navicon justify-content-end" type="button"

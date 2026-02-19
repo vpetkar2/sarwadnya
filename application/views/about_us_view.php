@@ -55,6 +55,66 @@ $this->load->view('header_view');
 						</div>
 					</div>
 				</div>
+
+				<div class="company-profile">
+					<h2 class="m-b15 title">Business Information</h2>
+					<table class="table table-hover table-bordered table-striped">
+						<tbody>
+							<tr>
+								<th>Nature of Business</th>
+								<td>Manufacturer</td>
+							</tr>
+							<tr>
+								<th>Additional Business</th>
+								<td>Retail, Wholesale, Works Contract</td>
+							</tr>
+							<tr>
+								<th>CEO</th>
+								<td>Pradnya Bobde</td>
+							</tr>
+							<tr>
+								<th>Established</th>
+								<td>2018</td>
+							</tr>
+							<tr>
+								<th>Legal Status</th>
+								<td>Private Limited Company</td>
+							</tr>
+							<tr>
+								<th>Employees</th>
+								<td>51 – 100 People</td>
+							</tr>
+							<tr>
+								<th>Annual Turnover</th>
+								<td>₹1.5 – 5 Crore</td>
+							</tr>
+							<tr>
+								<th>GST No.</th>
+								<td>27AAZCS5851K1ZD</td>
+							</tr>
+							<tr>
+								<th>Registered Office</th>
+								<td>
+									Plot No. 244, Akash Nagar, Manewada Ring Road,<br>
+									Besa Pipla, Nagpur – 440034, Maharashtra, India
+								</td>
+							</tr>
+							<tr>
+								<th>Bankers</th>
+								<td>ICICI Bank, Axis Bank</td>
+							</tr>
+							<tr>
+								<th>Payment Modes</th>
+								<td>Cash, Cheque, DD</td>
+							</tr>
+							<tr>
+								<th>Shipment Mode</th>
+								<td>By Road</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
 			</div>
 		</div>
 		<!-- About Services info END -->
@@ -147,6 +207,8 @@ $this->load->view('header_view');
 	<!-- contact area END -->
 </div>
 <!-- Content END -->
+
+
 <?php
 $data['page'] = 'about';
 $data['contact_detail'] = $contact_detail;
