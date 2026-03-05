@@ -22,12 +22,12 @@ class Admin_news_model extends CI_Model
 		$date = @date('Y-m-d');
 		
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('news_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('news_title'), 'dash', TRUE);
 		
 		$data_1 = array(
-			'news_title'=>$this->security->xss_clean($this->input->post('news_title')),
+			'news_title'=>$this->input->post('news_title'),
 			'slug' => $slug,
-			'news_desc'=>$this->security->xss_clean($this->input->post('news_desc')),
+			'news_desc'=>$this->input->post('news_desc'),
 			'news_date'=>$date
 		);
 		
@@ -68,16 +68,16 @@ class Admin_news_model extends CI_Model
 		$date = @date('Y-m-d');
 		
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('news_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('news_title'), 'dash', TRUE);
 		
-		$news_id = $this->security->xss_clean($this->input->post('news_id'));
+		$news_id = $this->input->post('news_id');
 		
 		
 		
 		$data_1 = array(
-			'news_title'=>$this->security->xss_clean($this->input->post('news_title')),
+			'news_title'=>$this->input->post('news_title'),
 			'slug' => $slug,
-			'news_desc'=>$this->security->xss_clean($this->input->post('news_desc')),
+			'news_desc'=>$this->input->post('news_desc'),
 			'news_date'=>$date
 		);
 		

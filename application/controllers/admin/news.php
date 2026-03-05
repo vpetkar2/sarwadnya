@@ -45,8 +45,8 @@ class News extends CI_Controller {
 
 	public function submitnews()
 	{
-		$this->form_validation->set_rules('news_title','news Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('news_desc','Description','required|trim|xss_clean');
+		$this->form_validation->set_rules('news_title','news Title','required|trim');
+		$this->form_validation->set_rules('news_desc','Description','required|trim');
 		
 		
 		if ($this->form_validation->run())
@@ -101,7 +101,7 @@ class News extends CI_Controller {
 	public function editnews()
 	{
 		$news_id = $this->uri->segment(4,0);
-		$news_id = $this->security->xss_clean($news_id);
+// 		$news_id = $this->security->xss_clean($news_id);
 		if(isset($news_id) && !empty($news_id) && $news_id!=NULL && $news_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -119,12 +119,12 @@ class News extends CI_Controller {
 	public function updatenews()
 	{		
 		
-		$this->form_validation->set_rules('news_title','news Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('news_desc','Description','required|trim|xss_clean');
-		$this->form_validation->set_rules('news_id','news ID','required|trim|xss_clean|numeric');				
+		$this->form_validation->set_rules('news_title','news Title','required|trim');
+		$this->form_validation->set_rules('news_desc','Description','required|trim');
+		$this->form_validation->set_rules('news_id','news ID','required|trim|numeric');				
 		
 		$news_id = $this->input->post('news_id');
-		$news_id = $this->security->xss_clean($news_id);
+// 		$news_id = $this->security->xss_clean($news_id);
 				
 			
 		if ($this->form_validation->run())
@@ -193,7 +193,7 @@ class News extends CI_Controller {
 	public function updateStatus()
 	{
 		$news_id = $this->uri->segment(4,0);
-		$news_id = $this->security->xss_clean($news_id);
+// 		$news_id = $this->security->xss_clean($news_id);
 		if(isset($news_id) && !empty($news_id) && $news_id!=NULL && $news_id > 0)
 		{
 			$news_array = $this->admin_news_model->getStatus($news_id);

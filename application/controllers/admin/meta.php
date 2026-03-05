@@ -45,10 +45,10 @@ class Meta extends CI_Controller {
 
 	public function submitMeta()
 	{
-		$this->form_validation->set_rules('title','Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('cat_title','Meta Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('cat_key','Meta Key','required|trim|xss_clean');
-		$this->form_validation->set_rules('cat_desc','Meta Desc','required|trim|xss_clean');
+		$this->form_validation->set_rules('title','Title','required|trim');
+		$this->form_validation->set_rules('cat_title','Meta Title','required|trim');
+		$this->form_validation->set_rules('cat_key','Meta Key','required|trim');
+		$this->form_validation->set_rules('cat_desc','Meta Desc','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -67,7 +67,7 @@ class Meta extends CI_Controller {
 	public function editMeta()
 	{
 		$cat_id = $this->uri->segment(4,0);
-		$cat_id = $this->security->xss_clean($cat_id);
+// 		$cat_id = $this->security->xss_clean($cat_id);
 		if(isset($cat_id) && !empty($cat_id) && $cat_id!=NULL && $cat_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -83,13 +83,13 @@ class Meta extends CI_Controller {
 
 	public function updateMeta()
 	{		
-		$this->form_validation->set_rules('title','Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('cat_title','Meta Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('cat_key','Meta Key','required|trim|xss_clean');
-		$this->form_validation->set_rules('cat_desc','Meta Desc','required|trim|xss_clean');
+		$this->form_validation->set_rules('title','Title','required|trim');
+		$this->form_validation->set_rules('cat_title','Meta Title','required|trim');
+		$this->form_validation->set_rules('cat_key','Meta Key','required|trim');
+		$this->form_validation->set_rules('cat_desc','Meta Desc','required|trim');
 		
 		$cat_id = $this->input->post('cat_id');
-		$cat_id = $this->security->xss_clean($cat_id);
+// 		$cat_id = $this->security->xss_clean($cat_id);
 		
 		if ($this->form_validation->run())
 		{

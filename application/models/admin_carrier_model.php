@@ -17,12 +17,12 @@ class Admin_carrier_model extends CI_Model
 
 	public function addCarrier(){
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('crr_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('crr_title'), 'dash', TRUE);
 
 		$data = array(
-			'crr_title'=>$this->security->xss_clean($this->input->post('crr_title')),
-			'crr_desc'=>$this->security->xss_clean($this->input->post('crr_desc')),
-			'crr_no_of_position'=>$this->security->xss_clean($this->input->post('crr_no_of_position')),
+			'crr_title'=>$this->input->post('crr_title'),
+			'crr_desc'=>$this->input->post('crr_desc'),
+			'crr_no_of_position'=>$this->input->post('crr_no_of_position'),
 			'crr_date'=>date('Y-m-d H:i:s'),
 			'crr_status'=>'active'
 			);
@@ -47,15 +47,14 @@ class Admin_carrier_model extends CI_Model
 
 	public function updateCarrier(){
 		$crr_id = $this->input->post('crr_id');
-		$crr_id = $this->security->xss_clean($crr_id);
-		
+
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('crr_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('crr_title'), 'dash', TRUE);
 
 		$data = array(
-		'crr_title'=>$this->security->xss_clean($this->input->post('crr_title')),
-		'crr_desc'=>$this->security->xss_clean($this->input->post('crr_desc')),
-		'crr_no_of_position'=>$this->security->xss_clean($this->input->post('crr_no_of_position')),
+		'crr_title'=>$this->input->post('crr_title'),
+		'crr_desc'=>$this->input->post('crr_desc'),
+		'crr_no_of_position'=>$this->input->post('crr_no_of_position'),
 		'crr_status'=>'active'
 		);
 		

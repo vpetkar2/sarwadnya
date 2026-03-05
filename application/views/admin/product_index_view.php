@@ -60,55 +60,94 @@ $this->load->view('admin/header_view');
 						<?php } ?>
 
 						<div class="box-body">
-							<table id="example1" class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>Sr No.</th>
-										<th>Name</th>
-										<th>Category</th>
-										<th>City</th>
-										<th>Add Images</th>
-										<th>Add Features</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$count=1;
-									if(!empty($products))
-									{
-									foreach($products as $product)
-									{
-										$query = $this->db->query("SELECT * FROM pf_category	WHERE cat_id='".$product['prod_cat_id']."'	ORDER BY cat_id ASC");
-										$results = $query->result_array();
-										
-										$query2 = $this->db->query("SELECT * FROM pf_city	WHERE pf_city.id='".$product['prod_city_id']."'");
-										$results2 = $query2->result_array();
-									?>
-									<tr>
-										<td><?php echo $count;?></td>
-										<td><?php echo stripslashes($product['prod_title']);?></td>
-										<td><?php echo stripslashes($results[0]['cat_title']);?></td>
-										<td><?php echo @stripslashes($results2[0]['name']);?></td>
-										<td><a class="btn bg-green" href="<?php echo site_url('/admin/product/productImages/'.$product['prod_id']);?>"><i class="fa fa-plus-square"></i>&nbsp;Add Images</a></td>
-										<td><a class="btn bg-green" href="<?php echo site_url('/admin/product/productFeatures/'.$product['prod_id']);?>"><i class="fa fa-plus-square"></i>&nbsp;Add Features</a></td>
-										<td>
-											<a class="btn bg-purple" href="<?php echo site_url('/admin/product/editProduct/'.$product['prod_id']);?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
-											<a class="btn bg-red" href="<?php echo site_url('/admin/product/deleteProduct/'.$product['prod_id']);?>"><i class="fa fa-edit"></i>&nbsp;Delete</a>
-										</td>
-									</tr>
-									<?php
-									$count++;
-									}
-									}?>
-								</tbody>
-							</table>
+
+						    
+
+						    <form id="featureForm" method="POST" action="<?php echo site_url('/admin/product/deleteMultipleProducts');?>">
+						        <div style="margin-bottom: 10px;">
+                                <button type="submit" class="btn btn-danger" id="deleteBtn" style="display:none;" onclick="return confirm('Are you sure you want to delete selected products?');"><i class="fa fa-trash"></i>&nbsp;Delete Selected</button>
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                            </div>
+                            
+    							<table id="example1" class="table table-bordered table-striped">
+    								<thead>
+    									<tr>
+    									    <th width="50"><input type="checkbox" id="selectAll" title="Select all"></th>
+    										<th>Sr No.</th>
+    										<th>Name</th>
+    										<th>Category</th>
+    										<th>City</th>
+    										<th>Add Images</th>
+    										<th>Add Features</th>
+    										<th>Action</th>
+    									</tr>
+    								</thead>
+    								<tbody>
+    									<?php
+    									$count=1;
+    									if(!empty($products))
+    									{
+    									foreach($products as $product)
+    									{
+    										$query = $this->db->query("SELECT * FROM pf_category	WHERE cat_id='".$product['prod_cat_id']."'	ORDER BY cat_id ASC");
+    										$results = $query->result_array();
+    										
+    										$query2 = $this->db->query("SELECT * FROM pf_city	WHERE pf_city.id='".$product['prod_city_id']."'");
+    										$results2 = $query2->result_array();
+    									?>
+    									<tr>
+    									    <td><input type="checkbox" name="product_ids[]" value="<?php echo $product['prod_id'];?>" class="feature-checkbox"></td>
+    										<td><?php echo $count;?></td>
+    										<td><?php echo stripslashes($product['prod_title']);?></td>
+    										<td><?php echo stripslashes($results[0]['cat_title']);?></td>
+    										<td><?php echo @stripslashes($results2[0]['name']);?></td>
+    										<td><a class="btn bg-green" href="<?php echo site_url('/admin/product/productImages/'.$product['prod_id']);?>"><i class="fa fa-plus-square"></i>&nbsp;Add Images</a></td>
+    										<td><a class="btn bg-green" href="<?php echo site_url('/admin/product/productFeatures/'.$product['prod_id']);?>"><i class="fa fa-plus-square"></i>&nbsp;Add Features</a></td>
+    										<td>
+    											<a class="btn bg-purple" href="<?php echo site_url('/admin/product/editProduct/'.$product['prod_id']);?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+    											<a class="btn bg-red" href="<?php echo site_url('/admin/product/deleteProduct/'.$product['prod_id']);?>"><i class="fa fa-edit"></i>&nbsp;Delete</a>
+    										</td>
+    									</tr>
+    									<?php
+    									$count++;
+    									}
+    									}?>
+    								</tbody>
+    							</table>
+							</form>
 						</div><!-- /.box-body -->
 					</div><!-- /.box -->
 				</div><!-- /.col -->
 			</div><!-- /.row -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-<?php 
-$this->load->view('admin/footer_view');
-?>
+    
+    <script>
+	// Select all functionality
+	document.getElementById('selectAll').addEventListener('change', function() {
+		var checkboxes = document.querySelectorAll('.feature-checkbox');
+		checkboxes.forEach(function(checkbox) {
+			checkbox.checked = document.getElementById('selectAll').checked;
+		});
+		updateDeleteButton();
+	});
+
+	// Show/hide delete button based on selection
+	document.querySelectorAll('.feature-checkbox').forEach(function(checkbox) {
+		checkbox.addEventListener('change', function() {
+			updateDeleteButton();
+		});
+	});
+
+	function updateDeleteButton() {
+		var checkedBoxes = document.querySelectorAll('.feature-checkbox:checked');
+		var deleteBtn = document.getElementById('deleteBtn');
+		if (checkedBoxes.length > 0) {
+			deleteBtn.style.display = 'inline-block';
+		} else {
+			deleteBtn.style.display = 'none';
+		}
+	}
+	</script>
+	
+ <?php $this->load->view('admin/footer_view'); ?>

@@ -106,7 +106,6 @@ $this->load->view('admin/header_view');
           
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-<?php 
-$this->load->view('admin/footer_view');
-?>
+<?php $this->load->view('admin/footer_view'); ?>
+
 

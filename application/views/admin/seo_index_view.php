@@ -1,5 +1,5 @@
 <?php $this->load->view('admin/header_view'); 
-    $url_img = "http://www.parthfibrotech.in/upload/je/";
+    $url_img = "https://sarwadnyaplay.com/upload/je/";
    // echo "<br>";  print_r($seoes); ?>
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -55,9 +55,16 @@
 						<?php } ?>
 
 						<div class="box-body">
+						    <form id="featureForm" method="POST" action="<?php echo site_url('/admin/seo/deleteMultipleSeo');?>">
+						        <div style="margin-bottom: 10px;">
+                                <button type="submit" class="btn btn-danger" id="deleteBtn" style="display:none;" onclick="return confirm('Are you sure you want to delete selected SEO?');"><i class="fa fa-trash"></i>&nbsp;Delete Selected</button>
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                            </div>
 							<table id="example1" class="table table-bordered table-striped">
 								<thead>
 									<tr>
+									    <th width="50"><input type="checkbox" id="selectAll" title="Select all"></th>
+
 										<th>Sr No.</th>
 										<th>URL</th>
 										<th>City</th>
@@ -78,6 +85,8 @@
 										
 									?>
 									<tr>
+									    <td><input type="checkbox" name="seo_ids[]" value="<?php echo $seo['seo_id'];?>" class="feature-checkbox"></td>
+
 										<td><?php echo $count;?></td>
 										<td><?php echo substr(stripslashes($seo['seo_url']),0,12);?></td>
 										<td><?php echo substr(stripslashes($seo['seo_city']),0,15);?></td>
@@ -91,7 +100,10 @@
 										    <img src=""> <?php } ?></td>
 										<td>
 											<a class="btn bg-purple" href="<?php echo site_url('/admin/seo/editseo/'.$seo['seo_id']);?>"><i class="fa fa-edit"></i>&nbsp;Edit</a> 
-										<a class="btn bg-red" href="<?php echo site_url('/admin/seo/deleteseo/'.$seo['seo_id']);?>"><i class="fa fa-trash"></i>&nbsp;Delete</a>
+										<a class="btn bg-red"
+href="<?php echo site_url('/admin/seo/deleteseo/'.$seo['seo_id']);?>"
+onclick="return confirm('Are you sure you want to delete this SEO record?');">
+<i class="fa fa-trash"></i>&nbsp;Delete</a>
 										</td>
 									</tr>
 									<?php
@@ -100,10 +112,39 @@
 									}?>
 								</tbody>
 							</table>
+							</form>
 						</div><!-- /.box-body -->
 					</div><!-- /.box -->
 				</div><!-- /.col -->
 			</div><!-- /.row -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-$this->load->view('admin/footer_view');
+    
+<script>
+	// Select all functionality
+	document.getElementById('selectAll').addEventListener('change', function() {
+		var checkboxes = document.querySelectorAll('.feature-checkbox');
+		checkboxes.forEach(function(checkbox) {
+			checkbox.checked = document.getElementById('selectAll').checked;
+		});
+		updateDeleteButton();
+	});
+
+	// Show/hide delete button based on selection
+	document.querySelectorAll('.feature-checkbox').forEach(function(checkbox) {
+		checkbox.addEventListener('change', function() {
+			updateDeleteButton();
+		});
+	});
+
+	function updateDeleteButton() {
+		var checkedBoxes = document.querySelectorAll('.feature-checkbox:checked');
+		var deleteBtn = document.getElementById('deleteBtn');
+		if (checkedBoxes.length > 0) {
+			deleteBtn.style.display = 'inline-block';
+		} else {
+			deleteBtn.style.display = 'none';
+		}
+	}
+	</script>
+<?php $this->load->view('admin/footer_view'); ?>

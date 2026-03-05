@@ -45,7 +45,7 @@ class Gallery extends CI_Controller {
 
 	public function submitGallery()
 	{
-		$this->form_validation->set_rules('gal_title','Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('gal_title','Title','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -64,7 +64,7 @@ class Gallery extends CI_Controller {
 	public function editGallery()
 	{
 		$gal_id = $this->uri->segment(4,0);
-		$gal_id = $this->security->xss_clean($gal_id);
+// 		$gal_id = $this->security->xss_clean($gal_id);
 		if(isset($gal_id) && !empty($gal_id) && $gal_id!=NULL && $gal_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -80,10 +80,10 @@ class Gallery extends CI_Controller {
 
 	public function updateGallery()
 	{		
-		$this->form_validation->set_rules('gal_title','Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('gal_title','Title','required|trim');
 		
 		$gal_id = $this->input->post('gal_id');
-		$gal_id = $this->security->xss_clean($gal_id);
+// 		$gal_id = $this->security->xss_clean($gal_id);
 		
 		if ($this->form_validation->run())
 		{
@@ -119,7 +119,7 @@ class Gallery extends CI_Controller {
 	public function updateStatus()
 	{
 		$gal_id = $this->uri->segment(4,0);
-		$gal_id = $this->security->xss_clean($gal_id);
+// 		$gal_id = $this->security->xss_clean($gal_id);
 		if(isset($gal_id) && !empty($gal_id) && $gal_id!=NULL && $gal_id > 0)
 		{
 			$gal_array = $this->admin_gallery_model->getStatus($gal_id);
@@ -174,14 +174,14 @@ class Gallery extends CI_Controller {
 	
 	public function submitGalleryImage()
 	{
-		$this->form_validation->set_rules('gal_id','Gallery ID','required|trim|xss_clean');
+		$this->form_validation->set_rules('gal_id','Gallery ID','required|trim');
 		if(empty($_FILES['gal_image']['name']))
 		{
 			$this->form_validation->set_rules('gal_image','Image','required');
 		}
 		
 		$gal_id = $this->input->post('gal_id');
-		$gal_id = $this->security->xss_clean($gal_id);
+// 		$gal_id = $this->security->xss_clean($gal_id);
 
 		if ($this->form_validation->run())
 		{

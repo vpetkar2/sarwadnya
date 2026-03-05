@@ -70,7 +70,7 @@
 								Company Address
 							</h5>
 							<p class="op7">
-								244, Manewada Ring Road, Akash Nagar, Nagpur - 440034.</p>
+								Rajat Hill, Beside Lime Research Institute, Amaravati Road, Nagpur</p>
 						</div>
 					</div>
 				</div>
@@ -120,20 +120,20 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-6">
 					<div class="widget widget_about">
-						<h4 class="footer-title">About Industry</h4>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-							been the industry's standard.</p>
-						<a href="about-2.html" class="readmore">Read More</a>
+						<h4 class="footer-title">About Us</h4>
+						<p>Leading manufacturer of playground and outdoor fitness equipment since 2018, committed to
+							quality, durability, and customer satisfaction.</p>
+						<a href="<?php echo base_url('about-us/'); ?>" class="readmore">Read More</a>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6">
 					<div class="widget">
-						<h4 class="footer-title">Usefull Link</h4>
+						<h4 class="footer-title">Links</h4>
 						<ul class="list-2">
+							<li><a href="<?php echo base_url('/'); ?>">Home</a></li>
 							<li><a href="<?php echo base_url('about-us/'); ?>">About Us</a></li>
 							<li><a href="<?php echo base_url('blog/'); ?>">Blog</a></li>
 							<li><a href="<?php echo base_url('products/'); ?>">Products</a></li>
-							<li><a href="<?php echo base_url('privacy-policy/'); ?>">Privacy Policy</a></li>
 							<li><a href="<?php echo base_url('career/'); ?>">Career </a></li>
 							<li><a href="<?php echo base_url('contact-us/'); ?>">Contact</a></li>
 						</ul>
@@ -141,21 +141,26 @@
 				</div>
 				<div class="col-md-4 col-sm-12">
 					<div class="widget widget_subscribe">
-						<h4 class="footer-title">Usefull Link</h4>
-						<p>If you have any questions. Subscribe to our newsletter to get our latest products.</p>
-						<form class="dzSubscribe" action="script/mailchamp.php" method="post">
-							<div class="dzSubscribeMsg"></div>
-							<div class="form-group">
-								<div class="input-group">
-									<input name="dzEmail" required="required" type="email" class="form-control"
-										placeholder="Your Email Address">
-									<div class="input-group-addon">
-										<button name="submit" value="Submit" type="submit"
-											class="site-button fa fa-paper-plane-o"></button>
-									</div>
-								</div>
-							</div>
-						</form>
+						<h4 class="footer-title">Categories</h4>
+						<marquee behavior="scroll" direction="up" scrollamount="2" onmouseover="this.stop();"
+							onmouseout="this.start();" style="height: 150px;">
+							<ul class="list">
+								<?php
+								// print_r($new_category);
+								$j = 0;
+								foreach ($new_category as $newcategory) {
+									$citydata = $this->site_cms_model->get_record_by_id("city", array('id' => $newcategory['city_id']), "id", "DESC", '1', '');
+									?>
+									<li><a href="<?php echo strtolower($citydata->name) . "/" . $newcategory['slug']; ?>"><?php echo $newcategory['cat_title']; ?></a></li>
+									<!-- <a class="site-button outline m-r15 m-b15 radius-xl"
+								href="<?php echo strtolower($citydata->name) . "/" . $newcategory['slug']; ?>">
+								<span class="icon-focus"></span><span><?php echo $newcategory['cat_title']; ?></span>
+							</a> -->
+									<?php $j++;
+								}
+								?>
+							</ul>
+						</marquee>
 					</div>
 				</div>
 			</div>
@@ -166,17 +171,22 @@
 	<div class="footer-bottom footer-line">
 		<div class="container">
 			<div class="footer-bottom-in">
-				<div class="footer-bottom-logo"><a href="<?php echo base_url(''); ?>"><img
+			    <div class="row">
+			        <div class="col-md-4 col-sm-4">
+			            <div class="footer-bottom-logo"><a href="<?php echo base_url(''); ?>"><img
 							src="<?php echo base_url("assets/newsite/images/logo/logo.png"); ?>" alt="" /></a>
-				</div>
-				<div class="footer-bottom-social">
-					<ul class="dlab-social-icon dez-border">
-						<li><a class="fa fa-facebook" href="javascript:void(0);"></a></li>
-						<li><a class="fa fa-twitter" href="javascript:void(0);"></a></li>
-						<li><a class="fa fa-linkedin" href="javascript:void(0);"></a></li>
-						<li><a class="fa fa-pinterest" href="javascript:void(0);"></a></li>
-					</ul>
-				</div>
+				        </div>
+			        </div>
+			        <div class="col-md-8 col-sm-8">
+			            <div class="footer-bottom-social">
+        					<ul class="dlab-social-icon dez-border">
+        						<li><a class="fa fa-facebook" target="__blank" href="https://www.facebook.com/sarwadnyasportsandfitness"></a></li>
+        						<li><a class="fa fa-linkedin" target="__blank" href="https://www.linkedin.com/in/sanjay-bobde-478710173/"></a></li>
+        						<li><a class="fa fa-youtube" target="__blank" href="https://www.youtube.com/@sarwadnyasportsandfitnessp2743"></a></li>
+        					</ul>
+        				</div>
+			        </div>
+			    </div>
 			</div>
 		</div>
 	</div>
@@ -236,6 +246,28 @@
 		$('.lazy').Lazy();
 	});	/*ready*/
 </script>
+
+
+
+
+
+
+
+<!--Start of Tawk.to Script-->
+<!--
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69a40ffd9d76e61c38797abf/1jikdstlk';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+-->
+<!--End of Tawk.to Script-->
 </body>
 
 </html>

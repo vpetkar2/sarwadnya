@@ -48,7 +48,8 @@ class Product extends CI_Controller {
 
 	public function submitproduct()
 	{
-		$this->form_validation->set_rules('prod_title','product Title','required|trim|xss_clean');
+	    
+		$this->form_validation->set_rules('prod_title','product Title','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -102,7 +103,7 @@ class Product extends CI_Controller {
 	public function editproduct()
 	{
 		$prod_id = $this->uri->segment(4,0);
-		$prod_id = $this->security->xss_clean($prod_id);
+// 		$prod_id = $this->security->xss_clean($prod_id);
 		if(isset($prod_id) && !empty($prod_id) && $prod_id!=NULL && $prod_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -120,13 +121,13 @@ class Product extends CI_Controller {
 
 	public function updateproduct()
 	{		
-		$this->form_validation->set_rules('prod_title','product Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('prod_id','product ID','required|trim|xss_clean|numeric');				
+		$this->form_validation->set_rules('prod_title','product Title','required|trim');
+		$this->form_validation->set_rules('prod_id','product ID','required|trim|numeric');				
 
 		if ($this->form_validation->run())
 		{
 			$prod_id = $this->input->post('prod_id');
-			$prod_id = $this->security->xss_clean($prod_id);
+// 			$prod_id = $this->security->xss_clean($prod_id);
 				
 			$prod_file = ''; $status=FALSE;
 			if (!empty($_FILES['prod_file']['name']))
@@ -207,14 +208,14 @@ class Product extends CI_Controller {
 	
 	public function submitproductImage()
 	{
-		$this->form_validation->set_rules('prod_id','product ID','required|trim|xss_clean');
+		$this->form_validation->set_rules('prod_id','product ID','required|trim');
 		if(empty($_FILES['prod_image']['name']))
 		{
 			$this->form_validation->set_rules('prod_image','Image','required');
 		}
 		
 		$prod_id = $this->input->post('prod_id');
-		$prod_id = $this->security->xss_clean($prod_id);
+// 		$prod_id = $this->security->xss_clean($prod_id);
 
 		if ($this->form_validation->run())
 		{
@@ -316,12 +317,12 @@ class Product extends CI_Controller {
 
 	public function submitFeature()
 	{
-		$this->form_validation->set_rules('pf_name','Feature Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('pf_detail','Feature Detail','required|trim|xss_clean');
-		$this->form_validation->set_rules('prod_id','product ID','required|trim|xss_clean');
+		$this->form_validation->set_rules('pf_name','Feature Title','required|trim');
+		$this->form_validation->set_rules('pf_detail','Feature Detail','required|trim');
+		$this->form_validation->set_rules('prod_id','product ID','required|trim');
 		
 		$prod_id = $this->input->post('prod_id');
-		$prod_id = $this->security->xss_clean($prod_id);				
+// 		$prod_id = $this->security->xss_clean($prod_id);				
 				
 		if ($this->form_validation->run())
 		{			
@@ -375,16 +376,16 @@ class Product extends CI_Controller {
 	
 	public function updateFeature()
 	{
-		$this->form_validation->set_rules('pf_name','Feature Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('pf_detail','Feature Detail','required|trim|xss_clean');
-		$this->form_validation->set_rules('pf_id','Feature ID','required|trim|xss_clean');
-		$this->form_validation->set_rules('prod_id','product ID','required|trim|xss_clean');
+		$this->form_validation->set_rules('pf_name','Feature Title','required|trim');
+		$this->form_validation->set_rules('pf_detail','Feature Detail','required|trim');
+		$this->form_validation->set_rules('pf_id','Feature ID','required|trim');
+		$this->form_validation->set_rules('prod_id','product ID','required|trim');
 		
 		$prod_id = $this->input->post('prod_id');
-		$prod_id = $this->security->xss_clean($prod_id);
+// 		$prod_id = $this->security->xss_clean($prod_id);
 		
 		$pf_id = $this->input->post('pf_id');
-		$pf_id = $this->security->xss_clean($pf_id);
+// 		$pf_id = $this->security->xss_clean($pf_id);
 			
 		if ($this->form_validation->run())
 		{
@@ -441,7 +442,7 @@ class Product extends CI_Controller {
 	public function deleteProduct()
 	{
 		$cat_id = $this->uri->segment(4,0);
-		$cat_id = $this->security->xss_clean($cat_id);
+// 		$cat_id = $this->security->xss_clean($cat_id);
 		if(isset($cat_id) && !empty($cat_id) && $cat_id!=NULL && $cat_id > 0)
 		{
 			if($this->admin_product_model->deleteProduct())
@@ -503,6 +504,33 @@ class Product extends CI_Controller {
 			return redirect('admin/fournotfour');
 		}
 	}
+
+	public function deleteMultipleProducts()
+    {
+		$product_ids = $this->input->post('product_ids');
+		if(!empty($product_ids) && is_array($product_ids))
+		{
+			// security filter
+			$product_ids = array_filter($product_ids, 'is_numeric');
+
+			if($this->admin_product_model->deleteMultipleProducts($product_ids))
+			{
+				$this->session->set_flashdata('delete_success', count($product_ids).' product(s) deleted successfully!');
+				return redirect('admin/product');
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Error while deleting products. Try again');
+				return redirect('admin/product');
+			}
+		}
+		else
+		{
+			$this->session->set_flashdata('error', 'Please select at least one product to delete');
+			return redirect('admin/product');
+		}
+
+    }
 }
 
 /* End of file product.php */

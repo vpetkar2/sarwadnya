@@ -76,18 +76,18 @@ class Blog extends CI_Controller
 	public function submitComment()
 	{
 		$data['social'] = $this->site_cms_model->get_social();
-		$this->form_validation->set_rules('bcom_name','Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('bcom_email','Email','required|trim|xss_clean');
-		$this->form_validation->set_rules('bcom_message','Message','required|trim|xss_clean');
+		$this->form_validation->set_rules('bcom_name','Name','required|trim');
+		$this->form_validation->set_rules('bcom_email','Email','required|trim');
+		$this->form_validation->set_rules('bcom_message','Message','required|trim');
 		
 		$referer = $this->agent->referrer();
 		
 		if ($this->form_validation->run())
 		{
-			$b_id = $this->security->xss_clean($this->input->post('b_id'));
-			$bcom_name = $this->security->xss_clean($this->input->post('bcom_name'));
-			$bcom_email = $this->security->xss_clean($this->input->post('bcom_email'));
-			$b_id = $this->security->xss_clean($this->input->post('b_id'));
+			$b_id = $this->input->post('b_id');
+			$bcom_name = $this->input->post('bcom_name');
+			$bcom_email = $this->input->post('bcom_email');
+			$b_id = $this->input->post('b_id');
 			
 			$this->db->insert('blog_comment', array('b_id' => $b_id, 'bcom_name' => $bcom_name, 'bcom_email' => $bcom_email, 'bcom_message' => $bcom_message, 'bcom_date' => date('Y-m-d'), 'bcom_status' => 'inactive'));
 					

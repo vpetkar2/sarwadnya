@@ -46,10 +46,10 @@ class Blog extends CI_Controller {
 
 	public function submitBlog()
 	{
-		//$this->form_validation->set_rules('cat_id[]','Category','required|xss_clean');
-		$this->form_validation->set_rules('b_title','Blog Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('b_author','Blog Author','required|trim|xss_clean');
-		$this->form_validation->set_rules('b_desc','Description','required|trim|xss_clean');
+		//$this->form_validation->set_rules('cat_id[]','Category','required');
+		$this->form_validation->set_rules('b_title','Blog Title','required|trim');
+		$this->form_validation->set_rules('b_author','Blog Author','required|trim');
+		$this->form_validation->set_rules('b_desc','Description','required|trim');
 		
 		
 		if ($this->form_validation->run())
@@ -108,7 +108,7 @@ class Blog extends CI_Controller {
 	public function editBlog()
 	{
 		$b_id = $this->uri->segment(4,0);
-		$b_id = $this->security->xss_clean($b_id);
+// 		$b_id = $this->security->xss_clean($b_id);
 		if(isset($b_id) && !empty($b_id) && $b_id!=NULL && $b_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -127,17 +127,18 @@ class Blog extends CI_Controller {
 	public function updateBlog()
 	{		
 		//$this->form_validation->set_rules('cat_id[]','Category','required');
-		$this->form_validation->set_rules('b_title','Blog Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('b_author','Blog Author','required|trim|xss_clean');
-		$this->form_validation->set_rules('b_desc','Description','required|trim|xss_clean');
-		$this->form_validation->set_rules('b_id','Blog ID','required|trim|xss_clean|numeric');				
+		$this->form_validation->set_rules('b_title','Blog Title','required|trim');
+		$this->form_validation->set_rules('b_author','Blog Author','required|trim');
+		$this->form_validation->set_rules('b_desc','Description','required|trim');
+		$this->form_validation->set_rules('b_id','Blog ID','required|trim|numeric');				
 		
 		$b_id = $this->input->post('b_id');
-		$b_id = $this->security->xss_clean($b_id);
-				
-			
+// 		$b_id = $this->security->xss_clean($b_id);
+
+
 		if ($this->form_validation->run())
 		{
+		    
 			$b_file = ''; $status=FALSE;
 			if (!empty($_FILES['b_file']['name']))
 			{
@@ -205,7 +206,7 @@ class Blog extends CI_Controller {
 	public function updateStatus()
 	{
 		$b_id = $this->uri->segment(4,0);
-		$b_id = $this->security->xss_clean($b_id);
+// 		$b_id = $this->security->xss_clean($b_id);
 		if(isset($b_id) && !empty($b_id) && $b_id!=NULL && $b_id > 0)
 		{
 			$blog_array = $this->admin_blog_model->getStatus($b_id);

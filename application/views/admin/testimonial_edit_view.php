@@ -70,4 +70,4 @@
 			
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-$this->load->view('admin/footer_view');
+	<?php $this->load->view('admin/footer_view'); ?>

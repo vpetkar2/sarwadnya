@@ -45,9 +45,9 @@ class Team extends CI_Controller {
 
 	public function submitTeam()
 	{
-		$this->form_validation->set_rules('team_title','Member Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('team_designation','Designation','required|trim|xss_clean');
-		$this->form_validation->set_rules('team_profile','Profile','required|trim|xss_clean');
+		$this->form_validation->set_rules('team_title','Member Name','required|trim');
+		$this->form_validation->set_rules('team_designation','Designation','required|trim');
+		$this->form_validation->set_rules('team_profile','Profile','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -86,7 +86,7 @@ class Team extends CI_Controller {
 	public function editTeam()
 	{
 		$team_id = $this->uri->segment(4,0);
-		$team_id = $this->security->xss_clean($team_id);
+// 		$team_id = $this->security->xss_clean($team_id);
 		if(isset($team_id) && !empty($team_id) && $team_id!=NULL && $team_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -103,13 +103,13 @@ class Team extends CI_Controller {
 	public function updateTeam()
 	{	
 
-		$this->form_validation->set_rules('team_title','Member Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('team_designation','Designation','required|trim|xss_clean');
-		$this->form_validation->set_rules('team_profile','Profile','required|trim|xss_clean');
-		$this->form_validation->set_rules('team_id','Member ID','required|trim|xss_clean');
+		$this->form_validation->set_rules('team_title','Member Name','required|trim');
+		$this->form_validation->set_rules('team_designation','Designation','required|trim');
+		$this->form_validation->set_rules('team_profile','Profile','required|trim');
+		$this->form_validation->set_rules('team_id','Member ID','required|trim');
 		
 		$team_id = $this->input->post('team_id');
-		$team_id = $this->security->xss_clean($team_id);
+// 		$team_id = $this->security->xss_clean($team_id);
 		
 		if ($this->form_validation->run())
 		{
@@ -123,7 +123,7 @@ class Team extends CI_Controller {
 				if($team!=$error)
 				{
 					
-					$old_file = $this->security->xss_clean($this->input->post('old_file'));
+					$old_file = $this->input->post('old_file');
 					if($old_file!="")
 					{
 						//$path_to_file = base_url().'upload/je/'.$old_file;
@@ -173,7 +173,7 @@ class Team extends CI_Controller {
 	public function updateStatus()
 	{
 		$team_id = $this->uri->segment(4,0);
-		$team_id = $this->security->xss_clean($team_id);
+// 		$team_id = $this->security->xss_clean($team_id);
 		if(isset($team_id) && !empty($team_id) && $team_id!=NULL && $team_id > 0)
 		{
 			$team_array = $this->admin_team_model->getStatus($team_id);
@@ -248,8 +248,8 @@ class Team extends CI_Controller {
 
 	public function submitCMS()
 	{
-		$this->form_validation->set_rules('tcms_title','Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('tcms_desc','Description','required|trim|xss_clean');
+		$this->form_validation->set_rules('tcms_title','Title','required|trim');
+		$this->form_validation->set_rules('tcms_desc','Description','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -268,7 +268,7 @@ class Team extends CI_Controller {
 	public function editCMS()
 	{
 		$tcms_id = $this->uri->segment(4,0);
-		$tcms_id = $this->security->xss_clean($tcms_id);
+// 		$tcms_id = $this->security->xss_clean($tcms_id);
 		if(isset($tcms_id) && !empty($tcms_id) && $tcms_id!=NULL && $tcms_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -284,11 +284,11 @@ class Team extends CI_Controller {
 
 	public function updateCMS()
 	{		
-		$this->form_validation->set_rules('tcms_title','Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('tcms_desc','Description','required|trim|xss_clean');
+		$this->form_validation->set_rules('tcms_title','Title','required|trim');
+		$this->form_validation->set_rules('tcms_desc','Description','required|trim');
 		
 		$tcms_id = $this->input->post('tcms_id');
-		$tcms_id = $this->security->xss_clean($tcms_id);
+// 		$tcms_id = $this->security->xss_clean($tcms_id);
 		
 		if ($this->form_validation->run())
 		{
@@ -324,7 +324,7 @@ class Team extends CI_Controller {
 	public function updateCMSstatus()
 	{
 		$tcms_id = $this->uri->segment(4,0);
-		$tcms_id = $this->security->xss_clean($tcms_id);
+// 		$tcms_id = $this->security->xss_clean($tcms_id);
 		if(isset($tcms_id) && !empty($tcms_id) && $tcms_id!=NULL && $tcms_id > 0)
 		{
 			$gal_array = $this->admin_team_model->getCMSstatus($tcms_id);
@@ -379,14 +379,14 @@ class Team extends CI_Controller {
 	
 	public function submitCMSImage()
 	{
-		$this->form_validation->set_rules('tcms_id','CMS ID','required|trim|xss_clean');
+		$this->form_validation->set_rules('tcms_id','CMS ID','required|trim');
 		if(empty($_FILES['gal_image']['name']))
 		{
 			$this->form_validation->set_rules('gal_image','Image','required');
 		}
 		
 		$tcms_id = $this->input->post('tcms_id');
-		$tcms_id = $this->security->xss_clean($tcms_id);
+// 		$tcms_id = $this->security->xss_clean($tcms_id);
 
 		if ($this->form_validation->run())
 		{

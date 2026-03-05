@@ -1,0 +1,114 @@
+<?php 
+$this->load->view('admin/header_view');
+?>
+<!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+			<h1>Product<small> List</small></h1>
+			<ol class="breadcrumb">
+				<li><a href="<?php echo site_url('/admin/dashboard');?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+				<li class="active">Product List</li>
+			</ol>
+        </section>
+		<!-- Main content -->
+        <section class="content">
+			<div class="row">
+				<div class="col-xs-12">
+					 <div class="box">
+						<div class="box-header">
+							<h3 class="box-title">Product List</h3>
+							<p><br/><a class="btn bg-red" href="<?php echo site_url('/admin/product/addProduct');?>"><i class="fa fa-plus-square"></i>&nbsp;Add</a></p>
+						</div><!-- /.box-header -->
+
+						<?php if($this->session->flashdata('add_success')) { ?>
+						<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						<?php echo $this->session->flashdata('add_success');?>
+						</div>
+						<?php } ?>
+
+						<?php if($this->session->flashdata('update_success')) { ?>
+						<div class="alert alert-warning">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						<?php echo $this->session->flashdata('update_success');?>
+						</div>
+						<?php } ?>
+                        <?php if($this->session->flashdata('delete_success')) { ?>
+						<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						<?php echo $this->session->flashdata('delete_success');?>
+						</div>
+						<?php } ?>
+						<?php if($this->session->flashdata('status_inactive')) { ?>
+						<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						Record is Inactive now!
+						</div>
+						<?php } ?>
+						<?php if($this->session->flashdata('status_active')) { ?>
+						<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						Record is Active now!
+						</div>
+						<?php } ?>
+						<?php if($this->session->flashdata('error')) { ?>
+						<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						<?php echo $this->session->flashdata('error');?>
+						</div>
+						<?php } ?>
+
+						<div class="box-body">
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Sr No.</th>
+										<th>Name</th>
+										<th>Category</th>
+										<th>City</th>
+										<th>Add Images</th>
+										<th>Add Features</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$count=1;
+									if(!empty($products))
+									{
+									foreach($products as $product)
+									{
+										$query = $this->db->query("SELECT * FROM pf_category	WHERE cat_id='".$product['prod_cat_id']."'	ORDER BY cat_id ASC");
+										$results = $query->result_array();
+										
+										$query2 = $this->db->query("SELECT * FROM pf_city	WHERE pf_city.id='".$product['prod_city_id']."'");
+										$results2 = $query2->result_array();
+									?>
+									<tr>
+										<td><?php echo $count;?></td>
+										<td><?php echo stripslashes($product['prod_title']);?></td>
+										<td><?php echo stripslashes($results[0]['cat_title']);?></td>
+										<td><?php echo @stripslashes($results2[0]['name']);?></td>
+										<td><a class="btn bg-green" href="<?php echo site_url('/admin/product/productImages/'.$product['prod_id']);?>"><i class="fa fa-plus-square"></i>&nbsp;Add Images</a></td>
+										<td><a class="btn bg-green" href="<?php echo site_url('/admin/product/productFeatures/'.$product['prod_id']);?>"><i class="fa fa-plus-square"></i>&nbsp;Add Features</a></td>
+										<td>
+											<a class="btn bg-purple" href="<?php echo site_url('/admin/product/editProduct/'.$product['prod_id']);?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+											<a class="btn bg-red" href="<?php echo site_url('/admin/product/deleteProduct/'.$product['prod_id']);?>"><i class="fa fa-edit"></i>&nbsp;Delete</a>
+										</td>
+									</tr>
+									<?php
+									$count++;
+									}
+									}?>
+								</tbody>
+							</table>
+						</div><!-- /.box-body -->
+					</div><!-- /.box -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+<?php 
+$this->load->view('admin/footer_view');
+?>

@@ -20,7 +20,7 @@ class Admin_media_model extends CI_Model
 
 	public function addMedia(){
 		$field = array(
-			'media_title'=>$this->security->xss_clean($this->input->post('media_title')),
+			'media_title'=>$this->input->post('media_title'),
 			'media_url'=>$this->input->post('media_url'),
 			'media_status'=>'active'
 			);
@@ -45,9 +45,8 @@ class Admin_media_model extends CI_Model
 
 	public function updateMedia(){
 		$media_id = $this->input->post('media_id');
-		$media_id = $this->security->xss_clean($media_id);
 		$field = array(
-		'media_title'=>$this->security->xss_clean($this->input->post('media_title')),
+		'media_title'=>$this->input->post('media_title'),
 		'media_url'=>$this->input->post('media_url'),
 		'media_status'=>'active'
 		);

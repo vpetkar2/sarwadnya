@@ -22,16 +22,16 @@ class Admin_blog_model extends CI_Model
 		$date = @date('Y-m-d');
 		
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('b_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('b_title'), 'dash', TRUE);
 		
-		$cat_ids = implode(',', $this->security->xss_clean($this->input->post('cat_id')));
+		$cat_ids = implode(',', $this->input->post('cat_id'));
 		
 		$data_1 = array(
 			'cat_id'=>$cat_ids,
-			'b_title'=>$this->security->xss_clean($this->input->post('b_title')),
+			'b_title'=>$this->input->post('b_title'),
 			'slug' => $slug,
-			'b_author'=>$this->security->xss_clean($this->input->post('b_author')),
-			'b_desc'=>$this->security->xss_clean($this->input->post('b_desc')),
+			'b_author'=>$this->input->post('b_author'),
+			'b_desc'=>$this->input->post('b_desc'),
 			'b_date'=>$date
 		);
 		
@@ -67,23 +67,25 @@ class Admin_blog_model extends CI_Model
 
 	public function updateBlog($b_file, $status)
 	{
+	    
 		$data_2 = array();
 		
 		$date = @date('Y-m-d');
 		
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('b_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('b_title'), 'dash', TRUE);
 		
-		$b_id = $this->security->xss_clean($this->input->post('b_id'));
+		$b_id = $this->input->post('b_id');
 		
-		$cat_ids = implode(',', $this->security->xss_clean($this->input->post('cat_id')));
+// 		$cat_ids = implode(',', $this->input->post('cat_id'));
+        $cat_ids = $this->input->post('cat_id') ? implode(',', $this->input->post('cat_id')) : '';
 		
 		$data_1 = array(
 			'cat_id'=>$cat_ids,
-			'b_title'=>$this->security->xss_clean($this->input->post('b_title')),
+			'b_title'=>$this->input->post('b_title'),
 			'slug' => $slug,
-			'b_author'=>$this->security->xss_clean($this->input->post('b_author')),
-			'b_desc'=>$this->security->xss_clean($this->input->post('b_desc')),
+			'b_author'=>$this->input->post('b_author'),
+			'b_desc'=>$this->input->post('b_desc'),
 			'b_date'=>$date
 		);
 		

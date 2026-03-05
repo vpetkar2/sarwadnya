@@ -62,9 +62,9 @@ class Login extends CI_Controller {
 	public function submit_login()
 	{
 // 		echo "<pre>"; print_r('hiiii'); exit;
-		$this->form_validation->set_rules('username','Username','required|trim|xss_clean');
-		$this->form_validation->set_rules('password','Password','required|trim|xss_clean|md5');
-		$this->form_validation->set_rules('admin_captcha','Captcha','required|xss_clean|is_natural');
+		$this->form_validation->set_rules('username','Username','required|trim');
+		$this->form_validation->set_rules('password','Password','required|trim|md5');
+		$this->form_validation->set_rules('admin_captcha','Captcha','required|is_natural');
 
 		if ($this->form_validation->run())
 		{ 

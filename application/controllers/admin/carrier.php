@@ -45,7 +45,7 @@ class Carrier extends CI_Controller {
 
 	public function submitCarrier()
 	{
-		$this->form_validation->set_rules('crr_title','Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('crr_title','Title','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -64,7 +64,7 @@ class Carrier extends CI_Controller {
 	public function editCarrier()
 	{
 		$crr_id = $this->uri->segment(4,0);
-		$crr_id = $this->security->xss_clean($crr_id);
+// 		$crr_id = $this->security->xss_clean($crr_id);
 		if(isset($crr_id) && !empty($crr_id) && $crr_id!=NULL && $crr_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -80,10 +80,10 @@ class Carrier extends CI_Controller {
 
 	public function updateCarrier()
 	{		
-		$this->form_validation->set_rules('crr_title','Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('crr_title','Title','required|trim');
 		
 		$crr_id = $this->input->post('crr_id');
-		$crr_id = $this->security->xss_clean($crr_id);
+// 		$crr_id = $this->security->xss_clean($crr_id);
 		
 		if ($this->form_validation->run())
 		{
@@ -119,7 +119,7 @@ class Carrier extends CI_Controller {
 	public function updateStatus()
 	{
 		$crr_id = $this->uri->segment(4,0);
-		$crr_id = $this->security->xss_clean($crr_id);
+// 		$crr_id = $this->security->xss_clean($crr_id);
 		if(isset($crr_id) && !empty($crr_id) && $crr_id!=NULL && $crr_id > 0)
 		{
 			$cat_array = $this->admin_carrier_model->getStatus($crr_id);

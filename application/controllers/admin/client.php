@@ -45,7 +45,7 @@ class Client extends CI_Controller {
 
 	public function submitClient()
 	{
-		$this->form_validation->set_rules('client_title','Client Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('client_title','Client Title','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -84,7 +84,7 @@ class Client extends CI_Controller {
 	public function editClient()
 	{
 		$client_id = $this->uri->segment(4,0);
-		$client_id = $this->security->xss_clean($client_id);
+// 		$client_id = $this->security->xss_clean($client_id);
 		if(isset($client_id) && !empty($client_id) && $client_id!=NULL && $client_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -100,10 +100,10 @@ class Client extends CI_Controller {
 
 	public function updateClient()
 	{		
-		$this->form_validation->set_rules('client_title','Client Question','required|trim|xss_clean');
+		$this->form_validation->set_rules('client_title','Client Question','required|trim');
 		
 		$client_id = $this->input->post('client_id');
-		$client_id = $this->security->xss_clean($client_id);
+// 		$client_id = $this->security->xss_clean($client_id);
 		
 		if ($this->form_validation->run())
 		{
@@ -165,7 +165,7 @@ class Client extends CI_Controller {
 	public function updateStatus()
 	{
 		$client_id = $this->uri->segment(4,0);
-		$client_id = $this->security->xss_clean($client_id);
+// 		$client_id = $this->security->xss_clean($client_id);
 		if(isset($client_id) && !empty($client_id) && $client_id!=NULL && $client_id > 0)
 		{
 			$client_array = $this->admin_client_model->getStatus($client_id);

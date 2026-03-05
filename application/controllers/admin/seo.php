@@ -46,10 +46,10 @@ class SEO extends CI_Controller {
 
 	public function submitSEO()
 	{
-		$this->form_validation->set_rules('seo_title','SEO Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('seo_url','SEO URL','required|trim|xss_clean');
-		$this->form_validation->set_rules('seo_key','SEO Key','required|trim|xss_clean');
-		$this->form_validation->set_rules('seo_desc','SEO Desc','required|trim|xss_clean');
+		$this->form_validation->set_rules('seo_title','SEO Title','required|trim');
+		$this->form_validation->set_rules('seo_url','SEO URL','required|trim');
+		$this->form_validation->set_rules('seo_key','SEO Key','required|trim');
+		$this->form_validation->set_rules('seo_desc','SEO Desc','required|trim');
 
 		if ($this->form_validation->run())
 		{
@@ -103,7 +103,7 @@ class SEO extends CI_Controller {
 	public function editSEO()
 	{
 		$seo_id = $this->uri->segment(4,0);
-		$seo_id = $this->security->xss_clean($seo_id);
+// 		$seo_id = $this->security->xss_clean($seo_id);
 		if(isset($seo_id) && !empty($seo_id) && $seo_id!=NULL && $seo_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -120,7 +120,7 @@ class SEO extends CI_Controller {
 	
 	public function deleteseo() {
 	    $seo_id = $this->uri->segment(4,0);
-		$seo_id = $this->security->xss_clean($seo_id);
+// 		$seo_id = $this->security->xss_clean($seo_id);
 		if(isset($seo_id) && !empty($seo_id) && $seo_id!=NULL && $seo_id > 0)
 		{
 		    $this->admin_seo_model->deleteSEO($seo_id);
@@ -130,17 +130,17 @@ class SEO extends CI_Controller {
 
 	public function updateSEO()
 	{		
-		$this->form_validation->set_rules('seo_title','SEO Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('seo_url','SEO URL','required|trim|xss_clean');
-		$this->form_validation->set_rules('seo_key','SEO Key','required|trim|xss_clean');
-		$this->form_validation->set_rules('seo_desc','SEO Desc','required|trim|xss_clean');
-		$this->form_validation->set_rules('seo_id','SEO ID','required|trim|xss_clean|numeric');				
+		$this->form_validation->set_rules('seo_title','SEO Title','required|trim');
+		$this->form_validation->set_rules('seo_url','SEO URL','required|trim');
+		$this->form_validation->set_rules('seo_key','SEO Key','required|trim');
+		$this->form_validation->set_rules('seo_desc','SEO Desc','required|trim');
+		$this->form_validation->set_rules('seo_id','SEO ID','required|trim|numeric');				
 
 		if ($this->form_validation->run())
 		{
 			$seo_file = ''; $status=FALSE;
 			$seo_id   = $this->input->post('seo_id');
-			$seo_id   = $this->security->xss_clean($seo_id);
+// 			$seo_id   = $this->security->xss_clean($seo_id);
 				
 			if (!empty($_FILES['seo_file']['name']))
 			{
@@ -150,7 +150,7 @@ class SEO extends CI_Controller {
 					
 				if($seo_file!=$error)
 				{
-					$old_file = $this->security->xss_clean($this->input->post('old_file'));
+					$old_file = $this->input->post('old_file');
 					if($old_file!="")
 					{
 						//$path_to_file = base_url().'upload/je/'.$old_file;
@@ -225,6 +225,35 @@ class SEO extends CI_Controller {
 			return 'error';
 		}
 	}
+	
+	public function deleteMultipleSeo()
+    {
+        
+        // print_r($_POST); exit;
+        $seo_ids = $this->input->post('seo_ids');
+    
+        if(!empty($seo_ids) && is_array($seo_ids))
+        {
+            // security filter
+            $seo_ids = array_filter($seo_ids, 'is_numeric');
+    
+            if($this->admin_seo_model->deleteMultipleSeo($seo_ids))
+            {
+                $this->session->set_flashdata('delete_success', count($seo_ids).' SEO record(s) deleted successfully!');
+                return redirect('admin/seo');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Error while deleting SEO records. Try again');
+                return redirect('admin/seo');
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Please select at least one SEO record to delete');
+            return redirect('admin/seo');
+        }
+    }
 }
 
 /* End of file cms.php */

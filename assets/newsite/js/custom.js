@@ -1068,7 +1068,7 @@ var Industry = function(){
 	}
 	
 	var handleSupport = function(){
-		var support = '<a href="tel:7875290909" target="_blank" class="bt-support-now theme-btn"><i class="fa fa-phone"></i><span>Support</span></a><!-- Go to www.addthis.com/dashboard to customize your tools --><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b221c5e31b4e54b"></script>';
+		var support = '<a href="tel:9823232019" target="_blank" class="bt-support-now theme-btn"><i class="fa fa-phone"></i><span>Support</span></a><!-- Go to www.addthis.com/dashboard to customize your tools --><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b221c5e31b4e54b"></script>';
 		jQuery('body').append(support);
 	}
 	

@@ -177,70 +177,50 @@ class Home extends CI_Controller
 	}
 	public function submitContact()
 	{
+
 		$data['social'] = $this->site_cms_model->get_social();
-		$this->form_validation->set_rules('fname','Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('email','Email Id','required|trim|email|xss_clean');
-		$this->form_validation->set_rules('mobile','Mobile No.','required|trim|xss_clean');
-		$this->form_validation->set_rules('message','Message.','required|trim|xss_clean');
+		$this->form_validation->set_rules('fname','Name','required|trim');
+		$this->form_validation->set_rules('email','Email Id','required|trim|valid_email');
+		$this->form_validation->set_rules('mobile','Mobile No.','required|trim');
+		$this->form_validation->set_rules('message','Message.','required|trim');
 		
 		$fname = $this->input->post('fname');
+		$lname = $this->input->post('lname');
 		$email_id = $this->input->post('email');
 		$mobile = $this->input->post('mobile');
 		$messages = $this->input->post('message');
-		
+
 		if ($this->form_validation->run())
 		{
 			$security_code= $this->session->userdata("security_code");
-			if($security_code['word'] == $this->security->xss_clean($this->input->post('captcha')))
+			if($security_code['word'] == $this->input->post('captcha'))
 			{
 				$this->site_cms_model->addContact();
 				
 				$data['admin_email'] = $this->site_cms_model->get_records_array("admin", array('admin_id' => '1'), "admin_id", "ASC", '', '');
 				$admin_email = $data['admin_email']['0']['email'];
-				
-				
-				$this->load->library('email');
-    
-                $config['protocol']    = 'sendmail';
-                
-                $config['smtp_host']    = 'mail.brandbazzar.com';
-                
-                $config['smtp_port']    = '587';
-                
-                $config['smtp_timeout'] = '7';
-                
-                $config['smtp_user']    = 'sales@brandbazzar.com';
-                
-                $config['smtp_pass']    = 'R,jj1S1J)%L4';
-                
-                $config['charset']    = 'utf-8';
-                
-                $config['newline']    = "\r\n";
-                
-                $config['mailtype'] = 'html'; // or html
-                
-                $config['validation'] = TRUE; // bool whether to validate email or not      
-                
-                $this->email->initialize($config);
-                
-                
-                $this->email->from($this->input->post('email'),$this->input->post('fname'));
-                $this->email->to($admin_email);
-
-                $this->email->subject('Parth Feedback details');
 
                 $message = "Hello Admin<br/><br/>";
-				$message .= "Feedback detail recieved.<br/><br/>";
-				$message .= "Name :".$fname;
+				$message .= "Contact Details: .<br/><br/>";
+				$message .= "Name :".$fname." ".$lname;
 				$message .= "<br/>Tel :".$mobile;
 				$message .= "<br/>Email :".$email_id;
 				$message .= "<br/>Message :".$messages;
 				$message .= "<br/><br/>Thanks & Regards,<br/>".$fname;
-                
-				$this->email->message($message);
 
-				$this->email->send();
-						
+				$result = sendMail("$admin_email, vishalpetkar5@gmail.com", "Contact Form Message", $message);
+                // if($result)
+                // {
+                //     echo "Email Sent Successfully";
+                //     print_r($result);
+                // }
+                // else
+                // {
+                //     echo "Email Failed";
+                //     print_r($result);
+                // }
+                // exit;
+
 				$this->session->set_flashdata('add_success','Thanks for filling out the form!');
 				return redirect('success-contact');
 			}
@@ -274,60 +254,36 @@ class Home extends CI_Controller
 
 	public function submitEnquire()
 	{
-		$this->form_validation->set_rules('fname','Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('email','Email Id','required|trim|email|xss_clean');
-		$this->form_validation->set_rules('mobile','Mobile No.','required|trim|xss_clean');
-		$this->form_validation->set_rules('message','Message.','required|trim|xss_clean');
-		
+		$this->form_validation->set_rules('fname','Name','required|trim');
+		$this->form_validation->set_rules('email','Email Id','required|trim|valid_email');
+		$this->form_validation->set_rules('mobile','Mobile No.','required|trim');
+		$this->form_validation->set_rules('message','Message.','required|trim');
+
 		$fname = $this->input->post('fname');
 		$email_id = $this->input->post('email');
 		$mobile = $this->input->post('mobile');
 		$messages = $this->input->post('message');
-		
+
 		if ($this->form_validation->run())
 		{
 				$this->site_cms_model->addEnq();
 				$data['admin_email'] = $this->site_cms_model->get_records_array("admin", array('admin_id' => '1'), "admin_id", "ASC", '', '');
 				$admin_email = $data['admin_email']['0']['email'];
-				
-				
-				$this->load->library('email');
-    
-                $config['protocol']    = 'sendmail';
-                $config['smtp_host']    = 'mail.brandbazzar.com';
-                $config['smtp_port']    = '587';
-                $config['smtp_timeout'] = '7';
-                $config['smtp_user']    = 'sales@brandbazzar.com';
-                $config['smtp_pass']    = 'R,jj1S1J)%L4';
-                $config['charset']      = 'utf-8';
-                $config['newline']      = "\r\n";
-                $config['mailtype']     = 'html'; // or html
-                $config['validation'] = TRUE; // bool whether to validate email or not      
-                
-                $this->email->initialize($config);
-                
+
                 $data['prod_det'] = $this->site_cms_model->get_records_array("product", array('prod_id' => $this->input->post('prodid')), "prod_id", "ASC", '', '');
 				$prod_title = $data['prod_det']['0']['prod_title'];
-				
-                    $this->email->from($this->input->post('email'),$this->input->post('fname'));
-                //  $this->email->to($admin_email); 
-				    $this->email->to("parth.fibrotech@gmail.com");
-				    $this->email->subject("Product Enquiry recieved");
-						
-					$message = "Hello Admin<br/><br/>";
-					$message .= "Product Enquiry detail recieved.<br/><br/>";
-					$message .= "Name :".$fname;
-					$message .= "<br/>Product Name :".$prod_title;
-					$message .= "<br/>Tel :".$mobile;
-					$message .= "<br/>Email :".$email_id;
-					$message .= "<br/>Message :".$messages;
-					$message .= "<br/><br/>Thanks & Regards,<br/>".$fname;
-						
-						
-									
-				$this->email->message($message);
-				$this->email->send();
-						
+
+				$message = "Hello Admin<br/><br/>";
+				$message .= "Product Enquiry detail recieved.<br/><br/>";
+				$message .= "Name :".$fname;
+				$message .= "<br/>Product Name :".$prod_title;
+				$message .= "<br/>Tel :".$mobile;
+				$message .= "<br/>Email :".$email_id;
+				$message .= "<br/>Message :".$messages;
+				$message .= "<br/><br/>Thanks & Regards,<br/>".$fname;
+
+				$result = sendMail("info@sarwadnyaplay.com, vishalpetkar5@gmail.com", "Contact Form Message", $message);
+
 			$data['social'] = $this->site_cms_model->get_social();
 			$data['footer_cat'] =  $this->site_cms_model->get_footer_cat(6);
 			$data['categories'] = $this->site_product_model->get_category('*');

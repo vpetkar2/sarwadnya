@@ -17,8 +17,7 @@ class General_model extends CI_Model
 
 	public function validate_credential($username, $type, $random_string)
 	{
-		$username = $this->security->xss_clean($username);
-		$type = $this->security->xss_clean($type);
+
 		if($type=="pwd")
 		{
 			$query = $this->db->get_where('contact_person', array('cp_email' => $username, 'cp_status' => 'active'));
@@ -61,7 +60,7 @@ class General_model extends CI_Model
 
 	public function reset_admin_password($username, $random_string)
 	{
-		$query = $this->db->get_where('admin', array('username' => $this->security->xss_clean($username)));
+		$query = $this->db->get_where('admin', array('username' => $username));
 		
 		
 		if ($query->num_rows() > 0)

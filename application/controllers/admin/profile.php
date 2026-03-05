@@ -48,12 +48,12 @@ class Profile extends CI_Controller {
 
 	public function update_profile()
 	{
-		$this->form_validation->set_rules('username','Username','required|trim|xss_clean');
-		$this->form_validation->set_rules('email','Email ID','required|trim|xss_clean|valid_email');
-		$this->form_validation->set_rules('contact_no','Contact No.','required|xss_clean');
+		$this->form_validation->set_rules('username','Username','required|trim');
+		$this->form_validation->set_rules('email','Email ID','required|trim|valid_email');
+		$this->form_validation->set_rules('contact_no','Contact No.','required');
 		$post = $this->input->post();	
-		$post['admin_id'] = $this->security->xss_clean($this->session->userdata('admin_admin_id'));
-		
+		$post['admin_id'] = $this->session->userdata('admin_admin_id');
+
 		if ($this->form_validation->run())
 		{			
 			if($this->admin_login_model->update_profile($post))
@@ -98,17 +98,17 @@ class Profile extends CI_Controller {
 
 	public function change_password()
 	{
-		$this->form_validation->set_rules('old_password','Old Password','required|trim|xss_clean|md5');
-		$this->form_validation->set_rules('password','New Password','required|trim|xss_clean|md5');
+		$this->form_validation->set_rules('old_password','Old Password','required|trim|md5');
+		$this->form_validation->set_rules('password','New Password','required|trim|md5');
 		$post = $this->input->post();	
-		$post['admin_id'] = $this->security->xss_clean($this->session->userdata('admin_admin_id'));
+		$post['admin_id'] = $this->session->userdata('admin_admin_id');
 		
 		if ($this->form_validation->run())
 		{
 			$array = array(
-					'old_password' => $this->security->xss_clean($this->input->post('old_password')),
-					'password' => $this->security->xss_clean($this->input->post('password')),
-					'admin_id' => $this->security->xss_clean($this->session->userdata('admin_admin_id'))
+					'old_password' => $this->input->post('old_password'),
+					'password' => $this->input->post('password'),
+					'admin_id' => $this->session->userdata('admin_admin_id')
 				);
 			if($this->admin_login_model->validate_password($array))
 			{

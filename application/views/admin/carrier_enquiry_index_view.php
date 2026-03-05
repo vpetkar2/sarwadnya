@@ -19,9 +19,17 @@
 							
 						</div><!-- /.box-header -->
 						<div class="box-body">
+						    <form id="featureForm" method="POST" action="<?php echo site_url('/admin/carrierenquiry/deleteMultiple');?>">
+						        <div style="margin-bottom: 10px;">
+                                <button type="submit" class="btn btn-danger" id="deleteBtn" style="display:none;" onclick="return confirm('Are you sure you want to delete selected enquiry?');"><i class="fa fa-trash"></i>&nbsp;Delete Selected</button>
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                            </div>
+                            
 							<table id="example1" class="table table-bordered table-striped">
 								<thead>
 									<tr>
+									    <th width="50"><input type="checkbox" id="selectAll" title="Select all"></th>
+
 										<th>Sr No.</th>
 										<th>Name</th>
 										<!--<th>Email Id </th>-->
@@ -43,7 +51,9 @@
 											$albums = $this->admin_carrier_enquiry_model->showenquiryProd($contact['contact_apply_for']);
 											
 										?>
-										<tr>  	 	 	 	 	 	 	 
+										<tr>  	 	 	 	 	 	 	
+										<td><input type="checkbox" name="enq_ids[]" value="<?php echo $contact['contact_id'];?>" class="feature-checkbox"></td>
+
 											<td><?php echo $count;?></td>
 											<td><?php echo stripslashes($contact['contact_name']);?><br><?php echo stripslashes($contact['contact_email']);?></td>
 											<td><?php echo stripslashes($contact['contact_mobile']);?></td>
@@ -60,10 +70,40 @@
 									}?>
 								</tbody>
 							</table>
+							</form>
 						</div><!-- /.box-body -->
 					</div><!-- /.box -->
 				</div><!-- /.col -->
 			</div><!-- /.row -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-$this->load->view('admin/footer_view');
+    
+<script>
+	// Select all functionality
+	document.getElementById('selectAll').addEventListener('change', function() {
+		var checkboxes = document.querySelectorAll('.feature-checkbox');
+		checkboxes.forEach(function(checkbox) {
+			checkbox.checked = document.getElementById('selectAll').checked;
+		});
+		updateDeleteButton();
+	});
+
+	// Show/hide delete button based on selection
+	document.querySelectorAll('.feature-checkbox').forEach(function(checkbox) {
+		checkbox.addEventListener('change', function() {
+			updateDeleteButton();
+		});
+	});
+
+	function updateDeleteButton() {
+		var checkedBoxes = document.querySelectorAll('.feature-checkbox:checked');
+		var deleteBtn = document.getElementById('deleteBtn');
+		if (checkedBoxes.length > 0) {
+			deleteBtn.style.display = 'inline-block';
+		} else {
+			deleteBtn.style.display = 'none';
+		}
+	}
+	</script>
+
+<?php $this->load->view('admin/footer_view'); ?>

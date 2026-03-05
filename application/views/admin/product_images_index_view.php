@@ -116,5 +116,4 @@ $Product_name = stripslashes($this->db->get_where('product', array('prod_id' => 
 				</div><!-- /.col -->
 			</div><!-- /.row -->
         </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
-$this->load->view('admin/footer_view');
+    </div><!-- /.content-wrapper --><?php $this->load->view('admin/footer_view'); ?>

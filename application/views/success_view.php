@@ -5,33 +5,32 @@
 	$this->load->view('header_view', $data);
 ?>
 <!-------------------- new code ---------------------------------- -->
-		
-		<section class="cid-rneHpGJaIG mbr-parallax-background" id="content9-1d">
-			<div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(35, 35, 35);">
+<!-- Content -->
+<div class="page-content bg-white">
+	<div class="dlab-bnr-inr overlay-black-middle bg-pt"
+		style="background-image:url(<?php echo base_url("assets/newsite/images/background/bg5.jpg"); ?>);">
+		<div class="container">
+			<div class="dlab-bnr-inr-entry">
+				<h1 class="text-white">Enquiry Sent</h1>
 			</div>
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 col-md-12 align-center">
-						<h2 class="mbr-section-title align-left mbr-fonts-style mbr-bold mbr-white display-2">
-							Enquiry Sent
-						</h2>
-						<!--<h3 class="mbr-section-subtitle align-left mbr-fonts-style mbr-white pt-2 display-5">
-							Lorem Ipsum Dolor Sit Amet
-						</h3>-->
-					</div>
+		</div>
+	</div>
+	<!-- Contact Form -->
+	<div class="section-full content-inner contact-page-9">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+					<h2 class="m-b15 title">
+						<span class="text-primary">
+                            Product equiry sent successfully<br><br>Our team shall get back to you with best proposals. 
+                        </span>
+					</h2>
 				</div>
 			</div>
-		</section>
-		<section class="features19 cid-rm0pwICru2" id="features19-1d">
-			<div class="container">
-				<h2 class="mbr-section-title align-center mbr-bold mbr-fonts-style display-2">
-					Product equiry sent successfully<br><br>Our team shall get back to you with best proposals. 
-				</h2>
-				
-			</div>
-		</section>
-	
-		<!-------------------- new code ---------------------------------- -->
+		</div>
+	</div>
+</div>
+<!-------------------- new code ---------------------------------- -->
  <?php 
 //$data['page'] = 'about';
 //$data['contact_detail'] = $contact_detail;

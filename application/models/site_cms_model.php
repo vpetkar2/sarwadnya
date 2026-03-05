@@ -98,10 +98,10 @@ class Site_cms_model extends CI_Model
 	public function addContact()
 	{
 		$field = array(
-			'contact_name'=>$this->security->xss_clean($this->input->post('fname')."	".$this->input->post('lname')),
-			'contact_email'=>$this->security->xss_clean($this->input->post('email')),
-			'contact_mobile'=>$this->security->xss_clean($this->input->post('mobile')),
-			'contact_message'=>$this->security->xss_clean($this->input->post('message')),
+			'contact_name'=>$this->input->post('fname')."	".$this->input->post('lname'),
+			'contact_email'=>$this->input->post('email'),
+			'contact_mobile'=>$this->input->post('mobile'),
+			'contact_message'=>$this->input->post('message'),
 			'contact_applydate'=>date('Y-m-d H:i:s')
 			);
 		$this->db->insert('contact', $field);
@@ -116,11 +116,11 @@ class Site_cms_model extends CI_Model
 	public function addEnq()
 	{
 		$field = array(
-			'contact_name'=>$this->security->xss_clean($this->input->post('fname')."	".$this->input->post('lname')),
-			'contact_email'=>$this->security->xss_clean($this->input->post('email')),
-			'contact_mobile'=>$this->security->xss_clean($this->input->post('mobile')),
-			'contact_message'=>$this->security->xss_clean($this->input->post('message')),
-			'contact_prod_id'=>$this->security->xss_clean($this->input->post('prodid')),
+			'contact_name'=>$this->input->post('fname')."	".$this->input->post('lname'),
+			'contact_email'=>$this->input->post('email'),
+			'contact_mobile'=>$this->input->post('mobile'),
+			'contact_message'=>$this->input->post('message'),
+			'contact_prod_id'=>$this->input->post('prodid'),
 			'contact_applydate'=>date('Y-m-d H:i:s')
 			);
 		$this->db->insert('prod_enq', $field);
@@ -135,10 +135,10 @@ class Site_cms_model extends CI_Model
 	public function addride()
 	{
 		$field = array(
-			'contact_name'=>$this->security->xss_clean($this->input->post('fname')),
-			'contact_email'=>$this->security->xss_clean($this->input->post('email')),
-			'contact_mobile'=>$this->security->xss_clean($this->input->post('mobile')),
-			'contact_message'=>$this->security->xss_clean($this->input->post('message')),
+			'contact_name'=>$this->input->post('fname'),
+			'contact_email'=>$this->input->post('email'),
+			'contact_mobile'=>$this->input->post('mobile'),
+			'contact_message'=>$this->input->post('message'),
 			'contact_applydate'=>date('Y-m-d H:i:s')
 			);
 		$this->db->insert('ridenow', $field);
@@ -180,5 +180,19 @@ class Site_cms_model extends CI_Model
 			return FALSE;
 		}
 	}
+	
+	public function insertCareer($data)
+    {
+        $this->db->insert('pf_carrier_enquiry',$data);
+
+        if($this->db->affected_rows() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 ?>

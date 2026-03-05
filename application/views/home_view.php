@@ -14,14 +14,14 @@ $this->load->view('header_view');
 					<!-- SLIDE  -->
 					<li data-index="rs-3204" data-transition="slideoververtical" data-slotamount="default"
 						data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default"
-						data-masterspeed="default" data-thumb="images/main-slider/slide8.jpg" data-rotate="0"
+						data-masterspeed="default" data-thumb="<?php echo base_url("assets/newsite/images/banner/home-banner.jpg"); ?>" data-rotate="0"
 						data-fstransition="fade" data-fsmasterspeed="2000" data-fsslotamount="7"
 						data-saveperformance="off" data-title="" data-param1="What our team has found in the wild"
 						data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7=""
 						data-param8="" data-param9="" data-param10="" data-description="">
 						<!-- MAIN IMAGE -->
-						<img src="<?php echo base_url("assets/newsite/images/main-slider/slide8.jpg"); ?>" alt=""
-							data-lazyload="images/main-slider/slide8.jpg" data-bgposition="center center"
+						<img src="<?php echo base_url("assets/newsite/images/banner/home-banner.jpg"); ?>" alt=""
+							data-lazyload="<?php echo base_url("assets/newsite/images/banner/home-banner.jpg"); ?>" data-bgposition="center center"
 							data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="6" class="rev-slidebg"
 							data-no-retina>
 						<!-- LAYER NR. 1 -->
@@ -50,7 +50,7 @@ $this->load->view('header_view');
 							Outdoor Sports & <br /> Playground Equipment
 						</div>
 						<!-- LAYER NR. 4 -->
-						<div class="tp-caption tp-resizeme rs-parallaxlevel-1" id="slide-100-layer-5"
+						<!-- <div class="tp-caption tp-resizeme rs-parallaxlevel-1" id="slide-100-layer-5"
 							data-x="['right','right','middle','middle']" data-hoffset="['-330','-400','0','0']"
 							data-y="['bottom','bottom','bottom','bottom']" data-voffset="['-40','-40','-20','-100']"
 							data-width="none" data-height="none" data-whitespace="nowrap" data-type="image"
@@ -61,11 +61,11 @@ $this->load->view('header_view');
 							style="z-index: 11;">
 							<div class="rs-looped rs-wave" data-speed="5" data-angle="0" data-radius="3px"
 								data-origin="50% 50%">
-								<img src="images/main-slider/slide7.png" alt=""
+								<img src="<?php echo base_url("assets/newsite/images/banner/home-banner.jpg"); ?>" alt=""
 									data-ww="['965px','965px','500px','300px']"
 									data-hh="['894px','894px','463px','278px']" width="407" height="200" data-no-retina>
 							</div>
-						</div>
+						</div> -->
 						<!-- LAYER NR. 2 -->
 						<div class="tp-caption" id="slide-3204-layer-20" data-x="['left','left','left','left']"
 							data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']"
@@ -80,7 +80,7 @@ $this->load->view('header_view');
 							style="z-index: 7; white-space: normal; color:#fff; font-family:'Poppins', serif; border-width:0px; text-transform:uppercase; font-weight:600;">
 							<div class="rs-looped rs-wave" data-speed="5" data-angle="0" data-radius="5px"
 								data-origin="50% 50%">
-								INDUSTRY
+								SARWADNYA
 							</div>
 						</div>
 						<!-- LAYER NR. 3 -->
@@ -150,9 +150,9 @@ $this->load->view('header_view');
 						<div class="dlab-box service-media-bx">
 							<div class="dlab-media">
 								<a href="<?php echo base_url('about-us/'); ?>"><img
-										src="<?php echo base_url("assets/newsite/images/our-services/preview.jpg"); ?>"
+										src="<?php echo base_url("assets/newsite/images/premium.jpg"); ?>"
 										class="lazy"
-										data-src="<?php echo base_url("assets/newsite/images/our-services/pic3.jpg"); ?>"
+										data-src="<?php echo base_url("assets/newsite/images/premium.jpg"); ?>"
 										alt=""></a>
 							</div>
 							<div class="dlab-info text-center">
@@ -169,9 +169,9 @@ $this->load->view('header_view');
 						<div class="dlab-box service-media-bx">
 							<div class="dlab-media">
 								<a href="<?php echo base_url('about-us/'); ?>"><img
-										src="<?php echo base_url("assets/newsite/images/our-services/preview.jpg"); ?>images/our-services/preview.jpg"
+										src="<?php echo base_url("assets/newsite/images/sports.jpg"); ?>images/sports.jpg"
 										class="lazy"
-										data-src="<?php echo base_url("assets/newsite/images/our-services/pic2.jpg"); ?>"
+										data-src="<?php echo base_url("assets/newsite/images/sports.jpg"); ?>"
 										alt=""></a>
 							</div>
 							<div class="dlab-info text-center">
@@ -188,9 +188,9 @@ $this->load->view('header_view');
 						<div class="dlab-box service-media-bx">
 							<div class="dlab-media">
 								<a href="<?php echo base_url('about-us/'); ?>"><img
-										src="<?php echo base_url("assets/newsite/images/our-services/preview.jpg"); ?>images/our-services/preview.jpg"
+										src="<?php echo base_url("assets/newsite/images/logo.jpg"); ?>"
 										class="lazy"
-										data-src="<?php echo base_url("assets/newsite/images/our-services/pic1.jpg"); ?>"
+										data-src="<?php echo base_url("assets/newsite/images/logo.jpg"); ?>"
 										alt=""></a>
 							</div>
 							<div class="dlab-info text-center">
@@ -407,7 +407,7 @@ $this->load->view('header_view');
 						fitness areas, and public spaces.</p>
 				</div>
 				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 wow fadeInUp text-center" data-wow-duration="2s"
+					<div class="col-lg-12 col-md-12 col-sm-12 wow fadeInUp text-center m-b30" data-wow-duration="2s"
 						data-wow-delay="0.2s">
 						<?php
 						// print_r($new_category);

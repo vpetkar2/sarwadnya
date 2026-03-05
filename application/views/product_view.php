@@ -59,10 +59,10 @@ $this->load->view('header_view');
 													<!-- </a> -->
 
 												</div>
-												<div class="dlab-info p-a20 border-1">
+												<div class="dlab-info p-a20 border-1 bg-primary">
 													<div class="dlab-post-meta">
 														<ul>
-															<li class="post-date fs-5">
+															<li class="post-date fs-5 text-white">
 																<strong>
 																	₹ <?php echo $h_prod_cost; ?>
 																</strong>
@@ -71,11 +71,11 @@ $this->load->view('header_view');
 													</div>
 													<div class="dlab-post-title">
 														<h4 class="post-title"><a
-																href="blog-single.html"><?php echo $h_prod_title; ?></a></h4>
+																href="<?php echo $url; ?>" class="text-white"><?php echo $h_prod_title; ?></a></h4>
 													</div>
 													<div class="dlab-post-readmore">
 														<a href="<?php echo $url; ?>" title="READ MORE" rel="bookmark"
-															class="site-button">READ MORE
+															class="btn btn-primary">READ MORE
 															<i class="ti-arrow-right"></i>
 														</a>
 													</div>

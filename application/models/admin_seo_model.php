@@ -34,11 +34,11 @@ class Admin_seo_model extends CI_Model
 		$data_2 = array();
 		
 		$data_1 = array(
-			'seo_title'=>$this->security->xss_clean($this->input->post('seo_title')),
-			'seo_city'  =>$this->security->xss_clean($this->input->post('seo_city')),
-			'seo_url'  =>$this->security->xss_clean($this->input->post('seo_url')),
-			'seo_key'  =>$this->security->xss_clean($this->input->post('seo_key')),
-			'seo_desc' =>$this->security->xss_clean($this->input->post('seo_desc')),
+			'seo_title'=>$this->input->post('seo_title'),
+			'seo_city'  =>$this->input->post('seo_city'),
+			'seo_url'  =>$this->input->post('seo_url'),
+			'seo_key'  =>$this->input->post('seo_key'),
+			'seo_desc' =>$this->input->post('seo_desc'),
 		);
 		
 		if($status==TRUE)
@@ -102,14 +102,14 @@ class Admin_seo_model extends CI_Model
 	{
 		$data_2 = array();
 		
-		$seo_id = $this->security->xss_clean($this->input->post('seo_id'));
+		$seo_id = $this->input->post('seo_id');
 		
 		$data_1 = array(
-			'seo_title'=>$this->security->xss_clean($this->input->post('seo_title')),
-			'seo_city'  =>$this->security->xss_clean($this->input->post('seo_city')),
-			'seo_url'  =>$this->security->xss_clean($this->input->post('seo_url')),
-			'seo_key'  =>$this->security->xss_clean($this->input->post('seo_key')),
-			'seo_desc' =>$this->security->xss_clean($this->input->post('seo_desc')),
+			'seo_title'=>$this->input->post('seo_title'),
+			'seo_city'  =>$this->input->post('seo_city'),
+			'seo_url'  =>$this->input->post('seo_url'),
+			'seo_key'  =>$this->input->post('seo_key'),
+			'seo_desc' =>$this->input->post('seo_desc'),
 		);
 		
 		if($status==TRUE)
@@ -131,5 +131,20 @@ class Admin_seo_model extends CI_Model
 			return FALSE;
 		}
 	}	
+
+	public function deleteMultipleSeo($seo_ids)
+    {
+        $this->db->where_in('seo_id', $seo_ids);
+        $this->db->delete('pf_seo');
+    
+        if($this->db->affected_rows() > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
 }
 ?>

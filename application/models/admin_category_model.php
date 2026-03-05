@@ -31,20 +31,20 @@ class Admin_category_model extends CI_Model
 
 	public function addCategory(){
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('cat_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('cat_title'), 'dash', TRUE);
 
 		$data = array(
-		    'city_id'=>$this->security->xss_clean($this->input->post('city_id')),
-			'cat_title'=>$this->security->xss_clean($this->input->post('cat_title')),
-			'cat_desc'=>$this->security->xss_clean($this->input->post('cat_desc')),
+		    'city_id'=>$this->input->post('city_id'),
+			'cat_title'=>$this->input->post('cat_title'),
+			'cat_desc'=>$this->input->post('cat_desc'),
 			'slug' => $slug,
 			'cat_status'=>'active'
 			);
 			
 		$data_seo = array(
-		    'seo_title'=>$this->security->xss_clean($this->input->post('cat_title')),
-		    'seo_key'=>$this->security->xss_clean($this->input->post('cat_title')),
-		    'seo_desc'=>$this->security->xss_clean($this->input->post('cat_title')),
+		    'seo_title'=>$this->input->post('cat_title'),
+		    'seo_key'=>$this->input->post('cat_title'),
+		    'seo_desc'=>$this->input->post('cat_title'),
 		    'seo_url'=>$slug
 		    );
 
@@ -71,15 +71,14 @@ class Admin_category_model extends CI_Model
 
 	public function updateCategory(){
 		$cat_id = $this->input->post('cat_id');
-		$cat_id = $this->security->xss_clean($cat_id);
-		
+
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('cat_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('cat_title'), 'dash', TRUE);
 
 		$data = array(
-		'city_id'=>$this->security->xss_clean($this->input->post('city_id')),
-		'cat_title'=>$this->security->xss_clean($this->input->post('cat_title')),
-		'cat_desc'=>$this->security->xss_clean($this->input->post('cat_desc')),
+		'city_id'=>$this->input->post('city_id'),
+		'cat_title'=>$this->input->post('cat_title'),
+		'cat_desc'=>$this->input->post('cat_desc'),
 		'slug' => $slug,
 		'cat_status'=>'active'
 		);
@@ -126,8 +125,7 @@ class Admin_category_model extends CI_Model
 	}
 	public function deleteCategory(){
 		$cat_id = $this->uri->segment(4,0);
-		$cat_id = $this->security->xss_clean($cat_id);
-		
+
 		$this -> db -> where('cat_id', $cat_id);
 		$this -> db -> delete('category');
 		if($this->db->affected_rows() > 0){

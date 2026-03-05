@@ -159,39 +159,56 @@ class Site_product_model extends CI_Model
 	// 	//return $query->result_array();
 	// }
 
-	public function get_products_cnt($sch_prod)
-	{
-		if ($sch_prod != '') {
-			$this->db->select('*');
-			$this->db->from('product');
-			$this->db->where('prod_city_id', $this->cityId);   // 🔴 ADD THIS
+// 	public function get_products_cnt($sch_prod)
+// 	{
+// 		if ($sch_prod != '') {
+// 			$this->db->select('*');
+// 			$this->db->from('pf_product');
+// 			$this->db->where('prod_city_id', $this->cityId);   // 🔴 ADD THIS
 
-			$this->db->group_start();
-			$this->db->like('prod_title', $sch_prod);
+// 			$this->db->group_start();
+// 			$this->db->like('prod_title', $sch_prod);
 
-			// Category match
-			$cats = $this->db->select('cat_id')
-				->from('category')
-				->like('cat_title', $sch_prod)
-				->where('city_id', $this->cityId)
-				->get()
-				->result_array();
+// 			// Category match
+// 			$cats = $this->db->select('cat_id')
+// 				->from('category')
+// 				->like('cat_title', $sch_prod)
+// 				->where('city_id', $this->cityId)
+// 				->get()
+// 				->result_array();
 
-			if (!empty($cats)) {
-				$catIds = array_column($cats, 'cat_id');
-				$this->db->or_where_in('prod_cat_id', $catIds);
-			}
+// 			if (!empty($cats)) {
+// 				$catIds = array_column($cats, 'cat_id');
+// 				$this->db->or_where_in('prod_cat_id', $catIds);
+// 			}
 
-			$this->db->group_end();
+// 			$this->db->group_end();
 
-			return $this->db->count_all_results();
-		} else {
-			$this->db->from('product');
-			$this->db->where('prod_city_id', $this->cityId);   // 🔴 ADD THIS
-			return $this->db->count_all_results();
-		}
-	}
+// 			return $this->db->count_all_results();
+// 		} else {
+// 			$this->db->from('product');
+// 			$this->db->where('prod_city_id', $this->cityId);   // 🔴 ADD THIS
+// 			return $this->db->count_all_results();
+// 		}
+// 	}
 
+    
+public function get_products_cnt($sch_prod)
+{
+    $this->db->select('pf_product.*');
+    $this->db->from('pf_product');
+    $this->db->join('pf_category', 'pf_category.cat_id = pf_product.prod_cat_id', 'left');
+    $this->db->where('pf_product.prod_city_id', $this->cityId);
+
+    if ($sch_prod != '') {
+        $this->db->group_start();
+        $this->db->like('pf_product.prod_title', $sch_prod);
+        $this->db->or_like('pf_category.cat_title', $sch_prod);
+        $this->db->group_end();
+    }
+
+    return $this->db->count_all_results();
+}
 
 	public function get_products_cat_cnt($select, $city)
 	{
@@ -240,12 +257,24 @@ class Site_product_model extends CI_Model
 
 		return $query->result_array();
 	}
-	public function get_category_slug($select)
+	public function get_category_slug($select, $city)
 	{
+	    
+	    if ($city != "") {
+			$this->db->select('*');
+			$this->db->from('city');
+			$this->db->where('name', $city);
+			$querys = $this->db->get();
+			$citydata = $querys->result_array();
+		}
+
 		$this->db->select('*');
 		$this->db->from('category');
 		$this->db->where('cat_status', 'active');
 		$this->db->where('slug', $select);
+		if ($city != "") {
+			$this->db->where('city_id', $citydata[0]['id']);
+		}
 		$this->db->order_by('cat_title', 'ASC');
 		$query = $this->db->get();
 

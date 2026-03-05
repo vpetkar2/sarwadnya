@@ -18,9 +18,9 @@ class Admin_testimonial_model extends CI_Model
 	public function addTestimonial()
 	{
 		$data = array(
-			'tes_name'=>$this->security->xss_clean($this->input->post('tes_name')),
-			'tes_company'=>$this->security->xss_clean($this->input->post('tes_company')),
-			'tes_detail'=>$this->security->xss_clean($this->input->post('tes_detail'))
+			'tes_name'=>$this->input->post('tes_name'),
+			'tes_company'=>$this->input->post('tes_company'),
+			'tes_detail'=>$this->input->post('tes_detail')
 		);
 		
 		$this->db->insert('testimonial', $data);
@@ -48,12 +48,12 @@ class Admin_testimonial_model extends CI_Model
 
 	public function updateTestimonial()
 	{
-		$tes_id = $this->security->xss_clean($this->input->post('tes_id'));
+		$tes_id = $this->input->post('tes_id');
 		
 		$data = array(
-			'tes_name'=>$this->security->xss_clean($this->input->post('tes_name')),
-			'tes_company'=>$this->security->xss_clean($this->input->post('tes_company')),
-			'tes_detail'=>$this->security->xss_clean($this->input->post('tes_detail'))
+			'tes_name'=>$this->input->post('tes_name'),
+			'tes_company'=>$this->input->post('tes_company'),
+			'tes_detail'=>$this->input->post('tes_detail')
 		);
 		
 		$this->db->where('tes_id', $tes_id);

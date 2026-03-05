@@ -35,4 +35,19 @@ class Admin_carrier_enquiry_model extends CI_Model
 		}
 	}
 	
+	public function deleteMultipleEnquiry($enq_ids)
+    {
+        $this->db->where_in('contact_id', $enq_ids);
+        $this->db->delete('pf_carrier_enquiry');
+    
+        if($this->db->affected_rows() > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+	
 }

@@ -30,7 +30,7 @@ class Products extends CI_Controller
 
 	public function index()
 	{
-
+		// print_r($_POST); exit;
 		$sch_prod = $this->input->post('sch_prod');
 		$config = array();
 
@@ -108,7 +108,7 @@ class Products extends CI_Controller
 
 	public function productcat($city)
 	{
-		// echo "hello 2"; exit;
+// 		echo "hello 2"; exit;
 		$cat_id = $this->uri->segment(2);
 
 		$config = array();
@@ -162,7 +162,7 @@ class Products extends CI_Controller
 		$data["links"] = $this->pagination->create_links();
 		$data['meta_rec'] = $this->site_cms_model->get_meta_by_id(2);
 		$data['social'] = $this->site_cms_model->get_social();
-		$data['slug'] = $this->site_product_model->get_category_slug($cat_id);
+		$data['slug'] = $this->site_product_model->get_category_slug($cat_id, $city);
 		$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(9)->get_where('category', array('cat_status' => 'active'))->result_array();
 		$data['categories'] = $this->site_product_model->get_category('*');
 
@@ -260,7 +260,12 @@ class Products extends CI_Controller
 			$data["links"] = $this->pagination->create_links();
 			$data['meta_rec'] = $this->site_cms_model->get_meta_by_id(2);
 			$data['social'] = $this->site_cms_model->get_social();
-			$data['slug'] = $this->site_product_model->get_category_slug($cat_id);
+			$data['slug'] = $this->site_product_model->get_category_slug($cat_id, $city);
+
+//             echo "<pre>";
+//             print_r($city);
+// 			print_r($data['slug']); exit;
+
 			$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(9)->get_where('category', array('cat_status' => 'active'))->result_array();
 			$data['categories'] = $this->site_product_model->get_category('*');
 			$data['contact_detail'] = $this->site_cms_model->get_contact();
@@ -307,7 +312,7 @@ class Products extends CI_Controller
 	function show_slug2($param)
 	{
 		$url = base_url() . "nagpur/" . $param;
-		// echo "<pre>"; print_r($param); exit;
+		echo "<pre>"; print_r($param); exit;
 		header("location: $url");
 		$data_count = $this->site_product_model->get_products_cat_cnt($param, '');
 		// 		print_r($data_count);
@@ -362,7 +367,7 @@ class Products extends CI_Controller
 			$data["links"] = $this->pagination->create_links();
 			$data['meta_rec'] = $this->site_cms_model->get_meta_by_id(2);
 			$data['social'] = $this->site_cms_model->get_social();
-			$data['slug'] = $this->site_product_model->get_category_slug($cat_id);
+			$data['slug'] = $this->site_product_model->get_category_slug($cat_id, $city);
 			$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(9)->get_where('category', array('cat_status' => 'active'))->result_array();
 			$data['categories'] = $this->site_product_model->get_category('*');
 			$data['contact_detail'] = $this->site_cms_model->get_contact();

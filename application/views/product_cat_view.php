@@ -11,7 +11,7 @@ $this->load->view('header_view');
 		style="background-image:url(<?php echo base_url("assets/newsite/images/banner/bnr4.jpg"); ?>);">
 		<div class="container">
 			<div class="dlab-bnr-inr-entry">
-				<h1 class="text-white">Category</h1>
+				<h1 class="text-white"><?php echo $slug[0]['cat_title']; ?></h1>
 			</div>
 		</div>
 	</div>
@@ -35,7 +35,7 @@ $this->load->view('header_view');
 										$h_prod_image = base_url() . 'upload/je/' . stripslashes($product_h['prod_image']);
 								
 										$citydata = $this->site_cms_model->get_record_by_id("city", array('id' => $product_h['prod_city_id']), "id", "DESC", '1', '');
-										$url = base_url() . strtolower($citydata->name) . "/" . $product_h['prod_url'] . '/';
+										$url = base_url() . strtolower($citydata->name) . "/" . $product_h['prod_url'];
 
 										$albums = $this->site_cms_model->get_record_by_id("product_image", array('prod_id' => $product_h['prod_id']), "img_id", "DESC", '1', '');
 										if (!empty($albums)) {
@@ -51,10 +51,10 @@ $this->load->view('header_view');
 												<div class="dlab-post-media dlab-img-effect">
 													<img src="<?php echo $img_prod; ?>" alt="<?php echo $h_prod_title; ?>">
 												</div>
-												<div class="dlab-info p-a20 border-1">
+												<div class="dlab-info p-a20 border-1 bg-primary">
 													<div class="dlab-post-meta">
 														<ul>
-															<li class="post-date fs-5">
+															<li class="post-date fs-5 text-white">
 																<strong>
 																	₹ <?php echo $h_prod_cost; ?>
 																</strong>
@@ -63,11 +63,11 @@ $this->load->view('header_view');
 													</div>
 													<div class="dlab-post-title">
 														<h4 class="post-title"><a
-																href="blog-single.html"><?php echo $h_prod_title; ?></a></h4>
+																href="<?php echo $url; ?>" class="text-white"><?php echo $h_prod_title; ?></a></h4>
 													</div>
 													<div class="dlab-post-readmore">
 														<a href="<?php echo $url; ?>" title="READ MORE" rel="bookmark"
-															class="site-button">READ MORE
+															class="btn btn-primary">READ MORE
 															<i class="ti-arrow-right"></i>
 														</a>
 													</div>

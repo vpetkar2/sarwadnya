@@ -33,7 +33,7 @@ class Admin_banner_model extends CI_Model
 
 	public function addBanner(){
 		$field = array(
-			'ban_title'=>$this->security->xss_clean($this->input->post('ban_title')),
+			'ban_title'=>$this->input->post('ban_title'),
 			'ban_status'=>'active'
 			);
 		$this->db->insert('banner', $field);
@@ -46,11 +46,11 @@ class Admin_banner_model extends CI_Model
 	public function addCap(){
 		$ban_id = $this->input->post('ban_id');
 		$img_id = $this->input->post('img_id');
-		$ban_id = $this->security->xss_clean($ban_id);
-		$img_id = $this->security->xss_clean($img_id);
+// 		$ban_id = $this->security->xss_clean($ban_id);
+// 		$img_id = $this->security->xss_clean($img_id);
 
 		$data = array(
-		'ban_cap'=>$this->security->xss_clean($this->input->post('ban_cap'))
+		'ban_cap'=>$this->input->post('ban_cap')
 		);
 		
 		$this->db->where('ban_id', $ban_id);
@@ -76,10 +76,10 @@ class Admin_banner_model extends CI_Model
 
 	public function updateBanner(){
 		$ban_id = $this->input->post('ban_id');
-		$ban_id = $this->security->xss_clean($ban_id);
+// 		$ban_id = $this->security->xss_clean($ban_id);
 
 		$data = array(
-		'ban_title'=>$this->security->xss_clean($this->input->post('ban_title')),
+		'ban_title'=>$this->input->post('ban_title'),
 		'ban_status'=>'active'
 		);
 		
@@ -132,8 +132,8 @@ class Admin_banner_model extends CI_Model
 	{
 		$data_2 = array();
 		
-		$data_1 = array('ban_id'=>$this->security->xss_clean($this->input->post('ban_id')));
-		$data_3 = array('ban_cap'=>$this->security->xss_clean($this->input->post('ban_cap')));
+		$data_1 = array('ban_id'=>$this->input->post('ban_id'));
+		$data_3 = array('ban_cap'=>$this->input->post('ban_cap'));
 		if($status==TRUE)
 		{
 			$data_2 = array('ban_image' => $ban_image);

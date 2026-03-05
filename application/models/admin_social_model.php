@@ -20,12 +20,10 @@ class Admin_social_model extends CI_Model
 
 	public function update_social()
 	{
-		$fb_social = $this->security->xss_clean($this->input->post('fb_social'));
-		//$conus_fax = $this->security->xss_clean($this->input->post('conus_fax'));
-		$tw_social = $this->security->xss_clean($this->input->post('tw_social'));
-		$ln_social = $this->security->xss_clean($this->input->post('ln_social'));
-		$yt_social = $this->security->xss_clean($this->input->post('yt_social'));
-		//$conus_map = $this->security->xss_clean($this->input->post('conus_map'));
+		$fb_social = $this->input->post('fb_social');
+		$tw_social = $this->input->post('tw_social');
+		$ln_social = $this->input->post('ln_social');
+		$yt_social = $this->input->post('yt_social');
 
 		$data = array('fb_social'=>$fb_social, 'tw_social'=>$tw_social, 'ln_social'=>$ln_social, 'yt_social'=>$yt_social);
 		

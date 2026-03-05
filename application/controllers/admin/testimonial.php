@@ -45,9 +45,9 @@ class Testimonial extends CI_Controller {
 
 	public function submitTestimonial()
 	{
-		$this->form_validation->set_rules('tes_name','Name','required|trim|xss_clean');
-		//$this->form_validation->set_rules('tes_company','Company Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('tes_detail','Details','required|trim|xss_clean');
+		$this->form_validation->set_rules('tes_name','Name','required|trim');
+		//$this->form_validation->set_rules('tes_company','Company Name','required|trim');
+		$this->form_validation->set_rules('tes_detail','Details','required|trim');
 
 		if ($this->form_validation->run())
 		{	
@@ -72,7 +72,7 @@ class Testimonial extends CI_Controller {
 	public function editTestimonial()
 	{
 		$tes_id = $this->uri->segment(4,0);
-		$tes_id = $this->security->xss_clean($tes_id);
+// 		$tes_id = $this->security->xss_clean($tes_id);
 		if(isset($tes_id) && !empty($tes_id) && $tes_id!=NULL && $tes_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -88,15 +88,15 @@ class Testimonial extends CI_Controller {
 
 	public function updateTestimonial()
 	{		
-		$this->form_validation->set_rules('tes_name','Name','required|trim|xss_clean');
-		//$this->form_validation->set_rules('tes_company','Company Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('tes_detail','Details','required|trim|xss_clean');
-		$this->form_validation->set_rules('tes_id','Testimonial ID','required|trim|xss_clean|numeric');				
+		$this->form_validation->set_rules('tes_name','Name','required|trim');
+		//$this->form_validation->set_rules('tes_company','Company Name','required|trim');
+		$this->form_validation->set_rules('tes_detail','Details','required|trim');
+		$this->form_validation->set_rules('tes_id','Testimonial ID','required|trim|numeric');				
 
 		if ($this->form_validation->run())
 		{
 			$tes_id = $this->input->post('tes_id');
-			$tes_id = $this->security->xss_clean($tes_id);
+// 			$tes_id = $this->security->xss_clean($tes_id);
 				
 			if($this->admin_testimonial_model->updateTestimonial())
 			{				
@@ -123,7 +123,7 @@ class Testimonial extends CI_Controller {
 	public function updateStatus()
 	{
 		$tes_id = $this->uri->segment(4,0);
-		$tes_id = $this->security->xss_clean($tes_id);
+// 		$tes_id = $this->security->xss_clean($tes_id);
 		if(isset($tes_id) && !empty($tes_id) && $tes_id!=NULL && $tes_id > 0)
 		{
 			$blog_array = $this->admin_testimonial_model->getStatus($tes_id);

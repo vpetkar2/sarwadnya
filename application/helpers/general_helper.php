@@ -4,6 +4,14 @@
 	{ 
 	  $obj  =& get_instance();
 
+    if ($url_data == "") {
+        $url_data = "home";
+    }
+    if ($cityname == "") {
+        $cityname = "nagpur";
+    }
+
+    // echo "select * from pf_seo where seo_url ='$url_data' and seo_city='".$cityname."'";
 	  $q    = $obj->db->query("select * from pf_seo where seo_url ='$url_data' and seo_city='".$cityname."'");
 	  $data = $q->result();
 	  
@@ -18,36 +26,6 @@
 	  
     }
 
-    /*function getSeoData($url_data)
-	{ 
-	  $obj  =& get_instance();
-	  
-	  $cityid = $obj->session->userdata('cityId');
-	  $obj->db->select('*');
-	  $obj->db->from('city');
-      $obj->db->where('id', $cityid);
-      $querys = $obj->db->get();
-      $citydata = $querys->result_array();
-
-        $city = '';
-        if (@$citydata[0]) {
-            $city = $citydata[0]['name'];
-        }
-
-	  $q    = $obj->db->query("select * from pf_seo where seo_url ='$url_data' and seo_city='".$city."'");
-	  $data = $q->result();
-	  
-	  if(empty($data[0]))
-		{
-			return FALSE;
-		}
-		else 
-		{
-			return $data[0];
-		}
-	  
-    }*/
-    
     function getSeoDataProd($url_data)
     {   
         $obj  =& get_instance();
@@ -66,5 +44,26 @@
 		{
 			return $data[0];
 		}
+    }
+    
+    function sendMail($to,$subject,$message,$from_email='no_reply@sarwadnyaplay.com',$from_name='Sarwadnya Play')
+    {
+        $CI =& get_instance();
+    
+        $CI->load->library('email');
+    
+        $CI->email->from($from_email,$from_name);
+        $CI->email->to($to);
+        $CI->email->subject($subject);
+        $CI->email->message($message);
+    
+        if($CI->email->send())
+        {
+            return TRUE;
+        }
+        else
+        {
+            return $CI->email->print_debugger();
+        }
     }
 ?>

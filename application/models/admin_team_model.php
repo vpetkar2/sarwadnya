@@ -20,9 +20,9 @@ class Admin_team_model extends CI_Model
 
 	public function addTeam($team){
 		$field = array(
-			'team_title'=>$this->security->xss_clean($this->input->post('team_title')),
-			'team_designation'=>$this->security->xss_clean($this->input->post('team_designation')),
-			'team_profile'=>$this->security->xss_clean($this->input->post('team_profile')),
+			'team_title'=>$this->input->post('team_title'),
+			'team_designation'=>$this->input->post('team_designation'),
+			'team_profile'=>$this->input->post('team_profile'),
 			'team_logo'=>$team,
 			'team_status'=>'active'
 			);
@@ -47,7 +47,6 @@ class Admin_team_model extends CI_Model
 
 	public function updateTeam($team){
 		$team_id = $this->input->post('team_id');
-		$team_id = $this->security->xss_clean($team_id);
 
 		$data_1 = array();
 		if($team!='')
@@ -56,9 +55,9 @@ class Admin_team_model extends CI_Model
 		}
 		
 		$data_2 = array(
-		'team_title'=>$this->security->xss_clean($this->input->post('team_title')),
-		'team_designation'=>$this->security->xss_clean($this->input->post('team_designation')),
-		'team_profile'=>$this->security->xss_clean($this->input->post('team_profile')),
+		'team_title'=>$this->input->post('team_title'),
+		'team_designation'=>$this->input->post('team_designation'),
+		'team_profile'=>$this->input->post('team_profile'),
 		'team_status'=>'active'
 		);
 
@@ -115,8 +114,8 @@ class Admin_team_model extends CI_Model
 	public function addCMS()
 	{
 		$data = array(
-			'tcms_title'=>$this->security->xss_clean($this->input->post('tcms_title')),
-			'tcms_desc'=>$this->security->xss_clean($this->input->post('tcms_desc'))			
+			'tcms_title'=>$this->input->post('tcms_title'),
+			'tcms_desc'=>$this->input->post('tcms_desc')			
 		);
 		
 		$this->db->insert('team_cms', $data);
@@ -144,11 +143,11 @@ class Admin_team_model extends CI_Model
 
 	public function updateCMS()
 	{
-		$tcms_id = $this->security->xss_clean($this->input->post('tcms_id'));
+		$tcms_id = $this->input->post('tcms_id');
 		
 		$data = array(
-			'tcms_title'=>$this->security->xss_clean($this->input->post('tcms_title')),
-			'tcms_desc'=>$this->security->xss_clean($this->input->post('tcms_desc')),
+			'tcms_title'=>$this->input->post('tcms_title'),
+			'tcms_desc'=>$this->input->post('tcms_desc'),
 		);
 		
 		$this->db->where('tcms_id', $tcms_id);
@@ -206,7 +205,7 @@ class Admin_team_model extends CI_Model
 	{
 		$data_2 = array();
 		
-		$data_1 = array('tcms_id'=>$this->security->xss_clean($this->input->post('tcms_id')));
+		$data_1 = array('tcms_id'=>$this->input->post('tcms_id'));
 		
 		if($status==TRUE)
 		{

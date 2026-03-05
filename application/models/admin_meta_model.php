@@ -17,13 +17,13 @@ class Admin_meta_model extends CI_Model
 
 	public function addMeta(){
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('cat_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('cat_title'), 'dash', TRUE);
 
 		$data = array(
-			'title'=>$this->security->xss_clean($this->input->post('title')),
-			'meta_title'=>$this->security->xss_clean($this->input->post('cat_title')),
-			'meta_keywords'=>$this->security->xss_clean($this->input->post('cat_key')),
-			'meta_desc'=>$this->security->xss_clean($this->input->post('cat_desc')),
+			'title'=>$this->input->post('title'),
+			'meta_title'=>$this->input->post('cat_title'),
+			'meta_keywords'=>$this->input->post('cat_key'),
+			'meta_desc'=>$this->input->post('cat_desc'),
 			'slug' => $slug
 			);
 		$this->db->insert('meta', $data);
@@ -47,16 +47,15 @@ class Admin_meta_model extends CI_Model
 
 	public function updateMeta(){
 		$meta_id = $this->input->post('cat_id');
-		$meta_id = $this->security->xss_clean($meta_id);
-		
+
 		$this->load->helper('url');
-		$slug = url_title($this->security->xss_clean($this->input->post('cat_title')), 'dash', TRUE);
+		$slug = url_title($this->input->post('cat_title'), 'dash', TRUE);
 
 		$data = array(
-			'title'=>$this->security->xss_clean($this->input->post('title')),
-			'meta_title'=>$this->security->xss_clean($this->input->post('cat_title')),
-			'meta_keywords'=>$this->security->xss_clean($this->input->post('cat_key')),
-			'meta_desc'=>$this->security->xss_clean($this->input->post('cat_desc')),
+			'title'=>$this->input->post('title'),
+			'meta_title'=>$this->input->post('cat_title'),
+			'meta_keywords'=>$this->input->post('cat_key'),
+			'meta_desc'=>$this->input->post('cat_desc'),
 			'slug' => $slug
 		);
 		

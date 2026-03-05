@@ -17,7 +17,7 @@ class Admin_gallery_model extends CI_Model
 
 	public function addGallery(){
 		$field = array(
-			'gal_title'=>$this->security->xss_clean($this->input->post('gal_title')),
+			'gal_title'=>$this->input->post('gal_title'),
 			'gal_status'=>'active'
 			);
 		$this->db->insert('gallery', $field);
@@ -41,10 +41,9 @@ class Admin_gallery_model extends CI_Model
 
 	public function updateGallery(){
 		$gal_id = $this->input->post('gal_id');
-		$gal_id = $this->security->xss_clean($gal_id);
 
 		$data = array(
-		'gal_title'=>$this->security->xss_clean($this->input->post('gal_title')),
+		'gal_title'=>$this->input->post('gal_title'),
 		'gal_status'=>'active'
 		);
 		
@@ -98,8 +97,8 @@ class Admin_gallery_model extends CI_Model
 		$data_2 = array();
 		
 		$data_1 = array(
-			'gal_id'=>$this->security->xss_clean($this->input->post('gal_id')),
-			'gal_title'=>$this->security->xss_clean($this->input->post('gal_title_1'))
+			'gal_id'=>$this->input->post('gal_id'),
+			'gal_title'=>$this->input->post('gal_title_1')
 		);
 		
 		if($status==TRUE)

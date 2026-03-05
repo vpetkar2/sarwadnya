@@ -55,236 +55,245 @@ class Carrier extends CI_Controller
 			$data['title'] = $data['meta_rec'][0]['meta_title'];
 		$this->load->view('carrier_registration_view',$data);
 	}
-	
-	public function submitPost()
-	{
-		$data['social'] = $this->site_cms_model->get_social();
-		//print_r($_POST);exit;
-		$this->form_validation->set_rules('title','Name','required|trim|xss_clean');
-		$this->form_validation->set_rules('email','Email Id','required|trim|email|xss_clean');
-		$this->form_validation->set_rules('mobile','Mobile No.','required|trim|xss_clean');
-		//$this->form_validation->set_rules('message','Message.','required|trim|xss_clean');
-		
-		$fname = $this->input->post('title');
-		$email_id = $this->input->post('email');
-		$mobile = $this->input->post('mobile');
-		$messages = $this->input->post('message');
-		
-		if ($this->form_validation->run())
-		{
-			$security_code= $this->session->userdata("security_code");
-			if($security_code['word'] == $this->security->xss_clean($this->input->post('captcha')))
-			{
-			if (!empty($_FILES['resume']['name']) || $messages!='')
-			{
-				$resume = '';
-				if (!empty($_FILES['resume']['name']))
-				{
-				    //print_r($_FILES);
-					$resume = $this->file_upload('resume', 'doc|docx|pdf|DOC|DOCX|PDF', '2048', TRUE);
-					$error = "error";
-					
-					if($resume!=$error)
-					{
-						if($this->site_carrier_model->addcarrier($resume, $status=TRUE))
-						{	
-							$data['admin_email'] = $this->site_cms_model->get_records_array("admin", array('admin_id' => '1'), "admin_id", "ASC", '', '');
-				            $admin_email = $data['admin_email']['0']['email'];
-				
-				
-            				$this->load->library('email');
-                
-                            $config['protocol']    = 'sendmail';
-                            
-                            $config['smtp_host']    = 'mail.brandbazzar.com';
-                            
-                            $config['smtp_port']    = '587';
-                            
-                            $config['smtp_timeout'] = '7';
-                            
-                            $config['smtp_user']    = 'sales@brandbazzar.com';
-                            
-                            $config['smtp_pass']    = 'R,jj1S1J)%L4';
-                            
-                            $config['charset']    = 'utf-8';
-                            
-                            $config['newline']    = "\r\n";
-                            
-                            $config['mailtype'] = 'html'; // or html
-                            
-                            $config['validation'] = TRUE; // bool whether to validate email or not      
-                            
-                            $this->email->initialize($config);
-                            
-                            $data['crr_det'] = $this->site_cms_model->get_records_array("carrier", array('crr_id' => $this->input->post('crrpost')), "crr_id", "ASC", '', '');
-				            $crr_title = $data['crr_det']['0']['crr_title'];
-                            
-                            $this->email->from($this->input->post('email'),$this->input->post('title'));
-                            $this->email->to($admin_email); 
-    						
-    						$this->email->subject("Carrier Enquiry recieved");
-    						
-    						$message = "Hello Admin<br/><br/>";
-    						$message .= "Name :".$fname;
-    						$message .= "<br/>Post Name :".$crr_title;
-    						$message .= "<br/>Tel :".$mobile;
-    						$message .= "<br/>Email :".$email_id;
-    						$message .= "<br/>Message :".$messages;
-    						$message .= "<br/><br/>Thanks & Regards,<br/>".$fname;
-    						
-    						
-    									
-    						$this->email->message($message);
-    
-    						$this->email->send();
-							
-							$this->session->set_flashdata('add_success','Resume Detail send successfully!');
-							//return redirect('carrier/index');
-							return redirect('success-career');
-						}
-						else
-						{
-							@unlink('./upload/resume/'.$resume);
-							$data['ids'] = $this->input->post('crrpost');
-							$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
-							$data['categories'] = $this->site_product_model->get_category('*');
-							//$data['error'] = 'Please enter the correct security code!.';
-							$this->load->helper('captcha');
-							$data['captcha_img'] = $this->creating_captcha();
-							$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
-							$data['contact_detail'] = $this->site_cms_model->get_contact();
-							$data['add_error'] = 'Error while adding record. Try again';			
-							$this->load->view('carrier_registration_view',$data);
-						}
-					}
-					else
-					{
-						$data['ids'] = $this->input->post('crrpost');
-						$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
-						$data['categories'] = $this->site_product_model->get_category('*');
-						$this->load->helper('captcha');
-						$data['captcha_img'] = $this->creating_captcha();
-						$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
-						$data['contact_detail'] = $this->site_cms_model->get_contact();
-						$data['add_error'] = "There is an error while uploading file. Please upload doc / pdf file only and try again.";
-						$this->load->view('carrier_registration_view',$data);
-					}
-				}
-				else
-				{
-					if($this->site_carrier_model->addcarrier($resume, $status=FALSE))
-					{	
-						$data['admin_email'] = $this->site_cms_model->get_records_array("admin", array('admin_id' => '1'), "admin_id", "ASC", '', '');
-				            $admin_email = $data['admin_email']['0']['email'];
-				            $this->load->library('email');
-						
-    							//$this->load->library('email');
-    
-                        $config['protocol']    = 'sendmail';
-                        
-                        $config['smtp_host']    = 'mail.brandbazzar.com';
-                        
-                        $config['smtp_port']    = '587';
-                        
-                        $config['smtp_timeout'] = '7';
-                        
-                        $config['smtp_user']    = 'sales@brandbazzar.com';
-                        
-                        $config['smtp_pass']    = 'R,jj1S1J)%L4';
-                        
-                        $config['charset']    = 'utf-8';
-                        
-                        $config['newline']    = "\r\n";
-                        
-                        $config['mailtype'] = 'html'; // or html
-                        
-                        $config['validation'] = TRUE; // bool whether to validate email or not      
-                        
-                        $this->email->initialize($config);
-                        
-                        $data['crr_det'] = $this->site_cms_model->get_records_array("carrier", array('crr_id' => $this->input->post('crrpost')), "crr_id", "ASC", '', '');
-				        $crr_title = $data['crr_det']['0']['crr_title'];
-                        
-                        $this->email->from($this->input->post('email'),$this->input->post('title'));
-                        $this->email->to($admin_email); 
-						
-						$this->email->subject("Carrier Enquiry recieved");
-						
-						$message = "Hello Admin<br/><br/>";
-						$message .= "Name :".$fname;
-					    $message .= "<br/>Post Name :".$crr_title;
-						$message .= "<br/>Tel :".$mobile;
-						$message .= "<br/>Email :".$email_id;
-						$message .= "<br/>Message :".$messages;
-						$message .= "<br/><br/>Thanks & Regards,<br/>".$fname;
-						
-						
-									
-						$this->email->message($message);
 
-						$this->email->send();
-						$this->session->set_flashdata('add_success','Resume detail Send  successfully!');
-					//	return redirect('carrier/index');
-						return redirect('success-career');
-					}
-					else
-					{
-						$data['ids'] = $this->input->post('crrpost');
-						$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
-						$data['categories'] = $this->site_product_model->get_category('*');
-						//$data['error'] = 'Please enter the correct security code!.';
-						$this->load->helper('captcha');
-						$data['captcha_img'] = $this->creating_captcha();
-						$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
-						$data['contact_detail'] = $this->site_cms_model->get_contact();
-						$data['add_error'] = 'Error while adding record. Try again';			
-						$this->load->view('carrier_registration_view',$data);
-					}			
-				}
-			}
-			else
-			{
-				$data['ids'] = $this->input->post('crrpost');
-				$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
-				$data['categories'] = $this->site_product_model->get_category('*');
-				$data['add_error'] = 'Please enter Message or Upload resume any one is required!.';
-				$this->load->helper('captcha');
-				$data['captcha_img'] = $this->creating_captcha();
-				$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
-				$data['contact_detail'] = $this->site_cms_model->get_contact();
-				//echo "<pre>";print_r($data);exit;
-				$this->load->view('carrier_registration_view',$data);				
-			}
-			}
-			else
-			{
-				$data['ids'] = $this->input->post('crrpost');
-				$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
-				$data['categories'] = $this->site_product_model->get_category('*');
-				$data['add_error'] = 'Please enter the correct security code!.';
-				$this->load->helper('captcha');
-				$data['captcha_img'] = $this->creating_captcha();
-				$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
-				$data['contact_detail'] = $this->site_cms_model->get_contact();
-				//echo "<pre>";print_r($data);exit;
-				return redirect('carrier/success_career');
-				//$this->load->view('carrier_registration_view',$data);				
-			}
-		}
-		else
-		{	
-			$data['ids'] = $this->input->post('crrpost');
-			$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
-			$data['categories'] = $this->site_product_model->get_category('*');
-			$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
-			$this->load->helper('captcha');
-			$data['captcha_img'] = $this->creating_captcha();			
-			$data['contact_detail'] = $this->site_cms_model->get_contact();
-			$data['add_error'] = 'Please Fill All Required Fields!.';
-			//$this->session->set_flashdata('error','Please Fill All Required Fields!.');	
-			$this->load->view('carrier_registration_view',$data);
-		}
-	}
+
+
+
+	public function submitPost()
+    {
+        // Form validation
+        $this->form_validation->set_rules('title','Name','required|trim');
+        $this->form_validation->set_rules('email','Email','required|valid_email');
+        $this->form_validation->set_rules('mobile','Mobile','required');
+        $this->form_validation->set_rules('crrpost','Industry','required');
+        $this->form_validation->set_rules('message','Message','required');
+    
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->session->set_flashdata('error','Please fill all required fields.');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    
+        /* SAVE DATA */
+        $data = array(
+            'contact_name'       => $this->input->post('title'),
+            'contact_mobile'     => $this->input->post('mobile'),
+            'contact_email'      => $this->input->post('email'),
+            'contact_resume'     => '',  // Removed file upload
+            'contact_message'    => $this->input->post('message'),
+            'contact_apply_for'  => $this->input->post('crrpost'),
+            'contact_applydate'  => date('Y-m-d H:i:s'),
+            'contact_apply_name' => $this->input->post('title')
+        );
+    
+        $result = $this->site_cms_model->insertCareer($data);
+        
+        $data['admin_email'] = $this->site_cms_model->get_records_array("admin", array('admin_id' => '1'), "admin_id", "ASC", '', '');
+		$admin_email = $data['admin_email']['0']['email'];
+
+        $message = "Hello Admin<br/><br/>";
+		$message .= "Career Details: .<br/><br/>";
+		$message .= "Name :".$this->input->post('title');
+		$message .= "<br/>Tel :".$this->input->post('mobile');
+		$message .= "<br/>Email :".$this->input->post('email');
+		$message .= "<br/>Message :".$this->input->post('message');
+		$message .= "<br/><br/>Thanks & Regards,<br/>".$this->input->post('title');
+
+		$result = sendMail("career@sarwadnyaplay.com, vishalpetkar5@gmail.com", "Career Form Message", $message);
+    
+        if($result)
+        {
+            $this->session->set_flashdata('success','Application submitted successfully!');
+        }
+        else
+        {
+            $this->session->set_flashdata('error','Something went wrong. Try again.');
+        }
+    
+        redirect('success-career');
+    }
+	
+// 	public function submitPost()
+// 	{
+// 		$data['social'] = $this->site_cms_model->get_social();
+		
+// 		$this->form_validation->set_rules('title','Name','required|trim');
+// 		$this->form_validation->set_rules('email','Email Id','required|trim|valid_email');
+// 		$this->form_validation->set_rules('mobile','Mobile No.','required|trim');
+// 		//$this->form_validation->set_rules('message','Message.','required|trim');
+		
+// 		$fname = $this->input->post('title');
+// 		$email_id = $this->input->post('email');
+// 		$mobile = $this->input->post('mobile');
+// 		$messages = $this->input->post('message');
+
+// 		if ($this->form_validation->run())
+// 		{
+// 			$security_code= $this->session->userdata("security_code");
+// 			if($security_code['word'] == $this->input->post('captcha'))
+// 			{
+// 			    echo  "true";
+			    		
+// 			if (!empty($_FILES['resume']['name']) || $messages!='')
+// 			{
+//         			    echo  "true 1";
+// 			    		print_r($_POST);exit;
+// 				$resume = '';
+// 				if (!empty($_FILES['resume']['name']))
+// 				{
+				    
+// 				        			    echo  "true 2";
+// 			    		print_r($_POST);exit;
+
+
+// 				    //print_r($_FILES);
+// 					$resume = $this->file_upload('resume', 'doc|docx|pdf|DOC|DOCX|PDF', '2048', TRUE);
+// 					$error = "error";
+					
+//     					if($resume!=$error)
+//     					{
+    					    
+//     					        			    echo  "true 3";
+			    		
+
+//     						if($this->site_carrier_model->addcarrier($resume, $status=TRUE))
+//     						{	
+    						    
+//     						        			    echo  "true 4";
+
+
+//     							$data['admin_email'] = $this->site_cms_model->get_records_array("admin", array('admin_id' => '1'), "admin_id", "ASC", '', '');
+//     				            $admin_email = $data['admin_email']['0']['email'];
+//                                 $data['crr_det'] = $this->site_cms_model->get_records_array("carrier", array('crr_id' => $this->input->post('crrpost')), "crr_id", "ASC", '', '');
+//     				            $crr_title = $data['crr_det']['0']['crr_title'];
+    
+//         						$message = "Hello Admin<br/><br/>";
+//         						$message .= "Name :".$fname;
+//         						$message .= "<br/>Post Name :".$crr_title;
+//         						$message .= "<br/>Tel :".$mobile;
+//         						$message .= "<br/>Email :".$email_id;
+//         						$message .= "<br/>Message :".$messages;
+//         						$message .= "<br/><br/>Thanks & Regards,<br/>".$fname;
+    
+//         						$result = sendMail("$admin_email, vishalpetkar5@gmail.com", "Carrier Enquiry Recieved", $message);
+    
+//     							$this->session->set_flashdata('add_success','Resume Detail send successfully!');
+//     							//return redirect('carrier/index');
+//     							return redirect('success-career');
+//     						}
+//     						else
+//     						{
+//     							@unlink('./upload/resume/'.$resume);
+//     							$data['ids'] = $this->input->post('crrpost');
+//     							$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
+//     							$data['categories'] = $this->site_product_model->get_category('*');
+//     							//$data['error'] = 'Please enter the correct security code!.';
+//     							$this->load->helper('captcha');
+//     							$data['captcha_img'] = $this->creating_captcha();
+//     							$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
+//     							$data['contact_detail'] = $this->site_cms_model->get_contact();
+//     							$data['add_error'] = 'Error while adding record. Try again';			
+//     							$this->load->view('carrier_registration_view',$data);
+//     						}
+//     					}
+//     					else
+//     					{
+//     						$data['ids'] = $this->input->post('crrpost');
+//     						$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
+//     						$data['categories'] = $this->site_product_model->get_category('*');
+//     						$this->load->helper('captcha');
+//     						$data['captcha_img'] = $this->creating_captcha();
+//     						$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
+//     						$data['contact_detail'] = $this->site_cms_model->get_contact();
+//     						$data['add_error'] = "There is an error while uploading file. Please upload doc / pdf file only and try again.";
+//     						$this->load->view('carrier_registration_view',$data);
+//     					}
+//     				}
+//     				else
+//     				{
+//     					if($this->site_carrier_model->addcarrier($resume, $status=FALSE))
+//     					{	
+//     						$data['admin_email'] = $this->site_cms_model->get_records_array("admin", array('admin_id' => '1'), "admin_id", "ASC", '', '');
+//     				            $admin_email = $data['admin_email']['0']['email'];
+                            
+//                             $data['crr_det'] = $this->site_cms_model->get_records_array("carrier", array('crr_id' => $this->input->post('crrpost')), "crr_id", "ASC", '', '');
+//     				        $crr_title = $data['crr_det']['0']['crr_title'];
+
+//     						$message = "Hello Admin<br/><br/>";
+//     						$message .= "Name :".$fname;
+//     					    $message .= "<br/>Post Name :".$crr_title;
+//     						$message .= "<br/>Tel :".$mobile;
+//     						$message .= "<br/>Email :".$email_id;
+//     						$message .= "<br/>Message :".$messages;
+//     						$message .= "<br/><br/>Thanks & Regards,<br/>".$fname;
+
+//         					$result = sendMail("$admin_email, vishalpetkar5@gmail.com", "Carrier Enquiry Recieved", $message);
+//     						$this->session->set_flashdata('add_success','Resume detail Send  successfully!');
+//     						return redirect('success-career');
+//     					}
+//     					else
+//     					{
+//     						$data['ids'] = $this->input->post('crrpost');
+//     						$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
+//     						$data['categories'] = $this->site_product_model->get_category('*');
+//     						//$data['error'] = 'Please enter the correct security code!.';
+//     						$this->load->helper('captcha');
+//     						$data['captcha_img'] = $this->creating_captcha();
+//     						$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
+//     						$data['contact_detail'] = $this->site_cms_model->get_contact();
+//     						$data['add_error'] = 'Error while adding record. Try again';			
+//     						$this->load->view('carrier_registration_view',$data);
+//     					}			
+//     				}
+//     			}
+//     			else
+//     			{
+//     				$data['ids'] = $this->input->post('crrpost');
+//     				$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
+//     				$data['categories'] = $this->site_product_model->get_category('*');
+//     				$data['add_error'] = 'Please enter Message or Upload resume any one is required!.';
+//     				$this->load->helper('captcha');
+//     				$data['captcha_img'] = $this->creating_captcha();
+//     				$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
+//     				$data['contact_detail'] = $this->site_cms_model->get_contact();
+//     				//echo "<pre>";print_r($data);exit;
+//     				$this->load->view('carrier_registration_view',$data);				
+//     			}
+    			
+    			
+// 			}
+// 			else
+// 			{
+// 				$data['ids'] = $this->input->post('crrpost');
+// 				$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
+// 				$data['categories'] = $this->site_product_model->get_category('*');
+// 				$data['add_error'] = 'Please enter the correct security code!.';
+// 				$this->load->helper('captcha');
+// 				$data['captcha_img'] = $this->creating_captcha();
+// 				$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
+// 				$data['contact_detail'] = $this->site_cms_model->get_contact();
+// 				//echo "<pre>";print_r($data);exit;
+// 				return redirect('carrier/success_career');
+// 				//$this->load->view('carrier_registration_view',$data);				
+// 			}
+// 		}
+// 		else
+// 		{	
+// 			$data['ids'] = $this->input->post('crrpost');
+// 			$data['footer_cat'] = $this->db->order_by('cat_id', 'DESC')->limit(6)->get_where('category', array('cat_status' => 'active'))->result_array();
+// 			$data['categories'] = $this->site_product_model->get_category('*');
+// 			$data['carrier_list'] = $this->site_carrier_model->get_carrier('*');
+// 			$this->load->helper('captcha');
+// 			$data['captcha_img'] = $this->creating_captcha();			
+// 			$data['contact_detail'] = $this->site_cms_model->get_contact();
+// 			$data['add_error'] = 'Please Fill All Required Fields!.';
+// 			//$this->session->set_flashdata('error','Please Fill All Required Fields!.');	
+// 			$this->load->view('carrier_registration_view',$data);
+// 		}
+// 	}
+	
+	
+	
 	public function success_career()
 	{
 		$data['social'] = $this->site_cms_model->get_social();

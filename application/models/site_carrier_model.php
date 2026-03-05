@@ -12,36 +12,50 @@ class Site_carrier_model extends CI_Model
 		return $query->result_array();
 	}
 	
-	public function addcarrier($prod_file, $status)
-	{
-		$data_2 = array();
+	public function insertCareer($data)
+    {
+        $this->db->insert('pf_carrier_enquiry',$data);
+
+        if($this->db->affected_rows() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+// 	public function addcarrier($prod_file, $status)
+// 	{
+// 		$data_2 = array();
 		
-		$data_1 = array(
-			'contact_name'=>$this->security->xss_clean($this->input->post('title')),
-			'contact_mobile'=>$this->security->xss_clean($this->input->post('mobile')),
-			'contact_email'=>$this->security->xss_clean($this->input->post('email')),
-			'contact_message'=>$this->security->xss_clean($this->input->post('message')),
-			'contact_apply_for'=>$this->security->xss_clean($this->input->post('crrpost')),
-			'contact_applydate'=>date('Y-m-d H:i:s'),
-		);
+// 		$data_1 = array(
+// 			'contact_name'=>$this->input->post('title'),
+// 			'contact_mobile'=>$this->input->post('mobile'),
+// 			'contact_email'=>$this->input->post('email'),
+// 			'contact_message'=>$this->input->post('message'),
+// 			'contact_apply_for'=>$this->input->post('crrpost'),
+// 			'contact_applydate'=>date('Y-m-d H:i:s'),
+// 		);
 		
-		if($status==TRUE)
-		{
-			$data_2 = array('contact_resume' => $prod_file);
-		}
+// 		if($status==TRUE)
+// 		{
+// 			$data_2 = array('contact_resume' => $prod_file);
+// 		}
 		
-		$data = array_merge($data_1, $data_2);
+// 		$data = array_merge($data_1, $data_2);
 		
-		$this->db->insert('carrier_enquiry', $data);
+// 		$this->db->insert('pf_carrier_enquiry', $data);
 		
-		if($this->db->affected_rows() > 0)
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
-	}
+// 		if($this->db->affected_rows() > 0)
+// 		{
+// 			return TRUE;
+// 		}
+// 		else
+// 		{
+// 			return FALSE;
+// 		}
+// 	}
 }
 ?>

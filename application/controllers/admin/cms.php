@@ -45,9 +45,9 @@ class CMS extends CI_Controller {
 
 	public function submitCMS()
 	{
-		$this->form_validation->set_rules('cms_title','CMS Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('cms_url','CMS URL','required|trim|xss_clean');
-		$this->form_validation->set_rules('cms_window_title','CMS Window Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('cms_title','CMS Title','required|trim');
+		$this->form_validation->set_rules('cms_url','CMS URL','required|trim');
+		$this->form_validation->set_rules('cms_window_title','CMS Window Title','required|trim');
 
 		if ($this->form_validation->run())
 		{
@@ -101,7 +101,7 @@ class CMS extends CI_Controller {
 	public function editCMS()
 	{
 		$cms_id = $this->uri->segment(4,0);
-		$cms_id = $this->security->xss_clean($cms_id);
+// 		$cms_id = $this->security->xss_clean($cms_id);
 		if(isset($cms_id) && !empty($cms_id) && $cms_id!=NULL && $cms_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -117,16 +117,16 @@ class CMS extends CI_Controller {
 
 	public function updateCMS()
 	{		
-		$this->form_validation->set_rules('cms_title','CMS Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('cms_url','CMS URL','required|trim|xss_clean');
-		$this->form_validation->set_rules('cms_window_title','CMS Window Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('cms_id','CMS ID','required|trim|xss_clean|numeric');				
+		$this->form_validation->set_rules('cms_title','CMS Title','required|trim');
+		$this->form_validation->set_rules('cms_url','CMS URL','required|trim');
+		$this->form_validation->set_rules('cms_window_title','CMS Window Title','required|trim');
+		$this->form_validation->set_rules('cms_id','CMS ID','required|trim|numeric');				
 
 		if ($this->form_validation->run())
 		{
 			$cms_file = ''; $status=FALSE;
 			$cms_id = $this->input->post('cms_id');
-			$cms_id = $this->security->xss_clean($cms_id);
+// 			$cms_id = $this->security->xss_clean($cms_id);
 				
 			if (!empty($_FILES['cms_file']['name']))
 			{

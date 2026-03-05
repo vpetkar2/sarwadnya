@@ -13650,7 +13650,7 @@ ol.commentlist li .star-rating {
     color: #ffffff;
     display: table;
     height: 50px;
-    left: 10px;
+    right: 10px;
     min-width: 50px;
     position: fixed;
     text-align: center;

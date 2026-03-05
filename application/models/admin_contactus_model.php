@@ -20,13 +20,11 @@ class Admin_contactus_model extends CI_Model
 
 	public function update_contact()
 	{
-		$conus_email = $this->security->xss_clean($this->input->post('conus_email'));
-		//$conus_fax = $this->security->xss_clean($this->input->post('conus_fax'));
-		$conus_phone = $this->security->xss_clean($this->input->post('conus_phone'));
-		$conus_mobile = $this->security->xss_clean($this->input->post('conus_mobile'));
-		$conus_address = $this->security->xss_clean($this->input->post('conus_address'));
-		$conus_address2 = $this->security->xss_clean($this->input->post('conus_address2'));
-		//$conus_map = $this->security->xss_clean($this->input->post('conus_map'));
+		$conus_email = $this->input->post('conus_email');
+		$conus_phone = $this->input->post('conus_phone');
+		$conus_mobile = $this->input->post('conus_mobile');
+		$conus_address = $this->input->post('conus_address');
+		$conus_address2 = $this->input->post('conus_address2');
 
 		$data = array('conus_email'=>$conus_email, 'conus_phone'=>$conus_phone, 'conus_mobile'=>$conus_mobile, 'conus_address'=>$conus_address,'conus_address2'=>$conus_address2);
 		

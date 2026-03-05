@@ -39,7 +39,7 @@ class Enquiry extends CI_Controller
 	public function deleteEnquiry()
 	{
 		$cat_id = $this->uri->segment(4,0);
-		$cat_id = $this->security->xss_clean($cat_id);
+// 		$cat_id = $this->security->xss_clean($cat_id);
 		if(isset($cat_id) && !empty($cat_id) && $cat_id!=NULL && $cat_id > 0)
 		{
 			if($this->admin_enquiry_model->deleteEnquiry())
@@ -68,4 +68,31 @@ class Enquiry extends CI_Controller
 			return redirect('admin/fournotfour');
 		}
 	}
+	
+	public function deleteMultiple()
+    {
+        $enq_ids = $this->input->post('enq_ids');
+    
+        if(!empty($enq_ids) && is_array($enq_ids))
+        {
+            // security filter
+            $enq_ids = array_filter($enq_ids, 'is_numeric');
+            $enq_ids = array_map('intval', $enq_ids);
+    
+            if($this->admin_enquiry_model->deleteMultipleEnquiry($enq_ids))
+            {
+                $this->session->set_flashdata('delete_success', count($enq_ids).' enquiry(s) deleted successfully!');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Error while deleting enquiries. Try again');
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Please select at least one enquiry to delete');
+        }
+    
+        return redirect('admin/enquiry');
+    }
 }

@@ -32,12 +32,12 @@ class Admin_login_model extends CI_Model
 	public function update_profile($array)
 	{
 		$data = array(
-			'username' => $this->security->xss_clean($array['username']), 
-			'email' => $this->security->xss_clean($array['email']), 
-			'contact_no' => $this->security->xss_clean($array['contact_no'])
+			'username' => $array['username'], 
+			'email' => $array['email'], 
+			'contact_no' => $array['contact_no']
 			);	
 		
-		$this->db->where('admin_id', $this->security->xss_clean($array['admin_id']));
+		$this->db->where('admin_id', $array['admin_id']);
 
 		$this->db->update('admin', $data); 
 		
@@ -55,7 +55,7 @@ class Admin_login_model extends CI_Model
 
 	public function validate_password($array)
 	{
-		$result = $this->db->get_where('admin', array('password' => $array['old_password'],'admin_id' => $this->security->xss_clean($array['admin_id'])));
+		$result = $this->db->get_where('admin', array('password' => $array['old_password'],'admin_id' => $array['admin_id']));
 
 		if ($result->num_rows() > 0)
 		{
@@ -71,10 +71,10 @@ class Admin_login_model extends CI_Model
 	public function change_password($array)
 	{
 		$data = array(
-			'password' => $this->security->xss_clean($array['password'])
+			'password' => $array['password']
 			);	
 		
-		$this->db->where('admin_id', $this->security->xss_clean($array['admin_id']));
+		$this->db->where('admin_id', $array['admin_id']);
 		$this->db->update('admin', $data); 		
 		
 		$qry1 = $this->db->affected_rows();

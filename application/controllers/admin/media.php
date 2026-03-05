@@ -45,8 +45,8 @@ class Media extends CI_Controller {
 
 	public function submitMedia()
 	{
-		$this->form_validation->set_rules('media_title','Media Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('media_url','Youtube URL','required|trim|xss_clean');
+		$this->form_validation->set_rules('media_title','Media Title','required|trim');
+		$this->form_validation->set_rules('media_url','Youtube URL','required|trim');
 			
 
 		if ($this->form_validation->run())
@@ -72,7 +72,7 @@ class Media extends CI_Controller {
 	public function editMedia()
 	{
 		$media_id = $this->uri->segment(4,0);
-		$media_id = $this->security->xss_clean($media_id);
+// 		$media_id = $this->security->xss_clean($media_id);
 		if(isset($media_id) && !empty($media_id) && $media_id!=NULL && $media_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -88,9 +88,9 @@ class Media extends CI_Controller {
 
 	public function updateMedia()
 	{		
-		$this->form_validation->set_rules('media_title','Media Title','required|trim|xss_clean');
-		$this->form_validation->set_rules('media_url','Youtube URL','required|trim|xss_clean');
-		$this->form_validation->set_rules('media_id','Media ID','required|trim|xss_clean|numeric');				
+		$this->form_validation->set_rules('media_title','Media Title','required|trim');
+		$this->form_validation->set_rules('media_url','Youtube URL','required|trim');
+		$this->form_validation->set_rules('media_id','Media ID','required|trim|numeric');				
 
 		if ($this->form_validation->run())
 		{ 			
@@ -102,7 +102,7 @@ class Media extends CI_Controller {
 			else
 			{
 				$media_id = $this->input->post('media_id');
-				$media_id = $this->security->xss_clean($media_id);
+				// $media_id = $this->security->xss_clean($media_id);
 				if(isset($media_id) && !empty($media_id) && $media_id!=NULL && $media_id > 0)
 				{
 					$data['add_error'] = 'Error while updating record. Try again';
@@ -128,7 +128,7 @@ class Media extends CI_Controller {
 	public function updateStatus()
 	{
 		$media_id = $this->uri->segment(4,0);
-		$media_id = $this->security->xss_clean($media_id);
+// 		$media_id = $this->security->xss_clean($media_id);
 		if(isset($media_id) && !empty($media_id) && $media_id!=NULL && $media_id > 0)
 		{
 			$media_array = $this->admin_media_model->getStatus($media_id);

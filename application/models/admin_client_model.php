@@ -20,7 +20,7 @@ class Admin_client_model extends CI_Model
 
 	public function addClient($client){
 		$field = array(
-			'client_title'=>$this->security->xss_clean($this->input->post('client_title')),
+			'client_title'=>$this->input->post('client_title'),
 			'client_logo'=>$client,
 			'client_status'=>'active'
 			);
@@ -45,7 +45,6 @@ class Admin_client_model extends CI_Model
 
 	public function updateClient($client){
 		$client_id = $this->input->post('client_id');
-		$client_id = $this->security->xss_clean($client_id);
 
 		$data_1 = array();
 		if($client!='')
@@ -54,12 +53,11 @@ class Admin_client_model extends CI_Model
 		}
 		
 		$data_2 = array(
-		'client_title'=>$this->security->xss_clean($this->input->post('client_title')),
+		'client_title'=>$this->input->post('client_title'),
 		'client_status'=>'active'
 		);
 
 		$data = array_merge($data_1,$data_2);
-
 
 		$this->db->where('client_id', $client_id);
 		$this->db->update('client', $data);

@@ -78,7 +78,5 @@ $this->load->view('admin/header_view');
 			</div>   <!-- /.row -->
 			
         </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
-<?php 
-$this->load->view('admin/footer_view');
-?>
+    </div><!-- /.content-wrapper --> 
+	<?php $this->load->view('admin/footer_view'); ?>

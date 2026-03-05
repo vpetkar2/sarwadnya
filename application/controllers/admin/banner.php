@@ -48,7 +48,7 @@ class Banner extends CI_Controller {
 
 	public function submitCap()
 	{
-		$this->form_validation->set_rules('ban_cap','Caption','required|trim|xss_clean');
+		$this->form_validation->set_rules('ban_cap','Caption','required|trim');
 	    $ban_id = $this->input->post('ban_id');
 		if ($this->form_validation->run())
 		{
@@ -72,7 +72,7 @@ class Banner extends CI_Controller {
 
 	public function submitBanner()
 	{
-		$this->form_validation->set_rules('ban_title','Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('ban_title','Title','required|trim');
 		
 		if ($this->form_validation->run())
 		{
@@ -91,7 +91,7 @@ class Banner extends CI_Controller {
 	public function editBanner()
 	{
 		$ban_id = $this->uri->segment(4,0);
-		$ban_id = $this->security->xss_clean($ban_id);
+// 		$ban_id = $this->security->xss_clean($ban_id);
 		if(isset($ban_id) && !empty($ban_id) && $ban_id!=NULL && $ban_id > 0)
 		{
 			$data['add_error'] = FALSE;
@@ -107,10 +107,10 @@ class Banner extends CI_Controller {
 
 	public function updateBanner()
 	{		
-		$this->form_validation->set_rules('ban_title','Title','required|trim|xss_clean');
+		$this->form_validation->set_rules('ban_title','Title','required|trim');
 		
 		$ban_id = $this->input->post('ban_id');
-		$ban_id = $this->security->xss_clean($ban_id);
+// 		$ban_id = $this->security->xss_clean($ban_id);
 		
 		if ($this->form_validation->run())
 		{
@@ -146,7 +146,7 @@ class Banner extends CI_Controller {
 	public function updateStatus()
 	{
 		$ban_id = $this->uri->segment(4,0);
-		$ban_id = $this->security->xss_clean($ban_id);
+// 		$ban_id = $this->security->xss_clean($ban_id);
 		if(isset($ban_id) && !empty($ban_id) && $ban_id!=NULL && $ban_id > 0)
 		{
 			$ban_array = $this->admin_banner_model->getStatus($ban_id);
@@ -201,14 +201,14 @@ class Banner extends CI_Controller {
 	
 	public function submitBannerImage()
 	{
-		$this->form_validation->set_rules('ban_id','Banner ID','required|trim|xss_clean');
+		$this->form_validation->set_rules('ban_id','Banner ID','required|trim');
 		if(empty($_FILES['ban_image']['name']))
 		{
 			$this->form_validation->set_rules('ban_image','Image','required');
 		}
 		
 		$ban_id = $this->input->post('ban_id');
-		$ban_id = $this->security->xss_clean($ban_id);
+// 		$ban_id = $this->security->xss_clean($ban_id);
 
 		if ($this->form_validation->run())
 		{

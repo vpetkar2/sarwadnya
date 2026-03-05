@@ -38,8 +38,7 @@ class Admin_enquiry_model extends CI_Model
 
     public function deleteEnquiry(){
 		$cat_id = $this->uri->segment(4,0);
-		$cat_id = $this->security->xss_clean($cat_id);
-		
+
 		$this -> db -> where('contact_id', $cat_id);
 		$this -> db -> delete('prod_enq');
 		if($this->db->affected_rows() > 0){
@@ -48,4 +47,19 @@ class Admin_enquiry_model extends CI_Model
 			return FALSE;
 		}
 	}	
+	
+	public function deleteMultipleEnquiry($enq_ids)
+    {
+        $this->db->where_in('contact_id', $enq_ids);
+        $this->db->delete('pf_prod_enq');
+    
+        if($this->db->affected_rows() > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
 }

@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
-
-Sitemap: https://www.parthfibrotech.in/sitemap.xml
-Sitemap: http://www.parthfibrotech.in/sitemap.xml

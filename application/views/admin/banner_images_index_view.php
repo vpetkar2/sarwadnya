@@ -129,5 +129,4 @@ $album_name = stripslashes($this->db->get_where('banner', array('ban_id' => $ban
 				</div><!-- /.col -->
 			</div><!-- /.row -->
         </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
-$this->load->view('admin/footer_view');
+    </div><!-- /.content-wrapper --><?php $this->load->view('admin/footer_view'); ?>

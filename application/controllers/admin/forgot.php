@@ -63,8 +63,8 @@ class Forgot extends CI_Controller {
 
 	public function submit_forgot()
 	{
-		$this->form_validation->set_rules('username','Username','required|trim|xss_clean');
-		$this->form_validation->set_rules('admin_captcha','Captcha','required|xss_clean|is_natural');
+		$this->form_validation->set_rules('username','Username','required|trim');
+		$this->form_validation->set_rules('admin_captcha','Captcha','required|is_natural');
 
 		if ($this->form_validation->run())
 		{ 
@@ -74,7 +74,7 @@ class Forgot extends CI_Controller {
 			
 			if($admin_captcha === $admin_security_code['word'])
 			{
-				$username = $this->security->xss_clean($this->input->post('username'));				
+				$username = $this->input->post('username');		
 				
 				$random_string = random_string($type = 'alnum', $len = 10);
 
