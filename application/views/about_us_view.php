@@ -155,7 +155,7 @@ $this->load->view('header_view');
                                         <tr>
                                             <th>QR Code</th>
                                             <td>
-                                                <a href="https://sarwadnyaplay.com/assets/documents/Sarwadnya%20QR.pdf" target="_blank" rel="noopener">
+                                                <a href="https://sarwadnyaplay.com/assets/documents/Sarwadnya%20QR.jpeg" target="_blank" rel="noopener">
                                                     <i class="fa fa-file-pdf-o" style="color:red;"></i> View QR
                                                 </a>
                                             </td>

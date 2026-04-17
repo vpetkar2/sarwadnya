@@ -189,7 +189,7 @@ if (!empty($albums->prod_image)) {
 
 						<!-- Remaining text full width -->
 						<?php if (!empty(trim(strip_tags($prod_desc)))) { ?>
-							<div class="col-lg-12 col-md-12 m-b30 video-infobx">
+							<div class="col-lg-12 col-md-12 m-b10 video-infobx">
 								<h2 class="m-b15 title">
 									<span class="text-primary">
 										Product Specifications
@@ -200,6 +200,20 @@ if (!empty($albums->prod_image)) {
 								</div>
 							</div>
 						<?php } ?>
+
+						<div class="col-lg-12 col-md-12 m-b20 video-infobx">
+						    <h2 class="m-b15 title">
+								<span class="text-primary">
+									QR Code
+								</span>
+							</h2>
+							<div class="">
+								<a href="https://sarwadnyaplay.com/assets/documents/Sarwadnya%20QR.jpeg" target="_blank" rel="noopener">
+                                    <i class="fa fa-file-pdf-o" style="color:red;"></i> View QR
+                                </a>
+							</div>
+                        </div>
+
 					</div>
 				</div>
 

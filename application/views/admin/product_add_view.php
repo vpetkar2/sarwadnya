@@ -83,7 +83,7 @@
 										<?php echo form_error('prod_title', '<p class="text-danger">', '</p>')?>
 									</div>
 								</div>
-								<!--<div class="form-group">
+								<div class="form-group">
 									<label for="download" class="col-sm-2 control-label">Image</label>
 									<div class="col-sm-10">
 										<input type="file" name="prod_file" id="prod_file" value="">
@@ -97,7 +97,7 @@
 
 										<?php echo form_error('prod_desc', '<p class="text-danger">', '</p>')?>
 									</div>
-								</div>-->
+								</div>
 								<div class="form-group">
 									<label for="prod_desc" class="col-sm-2 control-label">Description</label>
 									<div class="col-sm-10">

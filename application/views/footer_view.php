@@ -179,11 +179,64 @@
 			        </div>
 			        <div class="col-md-8 col-sm-8">
 			            <div class="footer-bottom-social">
-        					<ul class="dlab-social-icon dez-border">
-        						<li><a class="fa fa-facebook" target="__blank" href="https://www.facebook.com/sarwadnyasportsandfitness"></a></li>
-        						<li><a class="fa fa-linkedin" target="__blank" href="https://www.linkedin.com/in/sanjay-bobde-478710173/"></a></li>
-        						<li><a class="fa fa-youtube" target="__blank" href="https://www.youtube.com/@sarwadnyasportsandfitnessp2743"></a></li>
-        					</ul>
+        					<!--<ul class="dlab-social-icon dez-border">-->
+        					<!--	<li><a class="fa fa-facebook" target="__blank" href=""></a></li>-->
+        					<!--	<li><a class="fa fa-linkedin" target="__blank" href="/"></a></li>-->
+        					<!--	<li><a class="fa fa-youtube" target="__blank" href=""></a></li>-->
+        					<!--</ul>-->
+        					
+        					<!--<ul class="dlab-social-icon dez-border">-->
+
+             <!--               <li>-->
+             <!--               <a class="fa fa-facebook" target="__blank" href="<?php echo $social->fb_social ?>">-->
+             <!--               </a>-->
+             <!--               </li>-->
+                            
+             <!--               <li>-->
+             <!--               <a class="fa fa-linkedin" target="__blank" href="<?php echo $social->ln_social ?>">-->
+             <!--               </a>-->
+             <!--               </li>-->
+                            
+             <!--               <li>-->
+             <!--               <a class="fa fa-youtube" target="__blank" href="<?php echo $social->yt_social ?>">-->
+             <!--               </a>-->
+             <!--               </li>-->
+                            
+             <!--               </ul>-->
+             
+             <ul class="dlab-social-icon dez-border">
+
+    <?php if (!empty($social->fb_social) && trim($social->fb_social) != 'no-record') { ?>
+        <li>
+            <a class="fa fa-facebook" target="_blank" href="<?= $social->fb_social ?>"></a>
+        </li>
+    <?php } ?>
+
+    <?php if (!empty($social->ln_social) && trim($social->ln_social) != 'no-record') { ?>
+        <li>
+            <a class="fa fa-linkedin" target="_blank" href="<?= $social->ln_social ?>"></a>
+        </li>
+    <?php } ?>
+
+    <?php if (!empty($social->yt_social) && trim($social->yt_social) != 'no-record') { ?>
+        <li>
+            <a class="fa fa-youtube" target="_blank" href="<?= $social->yt_social ?>"></a>
+        </li>
+    <?php } ?>
+
+    <?php if (!empty($social->Ins_social) && trim($social->Ins_social) != 'no-record') { ?>
+        <li>
+            <a class="fa fa-instagram" target="_blank" href="<?= $social->Ins_social ?>"></a>
+        </li>
+    <?php } ?>
+
+    <?php if (!empty(trim($social->tw_social)) && trim($social->tw_social) != 'no-record') { ?>
+        <li>
+            <a class="fa fa-twitter" target="_blank" href="<?= $social->tw_social ?>"></a>
+        </li>
+    <?php } ?>
+
+</ul>
         				</div>
 			        </div>
 			    </div>

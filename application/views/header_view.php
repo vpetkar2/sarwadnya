@@ -29,9 +29,7 @@ $seo_val = getSeoData($str, $cityname);
 $seo_val_prod = getSeoDataProd($str);
 $url_img = "https://sarwadnyaplay.com/upload/je/";
 $logo_img = "https://sarwadnyaplay.com/assets/newsite/images/logo/logo.png";
-
 // echo"<pre>"; print_r($seo_val); exit;
-
 
 if (!empty($seo_val))    // For Prodcut category page
 {
@@ -39,7 +37,18 @@ if (!empty($seo_val))    // For Prodcut category page
 	$keywords = $seo_val->seo_key;
 	$desc = strip_tags($seo_val->seo_desc);
 	$image = $url_img . "" . $seo_val->seo_image;
+
 	$new_url = "https://sarwadnyaplay.com/" . strtolower($cityname) . "/" . $seo_val->seo_url;
+
+	if (!empty(trim($cityname))) {
+        $new_url = $url . strtolower(trim($cityname)) . "/";
+    } else {
+        $new_url = $url;
+    }
+
+	if ($seo_val->seo_url == "" || $seo_val->seo_url == "about-us" || $seo_val->seo_url == "blog" || $seo_val->seo_url == "career" || $seo_val->seo_url == "contact-us") {
+        $image = $seo_val->seo_image;
+    }
 }
 
 if (empty($seo_val))    // For Show Default matter
@@ -126,7 +135,7 @@ $segment1 = $this->uri->segment(1);
         "https://www.youtube.com/@sarwadnyasportsandfitnessp2743"
       ],
     
-      "keywords": "sports equipment, fitness equipment, gym equipment, indoor playground equipment, outdoor playground equipment manufacturer in India",
+      "keywords": "sports equipment, fitness equipment, gym equipment, indoor playground equipment, outdoor playground equipment, science park equipment manufacturer in India",
     
       "contactPoint": [
         {
@@ -322,6 +331,19 @@ $segment1 = $this->uri->segment(1);
 														</li>
 
 													<?php } ?>
+                                                        
+                                                        <li>
+															<a
+																href="https://sarwadnyaplay.com/assets/documents/SSF%20Playground%20Catalogue.pdf" target="_blank" rel="noopener">
+																SSF Playground Catalogue
+															</a>
+														</li>
+														<li>
+															<a
+																href="https://sarwadnyaplay.com/assets/documents/SSF%20Outdoor%20GYM%20Catalogue.pdf" target="_blank" rel="noopener">
+																SSF Outdoor GYM Catalogue
+															</a>
+														</li>
 
 												</ul>
 											</li>

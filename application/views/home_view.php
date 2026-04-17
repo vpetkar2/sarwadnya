@@ -141,8 +141,7 @@ $this->load->view('header_view');
 				<div class="section-head text-center">
 					<h2 class="title">Why Customers Trust <br /><span class="text-primary">Sarwadnya Sports &
 							Fitness</span></h2>
-					<p>We design and manufacture high-quality playground, outdoor gym, and science park equipment that
-						promote fitness, learning, and fun for everyone everywhere.</p>
+					<p>Sarwadnya Sports & Fitness Pvt. Ltd. is a leading manufacturer of indoor and outdoor playground equipment and gym equipment in Nagpur, India. We specialize in designing and producing high-quality playground, outdoor gym, and science park equipment that promotes fitness, learning, and fun for people of all ages, everywhere.</p>
 				</div>
 				<div class="about-ser-carousel owl-carousel owl-theme owl-btn-center-lr owl-dots-primary-full owl-btn-3 m-b30 wow fadeIn"
 					data-wow-duration="2s" data-wow-delay="0.2s">

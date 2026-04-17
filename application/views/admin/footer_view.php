@@ -40,6 +40,7 @@
     <script src="<?php echo base_url('assets/admin/plugins/datepicker/bootstrap-datepicker.js');?>"></script>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+    <!--<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>-->
 	<!-- DataTables -->
     <script src="<?php echo base_url('assets/admin/plugins/datatables/jquery.dataTables.min.js');?>"></script>
     <script src="<?php echo base_url('assets/admin/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
@@ -91,6 +92,27 @@
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
       });
+    </script>
+    
+    <script>
+        // $('form').submit(function () {
+        //     for (var instance in CKEDITOR.instances) {
+        //         CKEDITOR.instances[instance].updateElement();
+        //     }
+        // });
+        
+        setInterval(() => {
+          document.querySelectorAll('.cke_wysiwyg_frame').forEach(frame => {
+            try {
+              const doc = frame.contentDocument || frame.contentWindow.document;
+              if (doc && doc.body) {
+                doc.body.classList.remove('cke_display_version_check-absolute');
+              }
+            } catch (e) {
+              // ignore if not accessible
+            }
+          });
+        }, 300);
     </script>
   </body>
 </html>

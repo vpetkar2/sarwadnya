@@ -118,6 +118,13 @@ class Admin_product_model extends CI_Model
     
         $this->db->insert('pf_seo', $data_seo);
         
+        
+        // if ($this->db->affected_rows() == 0) {
+        //     echo "<pre>";
+        //     print_r($this->db->error());
+        //     echo $this->db->last_query();
+        //     exit;
+        // }
         // print_r($this->db->error());
         // echo $product_id;
         // exit;
